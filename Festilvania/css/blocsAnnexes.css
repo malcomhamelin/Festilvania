@@ -1,0 +1,49 @@
+.blocsAnnexes {
+    height: auto;
+
+    background-color: #ecf0f186;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.titreBloc {
+    margin : 10px -10px 0px 0px;
+    margin-left: -10px;
+
+    color: #222f3e;
+}
+
+#dropdownLeMeilleur {
+    margin-left: -10px;
+    color:#e56139;
+}
+
+.evenBlocAnnexe {
+    max-width: 300px;
+    float : right;
+
+    font-size: 10px;
+
+    text-align: justify;
+
+    margin: 0px 5px;
+}
+
+.evenBlocAnnexe h1 {
+    margin: 10px 5px;
+    font-size: 18px;
+}
+
+.evenBlocAnnexe p {
+    margin: 0px 5px;
+}
+
+.imgAnnonceBlocAnnexe {
+    width: 48px;
+    height: 48px;
+
+    float : left;
+
+    margin : 10px 5px;
+
+    border-radius: 5px 5px 5px 5px;
+}

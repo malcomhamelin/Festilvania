@@ -1,0 +1,95 @@
+body {
+    background: linear-gradient(#e56139, #fad390);
+    background-size: cover;
+    padding-top : 70px;
+}
+
+.annonce {
+    background-color: #ecf0f186;
+
+    padding : 20px 20px;
+
+    border-radius: 5px 5px 5px 5px;
+}
+
+.annonce a {
+    color : #222f3e;
+}
+
+.annonce a:hover {
+    text-decoration: underline;
+}
+
+.corpsAnnonce {
+    max-width: 400px;
+    float : right;
+}
+
+.img-annonce {
+    width: 150px;
+    height: 150px;
+
+    float : left;
+
+    margin : 30px 20px;
+
+    border-radius: 5px 5px 5px 5px;
+
+    background-image: url("../img/backgroundsm.jpg");
+    background-position: center;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+        margin-top : 30px;
+    }  
+}
+
+h1 {
+    display: inline-block;
+
+    margin-top : 30px;
+
+    font-size: 18px;
+}
+
+.corpsAnnonce p {
+    color: #222f3e;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.btn-custom {
+    background-color: #e56139;
+
+    margin-left: 10px;
+
+    color: #ecf0f1;
+}
+
+.btn-custom:hover {
+    opacity: .7;
+}
+
+.vote {
+    width: 32px;
+    height: 32px;
+
+    margin-top : 15px;
+}
+
+.voteButtons {
+    float: left;
+    width : 50px;
+}
+
+.plus {
+    margin-top: 70px;
+}
+
+.vote:hover {
+    opacity: .6;
+}

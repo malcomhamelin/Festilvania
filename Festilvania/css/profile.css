@@ -1,0 +1,25 @@
+.container-profile {
+    background-color: #ecf0f186;
+
+    margin-top : 30px;
+    padding : 50px 50px;
+
+    border-radius: 5px 5px 5px 5px;
+}
+
+@media screen and (max-width: 991px) {
+    .container-profile {
+        margin-top : 10px;
+    }   
+}
+
+.profile-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.img-profile {
+    width : 64px;
+
+    border-radius : 100%;
+}
