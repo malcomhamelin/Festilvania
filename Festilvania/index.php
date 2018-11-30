@@ -31,6 +31,7 @@ switch($_SESSION['mod']) {
 	case 'timeline':
 	case 'profile' :
 	case 'post' :
+	case 'publipost' :
 		require_once "modules/mod_" . $_SESSION['mod'] . "/mod_" . $_SESSION['mod'] . ".php";
 		$modName = "Mod". ucfirst($_SESSION['mod']);
 		$modObject = new $modName($_SESSION['action']);

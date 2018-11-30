@@ -52,6 +52,9 @@ body {
     background-position: center;
 }
 
+.description-annonce {
+    min-height: 110px;
+}
 
 @media screen and (max-width: 1024px) {
     .col-centered {
