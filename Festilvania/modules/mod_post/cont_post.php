@@ -15,8 +15,10 @@ class ContPost{
 
     public function act($action) {
         switch ($action) {
+            case 'comment' :
+                $this->model->addComment();
             default :
-                $this->view->getPost($this->model->comment(), $this->model->event($action), $this->model->getRights());
+                $this->view->getPost($this->model->comment(), $this->model->event(), $this->model->getRights());
                 break;
         }
     }

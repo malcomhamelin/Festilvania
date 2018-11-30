@@ -38,6 +38,10 @@ class ViewPost extends ViewGeneric {
 							
 		echo		'</div>
 				</div>
+				<hr>
+				<div class="row">'.
+					$this->getCommentForm($rights)
+			  .'</div>
 			 </div';
 			 
 	}
@@ -61,6 +65,20 @@ class ViewPost extends ViewGeneric {
 	public function getEditButton($rights) {
 		if ($rights != null && $rights['droit_editer']) {
 			return '<button class="btn btn-outline-dark float-right">Editer</button>';
+		}
+	}
+
+	public function getCommentForm($rights) {
+		if ($rights != null && $rights['droit_commenter']) {
+			return '<form class="col-lg-10 mx-auto" action="index.php?mod=post&idEvent='. $_SESSION['idEvent'] .'&action=comment" method="post">
+						<div class="form-group">
+							<textarea class="form-control" placeholder="Commenter..." rows="3" name="comment"></textarea>
+							<button type="submit" class="btn btn-outline-success float-right mt-3">Commenter</button>
+						</div>
+					</form>';
+		}
+		else {
+			return '<p class="col-lg-12 text-center">Vous devez être connecté pour commenter</p>';
 		}
 	}
     

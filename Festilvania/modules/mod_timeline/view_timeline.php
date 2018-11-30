@@ -52,10 +52,10 @@ Class ViewTimeline extends ViewGeneric {
                     </div>
                     <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
                     <div class="corpsAnnonce col-xs-12 col-lg-7">
-                        <h1><a href="index.php?mod=post&action=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
+                        <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
                         <p>' . $key['description'] . '</p>
 
-                        <a href="index.php?mod=post&action=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>
+                        <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>
                         <a href="#"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>
                     </div>';
         }
