@@ -9,7 +9,7 @@ class ViewMenu {
     public function getNavbar() {
         echo '<nav class="navbar fixed-top navbar-expand-lg navbar-light">
                 <div class="container">
-                    <a class="navbar-brand" id="logo-text" href="#"><img src="img/logo2.png" alt=""></a>
+                    <a class="navbar-brand" id="logo-text" href="#"><img src="img/logotest.png" alt="logo" id="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

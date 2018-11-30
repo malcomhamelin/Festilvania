@@ -25,6 +25,7 @@ if (isset($_GET['option'])) {
 switch($_SESSION['mod']) {
 	case 'timeline':
 	case 'profile' :
+	case 'post' :
 		require_once "modules/mod_" . $_SESSION['mod'] . "/mod_" . $_SESSION['mod'] . ".php";
 		$modName = "Mod". ucfirst($_SESSION['mod']);
 		$modObject = new $modName($action);

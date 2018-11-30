@@ -3,20 +3,18 @@
 }
 
 .navbar {
-    background-color: #ecf0f186;
+    background-color: #ecf0f1c7;
 }
 
 .navbar-light .navbar-nav .nav-link {
-    font-weight: bold;
-
-    color: #222f3e;
+    color: black;
 }
 
 .navbar-light .nav-item.active .nav-link,
 .navbar-light .nav-item:hover .nav-link {
     font-weight: bold;
 
-    color: #222f3e;
+    color: black;
 }
 
 .btn-search {
@@ -38,6 +36,10 @@
     font-weight: bold;
 
     color: #222f3e;
+}
+
+#logo {
+    width: 250px;
 }
 
 .dropdown-custom {

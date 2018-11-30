@@ -1,6 +1,6 @@
 <?php
 
-include_once "model_Profile.php";
+include_once "model_profile.php";
 include_once "view_profile.php";
 
 Class ContProfile {

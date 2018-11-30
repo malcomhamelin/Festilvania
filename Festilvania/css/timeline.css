@@ -1,11 +1,20 @@
 body {
+    /*
     background: linear-gradient(#e56139, #fad390);
     background-size: cover;
+    */
+    background-image: url("../img/background4filtre.jpg");
+    background-repeat: no-repeat;
     padding-top : 70px;
+    padding-bottom: 70px;
+}
+
+.accueil {
+    height: 1000px;
 }
 
 .annonce {
-    background-color: #ecf0f186;
+    background-color: #ecf0f1c7;
 
     padding : 20px 20px;
 
@@ -13,7 +22,7 @@ body {
 }
 
 .annonce a {
-    color : #222f3e;
+    color : black;
 }
 
 .annonce a:hover {
@@ -23,6 +32,10 @@ body {
 .corpsAnnonce {
     max-width: 400px;
     float : right;
+}
+
+.corpsAnnonce i {
+    font-size : 24px;
 }
 
 .img-annonce {
@@ -45,10 +58,10 @@ body {
         float: none;
         margin: 0 auto;
         margin-top : 30px;
-    }  
+    } 
 }
 
-h1 {
+.corpsAnnonce h1 {
     display: inline-block;
 
     margin-top : 30px;
@@ -63,11 +76,7 @@ h1 {
 }
 
 .btn-custom {
-    background-color: #e56139;
-
     margin-left: 10px;
-
-    color: #ecf0f1;
 }
 
 .btn-custom:hover {
@@ -75,9 +84,6 @@ h1 {
 }
 
 .vote {
-    width: 32px;
-    height: 32px;
-
     margin-top : 15px;
 }
 

@@ -1,7 +1,7 @@
 .blocsAnnexes {
     height: auto;
 
-    background-color: #ecf0f186;
+    background-color: #ecf0f1c7;
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -14,7 +14,7 @@
 
 #dropdownLeMeilleur {
     margin-left: -10px;
-    color:#e56139;
+    color: black;
 }
 
 .evenBlocAnnexe {

@@ -46,17 +46,17 @@ Class ViewTimeline extends ViewGeneric {
 
     public function getTimeline($content) {
         foreach ($content as $key) {
-            echo '  <div class="voteButtons col-xs-6 col-lg-1">
-                        <a href=""><img src="img/plus.png" alt="" class="vote plus"></a>
-                        <a href=""><img src="img/minus.png" alt="" class="vote moins"></a>
+            echo '  <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto">
+                        <a href="#"><div class="btn btn-outline-success vote plus"><i class="fas fa-plus"></i></div></a>
+                        <a href="#"><div class="btn btn-outline-danger vote moins"><i class="fas fa-minus"></i></div></a>
                     </div>
                     <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
                     <div class="corpsAnnonce col-xs-12 col-lg-7">
-                        <h1><a href="#">' . $key['titreEvenement'] . '</a></h1>
+                        <h1><a href="index.php?mod=post&action=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
                         <p>' . $key['description'] . '</p>
 
-                        <a href="#"><div class="btn btn-custom float-right">Voir l\'évenement</div></a>
-                        <a href="#"><div class="btn btn-custom float-right" title="Ajouter à mon agenda">+</div></a>
+                        <a href="index.php?mod=post&action=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>
+                        <a href="#"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>
                     </div>';
         }
     }
