@@ -108,7 +108,7 @@ Class ViewTimeline extends ViewGeneric {
             echo    '<div class="row mt-2">
                         <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
                         <div class="evenBlocAnnexe">
-                            <h1>' . $key['titreEvenement'] . '</h1>
+                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
                             <p>Ajouté le ' . $key['date_creation'] . '</p>
                         </div>
                     </div>';
@@ -127,7 +127,7 @@ Class ViewTimeline extends ViewGeneric {
             echo    '<div class="row mt-2">
                         <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
                         <div class="evenBlocAnnexe">
-                            <h1>' . $key['titreEvenement'] . '</h1>
+                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
                             <p>Ajouté le ' . $key['date_creation'] . '</p>
                         </div>
                     </div>';
