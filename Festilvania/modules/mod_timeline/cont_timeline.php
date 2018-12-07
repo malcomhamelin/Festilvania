@@ -17,7 +17,8 @@ Class ContTimeline {
         switch ($action) {
             case 'connection' :
             case 'disconnection' :
-            case 'schedule' :
+            case 'addschedule' :
+            case 'delschedule' :
             case 'upvote' :
             case 'downvote' :
                 $this->model->$action();
@@ -31,7 +32,7 @@ Class ContTimeline {
         switch ($option) {
             case 'homepage' :
             case 'myschedule' :
-                $this->view->getHomepage($this->model->$option());
+                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos());
                 break;
             default :
                 break;

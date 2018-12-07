@@ -17,11 +17,23 @@ Class ModelTimeline extends Connection {
 
     public function myschedule() {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
-            $tuplesHomePage = self::$bdd->prepare("SELECT * FROM evenement INNER JOIN aller ON evenement.idEvenement = aller.idEvenement INNER JOIN membre ON aller.idMembre = membre.idMembre WHERE membre.idMembre = ? ORDER BY date_creation DESC");
+            $tuplesHomePage = self::$bdd->prepare("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, membre.idMembre, sum(voteevenement.vote) as nbVotes 
+            FROM evenement LEFT JOIN voteevenement using (idEvenement) INNER JOIN aller ON evenement.idEvenement = aller.idEvenement INNER JOIN membre ON aller.idMembre = membre.idMembre 
+            GROUP BY evenement.idEvenement HAVING membre.idMembre = ? ORDER BY date_creation DESC");
             $tuplesHomePage->execute(array($_SESSION['idMembre']));
             $result = $tuplesHomePage->fetchAll();
 
             return $result;
+        }
+    }
+
+    public function getUserInfos() {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+            $schedule = self::$bdd->prepare("SELECT * FROM aller WHERE idMembre = ?");
+            $schedule->execute(array($_SESSION['idMembre']));
+            $userInfos = $schedule->fetchAll();
+
+            return $userInfos;
         }
     }
 
@@ -94,7 +106,7 @@ Class ModelTimeline extends Connection {
         header('Location: index.php?mod=' . $_SESSION['mod'] . '&option=' . $_SESSION['option']);
     }
 
-    public function schedule() {
+    public function addschedule() {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
             $checkSchedule = self::$bdd->prepare("SELECT * FROM aller WHERE idMembre = ? and idEvenement = ?");
             $checkSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
@@ -104,6 +116,20 @@ Class ModelTimeline extends Connection {
                 $addSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
 
                 echo 'Ajout réussi!';
+            }
+        }
+    }
+
+    public function delschedule() {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+            $checkSchedule = self::$bdd->prepare("SELECT * FROM aller WHERE idMembre = ? and idEvenement = ?");
+            $checkSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
+
+            if ($checkSchedule->fetch()) {
+                $delSchedule = self::$bdd->prepare("DELETE FROM aller WHERE idMembre = ? and idEvenement = ?");
+                $delSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
+
+                echo 'Delete réussi!';
             }
         }
     }

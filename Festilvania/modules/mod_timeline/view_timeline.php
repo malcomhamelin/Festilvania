@@ -8,13 +8,13 @@ Class ViewTimeline extends ViewGeneric {
         parent::__construct();
     }
 
-    public function getHomepage($content) {
+    public function getTimeline($content, $userInfos) {
         echo '<div class="container">
                 <div class="row ml-3">
                     <div class="col-xs-12 col-md-12 col-lg-8 a">
                         <div class="container">';
 
-                                $this->getTimeline($content);
+                                $this->getHomepage($content, $userInfos);
 
         echo            '</div>
                     </div>
@@ -47,7 +47,7 @@ Class ViewTimeline extends ViewGeneric {
             </div>';
     }
 
-    public function getTimeline($content) {
+    public function getHomepage($content, $userInfos) {
         foreach ($content as $key) {
             $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
 
@@ -62,10 +62,31 @@ Class ViewTimeline extends ViewGeneric {
                             <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
                             <p class="description-annonce">' . $key['description'] . '</p>
 
-                            <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>
-                            <a href="index.php?mod=timeline&action=schedule&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>
-                        </div>
+                            <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>';
+
+                            $this->getScheduleButton($userInfos, $key['idEvenement']);
+
+            echo        '</div>
                     </div>';
+        }
+    }
+
+    public function getScheduleButton($userInfos, $idEvenement) {
+        $isPresentSchedule = false;
+
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+            foreach ($userInfos as $key) {
+                if ($key['idMembre'] == $_SESSION['idMembre'] && $key['idEvenement'] == $idEvenement) {
+                    $isPresentSchedule = true;
+                }
+            }
+        }
+
+        if ($isPresentSchedule)  {
+            echo '<a href="index.php?mod=timeline&action=delschedule&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-minus"></i></div></a>';
+        }
+        else {
+            echo '<a href="index.php?mod=timeline&action=addschedule&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
         }
     }
 
