@@ -47,6 +47,12 @@ class ViewPost extends ViewGeneric {
 	}
 	
 	public function getComments($comments) {
+		if (empty($comments)) {
+			echo '	<div class="row mt-3">
+						<p class="col-xs-12 col-md-12 text-center">Personne n\'a commenté cet évènement... Soyez le premier !</p>
+					<div>';
+		}
+
 		foreach ($comments as $key) {
 			$date = new DateTime($key['date_creation']);
 

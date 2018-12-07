@@ -7,7 +7,8 @@ class ModelPost extends Connection {
     }
     
     public function comment() {
-        $tuplesComment = self::$bdd->query("SELECT * FROM commentaire INNER JOIN membre using (idMembre) ORDER BY commentaire.date_creation");
+        $tuplesComment = self::$bdd->prepare("SELECT * FROM commentaire INNER JOIN membre using (idMembre) WHERE commentaire.idEvenement = ? ORDER BY commentaire.date_creation");
+        $tuplesComment->execute(array($_SESSION['idEvent']));
         $result = $tuplesComment->fetchAll();
 
         return $result;

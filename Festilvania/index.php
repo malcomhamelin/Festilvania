@@ -3,9 +3,6 @@
 include_once "connection.php";
 Connection::initConnection();
 
-include_once "composants/comp_menu/comp_menu.php";
-$menu = new CompMenu();
-
 $_SESSION['mod'] = "timeline";
 $_SESSION['option'] = "homepage";
 $_SESSION['action'] = null;	
