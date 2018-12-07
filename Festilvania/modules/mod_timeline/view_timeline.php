@@ -8,13 +8,13 @@ Class ViewTimeline extends ViewGeneric {
         parent::__construct();
     }
 
-    public function getTimeline($content, $userInfos) {
+    public function getTimeline($content, $userInfos, $hottestContent, $latestContent) {
         echo '<div class="container">
                 <div class="row ml-3">
                     <div class="col-xs-12 col-md-12 col-lg-8 a">
                         <div class="container">';
 
-                                $this->getHomepage($content, $userInfos);
+                                $this->getMainTimeline($content, $userInfos);
 
         echo            '</div>
                     </div>
@@ -23,7 +23,7 @@ Class ViewTimeline extends ViewGeneric {
                             <div class="col-xs-12 col-md-12 mb-3 blocsAnnexes mb-2 mr-4">
                                 <div class="container">';
                                       
-                                    $this->getHottestBloc($content);
+                                    $this->getHottestBloc($hottestContent);
 
         echo                    '</div>
                             </div>
@@ -37,7 +37,7 @@ Class ViewTimeline extends ViewGeneric {
                             <div class="col-xs-12 col-md-12 blocsAnnexes mb-2 mr-4">
                                 <div class="container">';
                                     
-                                    $this->getLatestBloc($content);
+                                    $this->getLatestBloc($latestContent);
 
         echo                    '</div>
                             </div>
@@ -47,26 +47,33 @@ Class ViewTimeline extends ViewGeneric {
             </div>';
     }
 
-    public function getHomepage($content, $userInfos) {
-        foreach ($content as $key) {
-            $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
+    public function getMainTimeline($content, $userInfos) {
+        if (!empty($content)) {
+            foreach ($content as $key) {
+                $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
 
+                echo '  <div class="row annonce mt-4 mb-2 bloc mr-1">
+                            <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto text-center">
+                                <a href="index.php?mod=timeline&action=upvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-success"><i class="fas fa-plus"></i></div></a>
+                                <div class="btn"> <span class="votes">' . $nbVotes . ' <span></div>
+                                <a href="index.php?mod=timeline&action=downvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-danger"><i class="fas fa-minus"></i></div></a>
+                            </div>
+                            <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
+                            <div class="corpsAnnonce col-xs-12 col-lg-7">
+                                <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
+                                <p class="description-annonce">' . $key['description'] . '</p>
+
+                                <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>';
+
+                                $this->getScheduleButton($userInfos, $key['idEvenement']);
+
+                echo        '</div>
+                        </div>';
+            }
+        }
+        else {
             echo '  <div class="row annonce mt-4 mb-2 bloc mr-1">
-                        <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto text-center">
-                            <a href="index.php?mod=timeline&action=upvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-success"><i class="fas fa-plus"></i></div></a>
-                            <div class="btn"> <span class="votes">' . $nbVotes . ' <span></div>
-                            <a href="index.php?mod=timeline&action=downvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-danger"><i class="fas fa-minus"></i></div></a>
-                        </div>
-                        <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
-                        <div class="corpsAnnonce col-xs-12 col-lg-7">
-                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
-                            <p class="description-annonce">' . $key['description'] . '</p>
-
-                            <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>';
-
-                            $this->getScheduleButton($userInfos, $key['idEvenement']);
-
-            echo        '</div>
+                        <span class="col-xs-12 col-lg-12 text-center">Aucun post présent ici...</span>
                     </div>';
         }
     }
@@ -83,10 +90,10 @@ Class ViewTimeline extends ViewGeneric {
         }
 
         if ($isPresentSchedule)  {
-            echo '<a href="index.php?mod=timeline&action=delschedule&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-minus"></i></div></a>';
+            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-minus"></i></div></a>';
         }
         else {
-            echo '<a href="index.php?mod=timeline&action=addschedule&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
+            echo '<a href="index.php?mod=timeline&action=addschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
         }
     }
 
@@ -112,7 +119,7 @@ Class ViewTimeline extends ViewGeneric {
 
     public function getLatestBloc($content) {
         echo    '<div>
-                    <p class="titreBloc">Derniers posts consultés</p>
+                    <p class="titreBloc">Derniers évènements ajoutés</p>
                 </div>';
             
         foreach ($content as $key) {

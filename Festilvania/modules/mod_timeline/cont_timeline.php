@@ -32,7 +32,7 @@ Class ContTimeline {
         switch ($option) {
             case 'homepage' :
             case 'myschedule' :
-                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos());
+                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
             default :
                 break;

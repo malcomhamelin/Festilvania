@@ -27,6 +27,22 @@ Class ModelTimeline extends Connection {
         }
     }
 
+    public function hottestContent() {
+        $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes 
+        FROM evenement LEFT JOIN voteevenement using (idEvenement)
+        GROUP BY evenement.idEvenement ORDER BY nbVotes DESC");
+        $result = $tuplesHottest->fetchAll();
+
+        return $result;
+    }
+
+    public function latestContent() {
+        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement ORDER BY date_creation DESC");
+        $result = $tuplesHottest->fetchAll();
+
+        return $result;
+    }
+
     public function getUserInfos() {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
             $schedule = self::$bdd->prepare("SELECT * FROM aller WHERE idMembre = ?");
