@@ -71,24 +71,18 @@ Class ModelTimeline extends Connection {
             if ($resVote['vote'] == $voteValue) {
                 $delCurrentVote = self::$bdd->prepare("DELETE FROM voteevenement WHERE idMembre = ? and idEvenement = ? and vote = ?");
                 $delCurrentVote->execute(array($_SESSION['idMembre'], $_SESSION['idEvent'], $voteValue));
-
-                echo 'Delete same !';
             }
             else {
-                echo "HELLO";
 
                 if ($resVote['vote'] == -$voteValue) {
                     $delOppositeVote = self::$bdd->prepare("DELETE FROM voteevenement WHERE idMembre = ? and idEvenement = ? and vote = ?");
                     $delOppositeVote->execute(array($_SESSION['idMembre'], $_SESSION['idEvent'], -$voteValue));
-
-                    echo 'Delete opposite !';
                 }
                 
                 $vote = self::$bdd->prepare("INSERT INTO voteevenement VALUES (?, ?, ?, NOW())");
                 $vote->execute(array($_SESSION['idMembre'], $_SESSION['idEvent'], $voteValue));
             }
 
-            echo 'Vote !';
         }
     }
 
@@ -130,8 +124,6 @@ Class ModelTimeline extends Connection {
             if (!($checkSchedule->fetch())) {
                 $addSchedule = self::$bdd->prepare("INSERT INTO aller VALUES (?, ?)");
                 $addSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
-
-                echo 'Ajout réussi!';
             }
         }
     }
@@ -144,8 +136,6 @@ Class ModelTimeline extends Connection {
             if ($checkSchedule->fetch()) {
                 $delSchedule = self::$bdd->prepare("DELETE FROM aller WHERE idMembre = ? and idEvenement = ?");
                 $delSchedule->execute(array($_SESSION['idMembre'], $_SESSION['idEvent']));
-
-                echo 'Delete réussi!';
             }
         }
     }

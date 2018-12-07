@@ -90,7 +90,7 @@ Class ViewTimeline extends ViewGeneric {
         }
 
         if ($isPresentSchedule)  {
-            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-minus"></i></div></a>';
+            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
         }
         else {
             echo '<a href="index.php?mod=timeline&action=addschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
@@ -104,12 +104,14 @@ Class ViewTimeline extends ViewGeneric {
                 </div>';
             
         foreach ($content as $key) {
+            $dateBegin = new DateTime($key['date_debut']);
+		    $dateEnd = new DateTime($key['date_fin']);
 
             echo    '<div class="row mt-2">
                         <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
                         <div class="evenBlocAnnexe">
                             <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
-                            <p>Ajouté le ' . $key['date_creation'] . '</p>
+                            <p>' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . ' </p>
                         </div>
                     </div>';
         
@@ -123,12 +125,14 @@ Class ViewTimeline extends ViewGeneric {
                 </div>';
             
         foreach ($content as $key) {
+            $dateBegin = new DateTime($key['date_debut']);
+		    $dateEnd = new DateTime($key['date_fin']);
 
             echo    '<div class="row mt-2">
                         <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
                         <div class="evenBlocAnnexe">
-                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
-                            <p>Ajouté le ' . $key['date_creation'] . '</p>
+                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a> </h1>
+                            <p>' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . ' </p>
                         </div>
                     </div>';
         

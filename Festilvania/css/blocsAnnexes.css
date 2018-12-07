@@ -30,7 +30,7 @@
     max-width: 300px;
     float : right;
 
-    font-size: 10px;
+    font-size: 12px;
 
     text-align: justify;
 
@@ -43,7 +43,7 @@
 }
 
 .evenBlocAnnexe p {
-    margin: 0px 5px;
+    margin: -3px 5px;
 }
 
 .imgAnnonceBlocAnnexe {
