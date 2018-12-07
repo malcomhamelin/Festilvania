@@ -6,7 +6,84 @@ Class ViewPublipost extends ViewGeneric {
 
     public function __construct() {
         parent::__construct();
-    }
+	}
+	
+	public function getPublipage() {
+		echo '<div class="container">
+				<div class="row">
+					<div class="col-8 container-publipost">
+						<div class="col-lg-4 mx-auto mb-4">
+							<img id="uploadPreview" style="width: 100px; height: 100px;" />
+							<input id="uploadImage" type="file" name="browsePic" onchange="PreviewImage();" />
+							<script type="text/javascript">
+
+								function PreviewImage() {
+									var oFReader = new FileReader();
+									oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+									oFReader.onload = function (oFREvent) {
+										document.getElementById("uploadPreview").src = oFREvent.target.result;
+									};
+								};
+
+							</script>
+						</div>
+						<div class="col-lg-8 mx-auto">
+							<form method="post" action="index.php?mod=publipost&action=publication">
+								<div class="form-group row">
+									<label for="nameInput" class="col-4 col-form-label">Nom</label>
+									<div class="col-8">
+										<input class="form-control" type="text" name="nomEvent" id="nameInput">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="dateDebut" class="col-4 col-form-label">Date de début</label>
+									<div class="col-8">
+										<input class="form-control" type="date" name="dateDebutEvent" id="dateDebut">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="dateFin" class="col-4 col-form-label">Date de fin</label>
+									<div class="col-8">
+										<input class="form-control" type="date" name="dateFinEvent" id="dateFin">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="locationInput" class="col-4 col-form-label">Lieu</label>
+									<div class="col-8">
+										<input class="form-control" type="text" name="lieu" id="locationInput">
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<label for="categories" class="col-4 col-form-label">Type</label>
+									<div class="col-8">
+										<select class="col-12 form-control" name="categorie" id="categories">
+											<option value=1>Festival</option>
+											<option value=2>Convention</option>
+											<option value=3>Concert</option>
+											<option value=4>Spectacle</option>
+											<option value=5>Autre</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="descriptionInput" class="col-4 col-form-label">Description</label>
+									<div class="col-8">
+										<textarea class="form-control" name="description" id="descriptionInput"></textarea>
+									</div>
+								</div>
+
+								<button type="submit" class="btn btn-outline-success float-right mt-3">Valider</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			  </div>';
+	}
+
+	/*
     public function getPublipage() {
     	echo 'Insérez Nav
     		<br><br><br>
@@ -90,7 +167,8 @@ Class ViewPublipost extends ViewGeneric {
 
 			
 			';
-    }
+	}
+	*/
 
 }
 
