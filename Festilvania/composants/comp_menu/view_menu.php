@@ -76,6 +76,7 @@ class ViewMenu {
                         </a>
                         <div class="dropdown-menu dropdown-custom">
                             <a href="index.php?mod=profile" class="dropdown-item">Mon profil</a>
+                            <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>
                             <div class="dropdown-divider"></div>
                             <a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
                         </div>

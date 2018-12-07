@@ -39,6 +39,6 @@ switch($_SESSION['mod']) {
 		break;
 }
 
-include_once "template.php";
+require_once "template.php";
 
 ?>

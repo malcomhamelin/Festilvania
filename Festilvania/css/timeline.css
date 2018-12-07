@@ -35,7 +35,7 @@ body {
 }
 
 .corpsAnnonce i {
-    font-size : 24px;
+    font-size : 21px;
 }
 
 .img-annonce {
@@ -86,19 +86,16 @@ body {
     opacity: .7;
 }
 
-.vote {
-    margin-top : 15px;
-}
-
 .voteButtons {
     float: left;
     width : 50px;
+
+    margin-top: 55px;
 }
 
-.plus {
-    margin-top: 70px;
+.votes {
+    font-weight: bold;
+
+    margin-left: 3px;
 }
 
-.vote:hover {
-    opacity: .6;
-}

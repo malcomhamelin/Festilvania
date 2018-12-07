@@ -49,10 +49,13 @@ Class ViewTimeline extends ViewGeneric {
 
     public function getTimeline($content) {
         foreach ($content as $key) {
+            $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
+
             echo '  <div class="row annonce mt-4 mb-2 bloc mr-1">
-                        <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto">
-                            <a href="#"><div class="btn btn-outline-success vote plus"><i class="fas fa-plus"></i></div></a>
-                            <a href="#"><div class="btn btn-outline-danger vote moins"><i class="fas fa-minus"></i></div></a>
+                        <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto text-center">
+                            <a href="index.php?mod=timeline&action=upvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-success"><i class="fas fa-plus"></i></div></a>
+                            <div class="btn"> <span class="votes">' . $nbVotes . ' <span></div>
+                            <a href="index.php?mod=timeline&action=downvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-danger"><i class="fas fa-minus"></i></div></a>
                         </div>
                         <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
                         <div class="corpsAnnonce col-xs-12 col-lg-7">
@@ -60,7 +63,7 @@ Class ViewTimeline extends ViewGeneric {
                             <p class="description-annonce">' . $key['description'] . '</p>
 
                             <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>
-                            <a href="#"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>
+                            <a href="index.php?mod=timeline&action=schedule&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>
                         </div>
                     </div>';
         }
