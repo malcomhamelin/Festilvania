@@ -1,58 +1,97 @@
-.blocsAnnexes {
-    height: auto;
-
-    background-color: #ecf0f1c7;
-    border-radius: 5px 5px 5px 5px;
+.blocs-annexes {
+    padding-top : 50px;
+    padding-bottom: 30px;
 }
 
-.blocsAnnexes a {
+.blocs-annexes a {
     text-decoration: none;
-    color: #222f3e;
+    color : white;
 }
 
-.blocsAnnexes a:hover {
+.blocs-annexes a:hover {
     opacity: .7;
 }
 
-.titreBloc {
-    margin : 10px -10px 0px 0px;
-    margin-left: -10px;
-
-    color: #222f3e;
+.blocs-annexes-titre {
+    color : white;
+    font-size : 20px;
+    font-weight: bold;
 }
 
-#dropdownLeMeilleur {
-    margin-left: -10px;
-    color: black;
+.blocs-annexes-photos {
+    width : 100%;
+
+    border-radius : 5px;
 }
 
-.evenBlocAnnexe {
-    max-width: 300px;
-    float : right;
-
-    font-size: 12px;
-
-    text-align: justify;
-
-    margin: 0px 5px;
+.blocs-annexes-annonces {
+    position: relative;
+    text-align: center;
+    color: white;
 }
 
-.evenBlocAnnexe h1 {
-    margin: 10px 5px;
-    font-size: 18px;
+.blocs-annexes-annonces-texte {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
 }
 
-.evenBlocAnnexe p {
-    margin: -3px 5px;
+.blocs-annexes-annonces-texte-titre {
+    font-size: 20px;
+
+    text-shadow: 0 0 15px rgb(0, 0, 0); /* Firefox 3.5+, Opera 9+, Safari 1+, Chrome, IE10 */
 }
 
-.imgAnnonceBlocAnnexe {
-    width: 48px;
-    height: 48px;
+.blocs-annexes-annonces-texte-description {
+    text-shadow: 0 0 15px rgb(0, 0, 0);
+}
 
-    float : left;
+@media (max-width:1200px) {
+    .blocs-annexes-annonces-texte-titre {
+        font-size: 18px;
+    }
+    
+    .blocs-annexes-annonces-texte-description {
+        font-size: 14px;
+    }
+}
 
-    margin : 10px 5px;
+@media (max-width:1050px) {
+    .blocs-annexes-annonces-texte-titre {
+        font-size: 16px;
+    }
+    
+    .blocs-annexes-annonces-texte-description {
+        font-size: 12px;
+    }
+}
 
-    border-radius: 5px 5px 5px 5px;
+@media (max-width:900px) {
+    .blocs-annexes-annonces-texte-titre {
+        font-size: 14px;
+    }
+    
+    .blocs-annexes-annonces-texte-description {
+        font-size: 10px;
+    }
+}
+
+@media (max-width:767px) {
+    .blocs-annexes-annonces-texte-titre {
+        font-size: 24px;
+    }
+    
+    .blocs-annexes-annonces-texte-description {
+        font-size: 22px;
+    }
+}
+
+@media (max-width:511px) {
+    .blocs-annexes-annonces-texte-titre {
+        font-size: 18px;
+    }
+    
+    .blocs-annexes-annonces-texte-description {
+        font-size: 16px;
+    }
 }

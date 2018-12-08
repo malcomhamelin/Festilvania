@@ -11,7 +11,7 @@ Class ViewPublipost extends ViewGeneric {
 	public function getPublipage() {
 		echo '<div class="container">
 				<div class="row">
-					<div class="col-8 container-publipost">
+					<div class="col-8 container-publipost annonce">
 						<div class="col-lg-4 mx-auto mb-4">
 							<img id="uploadPreview" style="width: 100px; height: 100px;" />
 							<input id="uploadImage" type="file" name="browsePic" onchange="PreviewImage();" />

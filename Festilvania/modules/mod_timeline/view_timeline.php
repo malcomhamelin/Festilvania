@@ -9,42 +9,7 @@ Class ViewTimeline extends ViewGeneric {
     }
 
     public function getTimeline($content, $userInfos, $hottestContent, $latestContent) {
-        echo '<div class="container">
-                <div class="row ml-3">
-                    <div class="col-xs-12 col-md-12 col-lg-8 a">
-                        <div class="container">';
-
-                                $this->getMainTimeline($content, $userInfos);
-
-        echo            '</div>
-                    </div>
-                    <div class="col-xs-12 col-md-12 col-lg-4 ml-auto mt-4">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 mb-3 blocsAnnexes mb-2 mr-4">
-                                <div class="container">';
-                                      
-                                    $this->getHottestBloc($hottestContent);
-
-        echo                    '</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <form class="mb-3 col-lg-12" action="index.php?mod=publipost" method="post">
-                                <button type="submit" class="btn btn-dark font-weight-bold col-lg-12"><i class="fas fa-plus"></i> Publier</button>
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 blocsAnnexes mb-2 mr-4">
-                                <div class="container">';
-                                    
-                                    $this->getLatestBloc($latestContent);
-
-        echo                    '</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>';
+        require_once "template_timeline.php";
     }
 
     public function getMainTimeline($content, $userInfos) {
@@ -52,28 +17,41 @@ Class ViewTimeline extends ViewGeneric {
             foreach ($content as $key) {
                 $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
 
-                echo '  <div class="row annonce mt-4 mb-2 bloc mr-1">
-                            <div class="voteButtons col-xs-6 col-md-1 col-lg-1 mr-auto text-center">
-                                <a href="index.php?mod=timeline&action=upvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-success"><i class="fas fa-plus"></i></div></a>
-                                <div class="btn"> <span class="votes">' . $nbVotes . ' <span></div>
-                                <a href="index.php?mod=timeline&action=downvote&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-danger"><i class="fas fa-minus"></i></div></a>
+                echo    '<div class="container annonce shadow-sm mb-5">
+                            <div class="row">
+                                <div class="col-2 col-md-1 col-lg-1 votes ml-5 my-auto">
+                                    <a href="index.php?mod=timeline&action=upvote&idEvent=' . $key['idEvenement'] . '"><img src="img/nexttg.png" alt="upvote" class="votes-img"></a>
+                                    <div class="btn font-weight-bold"><span>' . $nbVotes . '</span></div>
+                                    <a href="index.php?mod=timeline&action=downvote&idEvent=' . $key['idEvenement'] . '"><img src="img/nextbg.png" alt="downvote" class="votes-img"></a>
+                                </div>
+                    
+                                <div class="col-7 col-md-4 col-lg-3 annonce-col">
+                                    <img src="img/background.jpg" alt="Photo évenement" class="annonce-col-img rounded">
+                                </div>
+                    
+                                <div class="col-12 col-md-6 annonce-corps">
+                                    <div class="row mx-auto">
+                                        <div class="col-12 col-sm-12 col-md-12">
+                                            <span class="my-auto annonce-corps-titre"><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></span>
+                                            <span class="my-auto font-weight-bold" id="annonce-corps-infos">01/01/2018 - 02/03/2018 à Paris</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 mx-auto">
+                                        <div class="col-10 col-sm-8 col-md-10">';
+                                            
+                                            $this->getScheduleButton($userInfos, $key['idEvenement']);
+
+                echo                        '<a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-warning annonce-corps-btn ml-3">Voir l\'évènement</div></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="img-annonce col-xs-6 col-lg-3 col-centered"></div>
-                            <div class="corpsAnnonce col-xs-12 col-lg-7">
-                                <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
-                                <p class="description-annonce">' . $key['description'] . '</p>
-
-                                <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '"><div class="btn btn-outline-dark btn-custom float-right">Voir l\'évenement</div></a>';
-
-                                $this->getScheduleButton($userInfos, $key['idEvenement']);
-
-                echo        '</div>
                         </div>';
             }
         }
         else {
-            echo '  <div class="row annonce mt-4 mb-2 bloc mr-1">
-                        <span class="col-xs-12 col-lg-12 text-center">Aucun post présent ici...</span>
+            echo '  <div class="container annonce shadow-sm text-center">
+                        <span class="col-12 col-lg-12 font-weight-bold">Aucun post présent ici...</span>
                     </div>';
         }
     }
@@ -90,49 +68,25 @@ Class ViewTimeline extends ViewGeneric {
         }
 
         if ($isPresentSchedule)  {
-            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
+            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
         }
         else {
-            echo '<a href="index.php?mod=timeline&action=addschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-outline-dark btn-custom float-right" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
+            echo '<a href="index.php?mod=timeline&action=addschedule&option=' . $_SESSION['option'] . '&idEvent=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
         }
     }
 
-    public function getHottestBloc($content) {
-        echo    '<div>
-                    <p class="titreBloc">Le meilleur</p>
-                    <a href="#" id="dropdownLeMeilleur">Jour</a>
-                </div>';
-            
+    public function getAsideBloc($content) {
         foreach ($content as $key) {
             $dateBegin = new DateTime($key['date_debut']);
 		    $dateEnd = new DateTime($key['date_fin']);
 
-            echo    '<div class="row mt-2">
-                        <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
-                        <div class="evenBlocAnnexe">
-                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></h1>
-                            <p>' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . ' </p>
-                        </div>
-                    </div>';
-        
-        }
-
-    }
-
-    public function getLatestBloc($content) {
-        echo    '<div>
-                    <p class="titreBloc">Derniers évènements ajoutés</p>
-                </div>';
-            
-        foreach ($content as $key) {
-            $dateBegin = new DateTime($key['date_debut']);
-		    $dateEnd = new DateTime($key['date_fin']);
-
-            echo    '<div class="row mt-2">
-                        <img src="img/background.jpg" alt="" class="imgAnnonceBlocAnnexe">
-                        <div class="evenBlocAnnexe">
-                            <h1><a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a> </h1>
-                            <p>' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . ' </p>
+            echo    '<div class="col-10 col-md-3 mx-auto mb-4 blocs-annexes-annonces">
+                        <img src="img/background3.jpg" alt="event1" class="blocs-annexes-photos">
+                        <div class="blocs-annexes-annonces-texte ml-2 text-left">
+                            <a href="index.php?mod=post&idEvent=' . $key['idEvenement'] . '">
+                                <span class="font-weight-bold blocs-annexes-annonces-texte-titre">' . $key['titreEvenement'] . '</span><br>
+                                <span class="blocs-annexes-annonces-texte-description font-weight-bold">' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . '</span>
+                            </a>
                         </div>
                     </div>';
         

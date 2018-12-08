@@ -9,7 +9,7 @@ Class ViewProfile extends ViewGeneric {
     }
 
     public function getProfile() {
-        echo '<div class="container container-profile">
+        echo '<div class="container annonce shadow-sm container-profile">
                 <div class="container">
                     <div class="col-xs-1 col-sm-1 col-md-1 mb-4 profile-centered">
                         <img src="' . $_SESSION['avatar'] . '" alt="" class="img-profile">
