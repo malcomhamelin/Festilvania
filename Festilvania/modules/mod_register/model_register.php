@@ -37,8 +37,8 @@ Class ModelRegister extends Connection {
                     var_dump($tab);
                     
                     if(0==$tab[0]){
-                        $verifPseudolunique =self::$bdd->prepare("SELECT count(*) from membre where membre.mail=:mail");
-                        $verifPseudolunique->bindParam(':mail', $email);
+                        $verifPseudolunique =self::$bdd->prepare("SELECT count(*) from membre where membre.pseudo=:pseudo");
+                        $verifPseudolunique->bindParam(':pseudo', $pseudo);
                         $verifPseudolunique->execute();
                         $tab=$verifPseudolunique->fetch();
                     
