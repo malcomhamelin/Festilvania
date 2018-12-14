@@ -37,6 +37,13 @@ Class ModelPublipost extends Connection {
         }
         //header('Location: index.php');
     }
+
+    public function getCategories() {
+        $reqCat = self::$bdd->query("SELECT titreCategorie FROM categorie");
+        $tuples = $reqCat->fetchAll();
+        
+        return $tuples;
+    }
     
 }
 

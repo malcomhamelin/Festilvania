@@ -17,74 +17,78 @@ Class ModelRegister extends Connection {
     }
     public function register(){
         //variable
-    if (isset($_POST['pseudo'])) {
-         $pseudo = $_POST['pseudo']; } 
+        if (isset($_POST['pseudo'])) {
+            $pseudo = $_POST['pseudo']; } 
 
-    if (isset($_POST['email'])) {
-         $email = $_POST['email']; } 
+        if (isset($_POST['email'])) {
+            $email = $_POST['email']; } 
 
-    if (isset($_POST['password'])) {
-         $password = $_POST['password']; } 
+        if (isset($_POST['password'])) {
+            $password = $_POST['password']; } 
 
-    if (isset($_POST['password2'])) {
-         $password2 = $_POST['password2']; } 
+        if (isset($_POST['password2'])) {
+            $password2 = $_POST['password2']; } 
 
-    if (isset($_POST['sexe'])) { 
-         $sexe = $_POST['sexe']; } 
+        if (isset($_POST['sexe'])) { 
+            $sexe = $_POST['sexe']; } 
 
-    if (isset($_POST['anniversaire'])) { 
-        $anniversaire = $_POST['anniversaire']; } 
+        if (isset($_POST['anniversaire'])) { 
+            $anniversaire = $_POST['anniversaire']; } 
 
-    if (isset($_POST['avatar'])) { 
-        $avat = $_POST['avatar']; } 
-    
+        if (isset($_POST['avatar'])) { 
+            $avat = $_POST['avatar']; } 
+        
 
-    if(isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['sexe'])&&isset($_POST['anniversaire'])&&isset($_POST['avatar'])){
+        if(isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['sexe'])&&isset($_POST['anniversaire'])&&isset($_POST['avatar'])){
 
-        if(self::is_clean($pseudo)&&self::is_email($email)&&self::is_clean($password)&&self::is_clean($password2)){
+            if(self::is_clean($pseudo)&&self::is_email($email)&&self::is_clean($password)&&self::is_clean($password2)){
 
-            if($password==$password2){
+                if($password==$password2){
 
-                $verifEmailunique =self::$bdd->prepare("SELECT count(*) from membre where membre.mail=:mail");
-                $verifEmailunique->bindParam(':mail', $email);
-                $verifEmailunique->execute();
-                $tab=$verifEmailunique->fetch();
-                var_dump($tab);
-                
-                if(0==$tab[0]){
+                    $verifEmailunique =self::$bdd->prepare("SELECT count(*) from membre where membre.mail=:mail");
+                    $verifEmailunique->bindParam(':mail', $email);
+                    $verifEmailunique->execute();
+                    $tab=$verifEmailunique->fetch();
+                    var_dump($tab);
+                    
+                    if(0==$tab[0]){
 
 
-                    $req=self::$bdd->prepare("INSERT INTO membre VALUES(default,:Pseudo,:Password,:Mail,NOW(),:Avatar,1,:Sexe,:Anniv)");
+                        $req=self::$bdd->prepare("INSERT INTO membre VALUES(default,:Pseudo,:Password,:Mail,NOW(),:Avatar,1,:Sexe,:Anniv)");
 
-                    $req->bindParam(':Pseudo', $pseudo);
-                    $req->bindParam(':Password', $password);
-                    $req->bindParam(':Mail', $email);
-                    $req->bindParam(':Avatar',$avat);
-                    $req->bindParam(':Sexe', $sexe);
-                    $req->bindParam(':Anniv', $anniversaire);
+                        $req->bindParam(':Pseudo', $pseudo);
+                        $req->bindParam(':Password', $password);
+                        $req->bindParam(':Mail', $email);
+                        $req->bindParam(':Avatar',$avat);
+                        $req->bindParam(':Sexe', $sexe);
+                        $req->bindParam(':Anniv', $anniversaire);
 
-                    $req -> execute();
-                    echo'<br>';
-                    echo 'exec';
+                        $req -> execute();
+
+                        echo "LALALALLAAa";
+
+                        echo'<br>';
+                        echo 'exec';
+                    }
+
+                    else {
+                        echo'email pris';
+                    }
                 }
 
                 else{
-                    echo'email pris';
+                    echo'mot de passe différent';
+                //renvoyer a la timeline 
                 }
+                
+            }
+            else{
+                echo"inscription impossible,caractères spéciaux interdit"; 
             }
 
-            else{
-                echo'mot de passe différent';
-             //renvoyer a la timeline 
-            }
-            
-        }
-        else{
-            echo"inscription impossible,caractères spéciaux interdit"; 
         }
 
     }
-}
     
 
 }

@@ -1,3 +1,8 @@
+body {
+    background-color: #ecf0f1;
+    padding-top: 70px;
+}
+
 .accueil {
     background-image: url("../img/background.png");
     background-repeat: no-repeat;

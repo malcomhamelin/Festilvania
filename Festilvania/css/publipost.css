@@ -1,10 +1,22 @@
 .container-publipost {
-    background-color: #ecf0f1c7;
+    background-color: white;
 
-    margin-top : 11%;
-    padding : 50px 50px;
+    margin-top : 3%;
+    padding-top : 50px;
+    padding-bottom: 50px;
 
     border-radius: 5px 5px 5px 5px;
 
-    min-height : 800px;
+    min-height : 600px;
+}
+
+.img-preview {
+    width : 256px;
+    height: auto;
+
+    min-width: 256px;
+    min-height: 128px;
+
+    border : solid 1px grey;
+    border-radius: 3px;
 }

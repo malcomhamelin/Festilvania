@@ -30,3 +30,7 @@
     font-weight: bold;
     color : white;
 }
+
+.dropdown-custom {
+    padding : 10px;
+}

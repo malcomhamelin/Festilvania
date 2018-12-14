@@ -30,7 +30,7 @@ class ViewMenu {
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                             <img src="' . $_SESSION['avatar'] . '" alt="avatar" class="" id="navbarAvatar"/><span class="pl-3">' . $_SESSION['pseudo'] . '</span>
                         </a>
-                        <div class="dropdown-menu dropdown-custom">
+                        <div class="dropdown-menu">
                             <a href="index.php?mod=profile" class="dropdown-item">Mon profil</a>
                             <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>
                             <div class="dropdown-divider"></div>
@@ -43,7 +43,7 @@ class ViewMenu {
     public function getUnconnectedUserMenu() {
         echo    '<ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link lien-navbar" href="test.html">Inscription</a>
+                        <a class="nav-link lien-navbar" href="index.php?mod=register">Inscription</a>
                     </li>
                     <li class="nav-item dropdown active">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
@@ -51,9 +51,9 @@ class ViewMenu {
                         </a>
                         <div class="dropdown-menu dropdown-custom">
                             <form method="post" action="index.php?action=connection">
-                                <input type="text" placeholder="Pseudonyme" name="pseudo"></input>
-                                <input type="text" placeholder="Mot de passe" name="password"></input>
-                                <button class="btn btn-custom" id="btn-connect" type="submit">Se connecter</button>
+                                <input type="text" class="form-control mb-2" placeholder="Pseudonyme" name="pseudo"></input>
+                                <input type="password" class="form-control mb-2" placeholder="Mot de passe" name="password"></input>
+                                <button class="btn btn-custom float-right" id="btn-connect" type="submit">Se connecter</button>
                             </form>
                         </div>
                     </li>

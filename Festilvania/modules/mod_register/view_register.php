@@ -9,7 +9,7 @@ Class ViewRegister extends ViewGeneric {
     }
 
     public function displayregister(){
-        echo" <form method='post'action=index.php?action=register >
+        echo" <form method='post' action='index.php?mod=register&action=register' class='mt-5'>
                             <img id='uploadPreview' style='width: 100px; height: 100px;' />
                             <input id='uploadImage' type='file' name='avatar' onchange='PreviewImage();'' />
                             <script type='text/javascript'>

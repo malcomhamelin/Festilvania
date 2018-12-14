@@ -14,15 +14,17 @@ Class ContRegister {
     }
 
     public function act($action) {
-        $this->view->displayregister();
         switch ($action) {
             case 'register':
                 $this->model->$action();
-             break;
-            
             default:
-            break;
+                $this->view->displayregister();
+                break;
         }
+    }
+
+    public function getDisplay() {
+        return $this->view->getDisplay();
     }
 
 

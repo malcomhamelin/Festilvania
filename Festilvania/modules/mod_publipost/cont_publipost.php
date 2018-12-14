@@ -25,7 +25,7 @@ Class ContPublipost {
     public function display($option) {
         switch ($option) {
             default :
-                $this->view->getPublipage();
+                $this->view->getPublipage($this->model->getCategories());
                 break;
         }
     }

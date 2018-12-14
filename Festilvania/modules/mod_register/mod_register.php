@@ -9,10 +9,10 @@ Class ModRegister {
 
     public function __construct($action) {
         $this->controller = new ContRegister;
-        
+        $this->controller->act($action);
     }
     public function getDisplay($option){
-    	 $this->controller->act($option);
+        return $this->controller->getDisplay();
     }
         
     
