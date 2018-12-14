@@ -15,3 +15,8 @@ Site de recensement de concerts et de festivals
 - Ajout des votes sur les évenements (positif, négatif, annuler son vote)
 - Ajout de la possibilité d'ajouter où enlever à son agenda un évènement
 - Ajout page "mon agenda"
+
+14/12/2018 - 0.4 :
+- Refonte graphique totale
+- Ajout de l'inscription
+- Ajout de l'accès aux timeline par catégorie
