@@ -9,6 +9,9 @@ Class ViewRegister extends ViewGeneric {
     }
 
     public function displayregister(){
+        require_once "template_register.php";
+        
+        /*
         echo" <form method='post' action='index.php?mod=register&action=register' class='mt-5'>
                             <img id='uploadPreview' style='width: 100px; height: 100px;' />
                             <input id='uploadImage' type='file' name='avatar' onchange='PreviewImage();'' />
@@ -35,6 +38,7 @@ Class ViewRegister extends ViewGeneric {
                 date de naissance : <input type='date'max='2006-11-16' min='1900-01-01' name='anniversaire'>
              <input type='submit' value='envoyer'>
          </form>";
+         */
     }
 
 

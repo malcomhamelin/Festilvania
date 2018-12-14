@@ -37,7 +37,6 @@ Class ModelRegister extends Connection {
 
         if (isset($_POST['avatar'])) { 
             $avat = $_POST['avatar']; } 
-        
 
         if(isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['sexe'])&&isset($_POST['anniversaire'])&&isset($_POST['avatar'])){
 
@@ -64,23 +63,15 @@ Class ModelRegister extends Connection {
                         $req->bindParam(':Anniv', $anniversaire);
 
                         $req -> execute();
-
-                        echo "LALALALLAAa";
-
-                        echo'<br>';
-                        echo 'exec';
                     }
 
                     else {
                         echo'email pris';
                     }
                 }
-
                 else{
                     echo'mot de passe différent';
-                //renvoyer a la timeline 
                 }
-                
             }
             else{
                 echo"inscription impossible,caractères spéciaux interdit"; 

@@ -35,6 +35,7 @@ Class ContTimeline {
                 $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
             default :
+                $this->view->getTimeline($this->model->categories($option), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
         }
     }
