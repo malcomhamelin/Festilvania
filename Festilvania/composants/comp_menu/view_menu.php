@@ -6,14 +6,14 @@ class ViewMenu {
         
     }
 
-    public function getNavbar() {
+    public function getNavbar($rights) {
         require_once "template_menu.php";
     }
 
-    public function getUserMenu() {
+    public function getUserMenu($rights) {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo'])) {
             if ($_SESSION['isConnected']) {
-                $this->getConnectedUserMenu();
+                $this->getConnectedUserMenu($rights);
             }
             else {
                 $this->getUnconnectedUserMenu();
@@ -24,7 +24,7 @@ class ViewMenu {
         }
     }
 
-    public function getConnectedUserMenu() {
+    public function getConnectedUserMenu($rights) {
         echo    '<ul class="navbar-nav navbar-user">
                     <li class="nav-item dropdown active">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
@@ -32,9 +32,11 @@ class ViewMenu {
                         </a>
                         <div class="dropdown-menu">
                             <a href="index.php?mod=profile" class="dropdown-item">Mon profil</a>
-                            <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
+                            <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>';
+
+                            $this->getListUnpublished($rights);
+
+        echo                '<a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
                         </div>
                     </li>
                 </ul>';
@@ -58,6 +60,12 @@ class ViewMenu {
                         </div>
                     </li>
                 </ul>';
+    }
+
+    public function getListUnpublished($rights) {
+        if ($rights != null && $rights['droit_editer']) {
+            echo '<a href="index.php?mod=editpost&option=editlist" class="dropdown-item">Liste des évènements non publiés</a>';
+        }
     }
 
 }
