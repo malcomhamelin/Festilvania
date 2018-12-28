@@ -8,9 +8,11 @@ Class ViewPublipost extends ViewGeneric {
         parent::__construct();
 	}
 	
-	public function getPublipage($categories) {
+	public function getPublipage($categories, $rights) {
 		if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
-			require_once "template_publipost.php";
+        		if ($rights != null && $rights['droit_poster']) {
+				require_once "template_publipost.php";
+			}
 		}
 		else {
 			echo 	'<div class="container annonce shadow-sm text-center mt-5">
