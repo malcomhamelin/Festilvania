@@ -14,7 +14,7 @@ class ContMenu {
     }
 
     public function getMenu() {
-        $this->view->getNavbar();
+        $this->view->getNavbar($this->model->getRights());
     }
 
 }
