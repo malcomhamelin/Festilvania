@@ -1,6 +1,6 @@
 <?php
 
-class ModelMenu {
+class ModelMenu extends Connection {
 
     public function __construct() {
 
