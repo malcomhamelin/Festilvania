@@ -31,7 +31,7 @@
             <a href="index.php" class="logoLien d-none d-lg-block"><img src="img/logo.png" alt="logo" class="logo mt-5"></a>
 
             <div class="mx-auto">
-                <?php $this->getUserMenu(); ?>
+                <?php $this->getUserMenu($rights); ?>
             </div>
 
             <a href="index.php?mod=publipost"><div class="btn btn-warning btn-publier"><i class="fas fa-plus-circle"></i> Publier</div></a>
