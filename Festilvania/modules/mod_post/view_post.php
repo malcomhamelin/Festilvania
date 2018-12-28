@@ -39,13 +39,13 @@ class ViewPost extends ViewGeneric {
 
 	public function getEditButton($rights) {
 		if ($rights != null && $rights['droit_editer']) {
-			return '<button class="btn btn-dark float-right">Editer</button>';
+			return '<a href="index.php?mod=editpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="btn btn-dark float-right">Editer</a>';
 		}
 	}
 
 	public function getCommentForm($rights) {
 		if ($rights != null && $rights['droit_commenter']) {
-			return '<form class="col-lg-10 mx-auto" action="index.php?mod=post&idEvent='. $_SESSION['idEvent'] .'&action=comment" method="post">
+			return '<form class="col-lg-10 mx-auto" action="index.php?mod=post&idEvenement='. $_SESSION['idEvenement'] .'&action=comment" method="post">
 						<div class="form-group">
 							<textarea class="form-control" placeholder="Commenter..." rows="3" name="comment"></textarea>
 							<button type="submit" class="btn btn-success float-right mt-3">Commenter</button>
