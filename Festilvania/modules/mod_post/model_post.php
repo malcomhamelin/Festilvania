@@ -8,7 +8,7 @@ class ModelPost extends Connection {
     
     public function comment() {
         $tuplesComment = self::$bdd->prepare("SELECT * FROM commentaire INNER JOIN membre using (idMembre) WHERE commentaire.idEvenement = ? ORDER BY commentaire.date_creation");
-        $tuplesComment->execute(array($_SESSION['idEvent']));
+        $tuplesComment->execute(array($_SESSION['idEvenement']));
         $result = $tuplesComment->fetchAll();
 
         return $result;
@@ -16,7 +16,7 @@ class ModelPost extends Connection {
 
     public function event() {
         $tupleEvent = self::$bdd->prepare("SELECT * FROM evenement WHERE idEvenement = ?");
-        $tupleEvent->execute(array($_SESSION['idEvent']));
+        $tupleEvent->execute(array($_SESSION['idEvenement']));
         $result = $tupleEvent->fetch();
 
         return $result;
@@ -27,7 +27,7 @@ class ModelPost extends Connection {
             $contenu = htmlspecialchars($_POST['comment']);
 
             $reqComment = self::$bdd->prepare("INSERT INTO commentaire(contenu, date_creation, idMembre, idEvenement) VALUES (?, ?, ?, ?)");
-            $reqComment->execute(array($contenu, date("Y-m-d H:i:s"), $_SESSION['idMembre'], $_SESSION['idEvent']));
+            $reqComment->execute(array($contenu, date("Y-m-d H:i:s"), $_SESSION['idMembre'], $_SESSION['idEvenement']));
         }
     }
 
