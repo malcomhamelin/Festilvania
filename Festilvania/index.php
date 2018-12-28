@@ -6,14 +6,14 @@ Connection::initConnection();
 $_SESSION['mod'] = "timeline";
 $_SESSION['option'] = "homepage";
 $_SESSION['action'] = null;	
-$_SESSION['idEvent'] = null;
+$_SESSION['idEvenement'] = null;
 
 if (isset($_GET['action'])) {
 	$_SESSION['action'] = htmlspecialchars($_GET['action']);
 }
 
-if (isset($_GET['idEvent'])) {
-	$_SESSION['idEvent'] = htmlspecialchars($_GET['idEvent']);
+if (isset($_GET['idEvenement'])) {
+	$_SESSION['idEvent'] = htmlspecialchars($_GET['idEvenement']);
 }
 
 if (isset($_GET['mod'])) {
