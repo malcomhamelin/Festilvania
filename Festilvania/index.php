@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
 }
 
 if (isset($_GET['idEvenement'])) {
-	$_SESSION['idEvent'] = htmlspecialchars($_GET['idEvenement']);
+	$_SESSION['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
 }
 
 if (isset($_GET['mod'])) {
