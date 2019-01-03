@@ -22,6 +22,20 @@ class Connection {
         }
     }
 
+    public function getCategories() {
+        $reqCat = self::$bdd->query("SELECT * FROM categorie");
+        $tuples = $reqCat->fetchAll();
+        
+        return $tuples;
+    }
+
+    public function getGroups() {
+        $reqGrp = self::$bdd->query("SELECT * FROM groupe");
+        $tuples = $reqGrp->fetchAll();
+        
+        return $tuples;
+    }
+
 }
 
 ?>

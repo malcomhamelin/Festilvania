@@ -35,8 +35,10 @@ class ViewMenu {
                             <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>';
 
                             $this->getListUnpublished($rights);
-
-        echo                '<a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
+                            $this->getAdminButton($rights);
+                            
+        echo                '<div class="dropdown-divider"></div>
+                            <a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
                         </div>
                     </li>
                 </ul>';
@@ -65,6 +67,12 @@ class ViewMenu {
     public function getListUnpublished($rights) {
         if ($rights != null && $rights['droit_editer']) {
             echo '<a href="index.php?mod=editpost&option=editlist" class="dropdown-item">Liste des évènements non publiés</a>';
+        }
+    }
+
+    public function getAdminButton($rights) {
+        if ($rights != null && $rights['droit_editer'] && $rights['droit_supprimer']) {
+            echo '<a href="index.php?mod=admin" class="dropdown-item">Administration</a>';
         }
     }
 

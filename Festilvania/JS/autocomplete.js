@@ -7,6 +7,6 @@ $(function() {
     ];
 
     $('#searchInput').autocomplete({
-        source : liste
+        source : 'JS/liste.php'
     });
 });

@@ -1,5 +1,8 @@
 <?php
 
+require_once "../connection.php";
+Connection::initConnection();
+
 $term = $_GET['term'];
 
 $requete = Connection::$bdd->prepare("SELECT titreEvenement FROM evenement WHERE titreEvenement LIKE :term");

@@ -22,11 +22,8 @@ Class ViewPublipost extends ViewGeneric {
 	}
 
 	public function getOptions($categories) {
-		$indice = 1;
-
 		foreach ($categories as $key) {
-			echo '<option value=' . $indice . '>' . $key['titreCategorie'] . '</option>';
-			$indice++;
+			echo '<option value=' . $key['idCategorie'] . '>' . $key['titreCategorie'] . '</option>';
 		}
 	}
 
