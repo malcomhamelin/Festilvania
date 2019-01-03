@@ -64,6 +64,32 @@ Class ModelTimeline extends Connection {
         return $result;
     }
 
+    public function search() {
+        $wantedWords = htmlspecialchars($_POST['searchInput']);
+        $wordCount = str_word_count($wantedWords);
+        $arrayWantedWords = explode(" ", $wantedWords);
+
+        if ($wordCount > 0) {
+            $arrayWantedWords[0] = strtoupper($arrayWantedWords[0]);
+            $requestWords = 'upper(evenement.titreEvenement) LIKE "%' . $arrayWantedWords[0] . '%"';
+
+            for ($indice = 1 ; $indice < $wordCount ; $indice++) {
+                $arrayWantedWords[$indice] = strtoupper($arrayWantedWords[1]);
+                $requestWords = $requestWords . 'OR upper(evenement.titreEvenement) LIKE "%' . $arrayWantedWords[$indice] . '%" ';
+            }
+
+            $request = 'SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes 
+                        FROM evenement LEFT JOIN voteevenement using (idEvenement) 
+                        GROUP BY evenement.idEvenement 
+                        HAVING ' . $requestWords . 'ORDER BY date_creation DESC';
+
+            $tuplesSearch = self::$bdd->query($request);
+            $result = $tuplesSearch->fetchAll();
+
+            return $result;
+        }
+    }
+
     public function upvote() {
         $this->vote(1);
     }

@@ -3,11 +3,13 @@
         <h1 class="mb-4 d-flex justify-content-center text-center">Envie de vous amuser ?</h1>
         <div class="search-bar d-flex justify-content-center">
             <div class="input-group col-lg-6 mx-auto">
-                <input class="form-control form-control-lg" type="search" placeholder="Rechercher un festival..." aria-label="Search">
+                <form action="index.php?mod=timeline&option=search" method="post" id="search"></form>
+                <input class="form-control form-control-lg" type="text" form="search" name="searchInput" id="searchInput" placeholder="Rechercher un festival..." aria-label="Search">
+                
                 <div class="input-group-append">
-                    <div class="btn btn-warning ml-0">
+                    <button class="btn btn-warning ml-0" form="search">
                         <i class="fas fa-search mt-2"></i>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
