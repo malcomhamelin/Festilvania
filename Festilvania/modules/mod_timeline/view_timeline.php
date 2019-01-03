@@ -94,6 +94,42 @@ Class ViewTimeline extends ViewGeneric {
 
     }
 
+     public function getEditlist($content) {
+        echo '<div class="container">
+                <div class="row ml-3">
+                    <div class="col-xs-12 col-md-12 col-lg-8 a">
+                        <div class="container">
+                            <div class="row annonce mt-4 mb-2 bloc mr-1">';
+
+                                $this->getListeEventNonPublie($content);
+
+        echo                '</div>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+
+
+    }
+
+    public function getListeEventNonPublie($content) {
+        foreach ($content as $key) {
+            echo '
+                <div>
+                    <br><br>
+                    <h1>' . $key['titreEvenement'] . '</h1>
+                     <a href="index.php?mod=managementpost&option=editlistbyid&idEvenement=' . $key['idEvenement'] . '">Modifier</a> 
+                    <p> id : ' . $key['idEvenement'] . '</p>
+                    <p> Categorie : ' . $key['idCategorie'] . '</p>
+                    <p> Description : ' . $key['description'] . '</p>
+                    <p> Date de début de l\'évènement : ' . $key['date_debut'] . '</p>
+                    <p> Date de fin de l\'évènement : ' . $key['date_fin'] . '</p>
+                    <p> Lieu : ' . $key['lieu'] . '</p>
+                  </div>
+                  ';
+        }
+    }
+
 }
 
 ?>

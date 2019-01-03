@@ -28,8 +28,7 @@ switch($_SESSION['mod']) {
 	case 'timeline':
 	case 'profile' :
 	case 'post' :
-	case 'publipost' :
-	case 'editpost' :
+	case 'managementpost' :
 	case 'register' :
 	case 'admin' :
 		require_once "modules/mod_" . $_SESSION['mod'] . "/mod_" . $_SESSION['mod'] . ".php";

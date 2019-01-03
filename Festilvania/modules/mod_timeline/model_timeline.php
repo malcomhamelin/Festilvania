@@ -177,6 +177,13 @@ Class ModelTimeline extends Connection {
         }
     }
 
+    public function editlist() {
+        $tuplesEventNonPublie = self::$bdd->query("SELECT * FROM evenement WHERE estPublie = 'false' ORDER BY date_creation");
+        $result = $tuplesEventNonPublie->fetchAll();
+
+        return $result;
+    }
+
 }
 
 ?>

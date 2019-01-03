@@ -39,7 +39,7 @@ class ViewPost extends ViewGeneric {
 
 	public function getEditButton($rights) {
 		if ($rights != null && $rights['droit_editer']) {
-			return '<a href="index.php?mod=editpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="btn btn-dark float-right">Editer</a>';
+			return '<a href="index.php?mod=managementpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="btn btn-dark float-right">Editer</a>';
 		}
 	}
 

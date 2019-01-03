@@ -66,7 +66,7 @@ class ViewMenu {
 
     public function getListUnpublished($rights) {
         if ($rights != null && $rights['droit_editer']) {
-            echo '<a href="index.php?mod=editpost&option=editlist" class="dropdown-item">Liste des évènements non publiés</a>';
+            echo '<a href="index.php?mod=timeline&option=editlist" class="dropdown-item">Liste des évènements non publiés</a>';
         }
     }
 
