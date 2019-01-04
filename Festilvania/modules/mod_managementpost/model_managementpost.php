@@ -26,16 +26,21 @@ Class ModelManagementpost extends Connection {
 
                 $req = self::$bdd->prepare("INSERT INTO evenement(idEvenement, titreEvenement, description, date_creation, date_debut, date_fin, idMembre, idCategorie, lieu) VALUES (default, ?, ?, NOW(), ?, ?, ?, ?, ?)");
                 $req->execute(array($nomEvent, $description, $dateDebutEvent, $dateFinEvent, $_SESSION['idMembre'], $categorie, $lieu));
+                echo '<script type="text/javascript">
+                    location.href = \'index.php\';
+                    window.alert("Vous avez bien publié votre post, il sera envoyé à la vérification !");
+                </script>';
                 
             }
             else {
-                // Affichage Message d'erreur Date début > date fin
+                $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la publication ?';
+                $this->popUpRedirect($message, "publish");
             }
         }
         else {
-            // Affichage Message d'erreur champ vide
+            $message = 'Les champs ne sont pas tous remplis, voulez-vous recommencez la publication ?';
+            $this->popUpRedirect($message, "publish");
         }
-        //header('Location: index.php');
     }
 
     public function editlistbyid() {
@@ -78,11 +83,13 @@ Class ModelManagementpost extends Connection {
 
             }
             else {
-                // Affichage Message d'erreur Date début > date fin
+                $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la manipulation ?';
+                $this->popUpRedirectID($message, "editlistbyid", $_SESSION['idEvenement']);
             }
         }
         else {
-            // Affichage Message d'erreur champ vide
+            $message = 'Les champs ne sont pas tous remplis, voulez-vous recommencez la manipulation ?';
+            $this->popUpRedirectID($message, "editlistbyid", $_SESSION['idEvenement']);
         }
     }
 
@@ -90,6 +97,32 @@ Class ModelManagementpost extends Connection {
         $sql = 'DELETE FROM evenement WHERE idEvenement = \'' . $_SESSION['idEvenement'] . '\'';
         $req = self::$bdd->prepare($sql);
         $req->execute();
+        echo '<script type="text/javascript">
+            location.href = \'index.php\';
+            window.alert("Vous avez bien supprimé le post !");
+        </script>';
+    }
+
+    public function popUpRedirect($message, $option) {
+        echo '<script type="text/javascript">
+            if (window.confirm(\'' . $message . '\')) {
+                location.href = \'index.php?mod=' . $_SESSION['mod'] . '&option=' . $option . '\';
+            }
+            else {
+                location.href = \'index.php\';
+            }
+            </script>';
+    }
+
+    public function popUpRedirectID($message, $option, $id) {
+        echo '<script type="text/javascript">
+            if (window.confirm(\'' . $message . '\')) {
+                location.href = \'index.php?mod=' . $_SESSION['mod'] . '&option=' . $option . '&idEvenement=' . $id . '\';
+            }
+            else {
+                location.href = \'index.php\';
+            }
+            </script>';
     }
 }
 
