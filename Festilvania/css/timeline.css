@@ -3,6 +3,16 @@ body {
     padding-top: 70px;
 }
 
+ul {
+    list-style-type: none;
+    margin : 0;
+    padding : 0;
+}
+
+.line-autocomplete {
+    width : 46.3%;
+}
+
 .accueil {
     background-image: url("../img/background.png");
     background-repeat: no-repeat;
