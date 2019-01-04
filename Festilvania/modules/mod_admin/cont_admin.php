@@ -20,9 +20,9 @@ Class ContAdmin {
             case 'addGroup' :
             case 'affectUser' :
             case 'delGroup' :
-                $this->model->$action();
+                $this->model->$action($this->model->getRights());
             default:
-                $this->view->displayAdmin($this->model->getCategories(), $this->model->getGroups());
+                $this->view->displayAdmin($this->model->getCategories(), $this->model->getGroups(), $this->model->getRights());
                 break;
         }
     }

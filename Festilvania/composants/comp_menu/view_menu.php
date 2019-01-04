@@ -71,7 +71,7 @@ class ViewMenu {
     }
 
     public function getAdminButton($rights) {
-        if ($rights != null && $rights['droit_editer'] && $rights['droit_supprimer']) {
+        if ($rights != null && $rights['droit_admin']) {
             echo '<a href="index.php?mod=admin" class="dropdown-item">Administration</a>';
         }
     }

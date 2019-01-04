@@ -137,6 +137,7 @@ Class ModelTimeline extends Connection {
                     $_SESSION['pseudo'] = $pseudo;
                     $_SESSION['avatar'] = $tuple['avatar'];
                     $_SESSION['idMembre'] = $tuple['idMembre'];
+                    $_SESSION['membre'] = $tuple;
                 }
             }
         }
@@ -148,6 +149,9 @@ Class ModelTimeline extends Connection {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo'])) {
             $_SESSION['isConnected'] = false;
             $_SESSION['pseudo'] = null;
+            $_SESSION['avatar'] = null;
+            $_SESSION['idMembre'] = null;
+            $_SESSION['membre'] = null;
         }
 
         header('Location: index.php?mod=' . $_SESSION['mod'] . '&option=' . $_SESSION['option']);

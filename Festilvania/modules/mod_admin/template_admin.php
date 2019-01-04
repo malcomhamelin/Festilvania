@@ -1,3 +1,5 @@
+<?php $this->popUpCheck(); ?>
+
 <div class="container">
     <div class="row">
         <div class="col-12 container-publipost annonce">
@@ -7,8 +9,8 @@
 
             <div class="col-6 mx-auto">
                 <div class="input-group my-4">
-                    <form action="index.php?mod=admin&action=addCategory" method="post" id="addCat"></form>
-                    <input type="text" class="form-control" id="inlineFormInputGroup" form="addCat" name="newCategory" placeholder="Titre de la catégorie">
+                    <form action="index.php?mod=admin&action=addCategory" method="post" id="addCat" onsubmit=""></form>
+                    <input type="text" class="form-control" id="inlineFormInputGroup" form="addCat" name="newCategory" required minlength="3" placeholder="Titre de la catégorie">
                     <div class="input-group-append">
                         <button class="btn btn-success ml-0" form="addCat">
                             Ajouter
@@ -24,7 +26,7 @@
             <div class="col-7 mx-auto">
                 <div class="input-group my-4">
                     <form action="index.php?mod=admin&action=delCategory" method="post" id="delCat"></form>
-                    <select class="col-10" name="idToDelete" form="delCat" id="delCategory">
+                    <select class="col-10" name="idCatToDelete" form="delCat" id="delCategory">
                         <?php $this->getOptionsCat($categories); ?>
                     </select>
                     <div class="input-group-append">
@@ -44,7 +46,7 @@
                 <form action="index.php?mod=admin&action=addGroup" method="post" id="addGroup"></form>
 
                 <div class="row">
-                    <input type="text" class="form-control col-3 mx-auto mt-3" form="addGroup" name="groupName" id="inlineFormInputGroup" placeholder="Nom du groupe">
+                    <input type="text" class="form-control col-3 mx-auto mt-3" form="addGroup" name="groupName" id="inlineFormInputGroup" required minlength="3" placeholder="Nom du groupe">
                 </div>
 
                 <h4 class="text-center mt-3">Droits</h4>
@@ -119,7 +121,7 @@
                     <form action="index.php?mod=admin&action=affectUser" method="post" id="affectUser"></form>
 
                     <div class="form-group col-6">
-                        <input type="text" class="form-control" form="affectUser" name="userToAffect" id="inputCity" placeholder="Pseudonyme">
+                        <input type="text" class="form-control" form="affectUser" name="userToAffect" id="inputCity" required minlength="3" placeholder="Pseudonyme">
                     </div>
                     <div class="form-group col-6">
                         <select id="inputState" name="groupSelected" form="affectUser" class="form-control">
