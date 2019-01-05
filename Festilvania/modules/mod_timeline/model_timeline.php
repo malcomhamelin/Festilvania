@@ -9,7 +9,8 @@ Class ModelTimeline extends Connection {
     }
 
     public function homepage() {
-        $tuplesHomePage = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes FROM evenement LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement ORDER BY date_creation DESC");
+        $tuplesHomePage = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
+                                             FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement ORDER BY date_creation DESC");
         $result = $tuplesHomePage->fetchAll();
 
         return $result;
@@ -28,8 +29,8 @@ Class ModelTimeline extends Connection {
     }
 
     public function hottestContent() {
-        $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes 
-        FROM evenement LEFT JOIN voteevenement using (idEvenement)
+        $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes, image.lienImage 
+        FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement)
         GROUP BY evenement.idEvenement ORDER BY nbVotes DESC");
         $result = $tuplesHottest->fetchAll();
 
@@ -37,7 +38,7 @@ Class ModelTimeline extends Connection {
     }
 
     public function latestContent() {
-        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement ORDER BY date_creation DESC");
+        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement INNER JOIN image using (idEvenement) ORDER BY date_creation DESC");
         $result = $tuplesHottest->fetchAll();
 
         return $result;

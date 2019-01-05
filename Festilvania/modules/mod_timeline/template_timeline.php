@@ -2,7 +2,7 @@
     <div class="titreEtRecherche">
         <h1 class="mb-4 d-flex justify-content-center text-center">Envie de vous amuser ?</h1>
         <div class="search-bar d-flex justify-content-center">
-            <div class="input-group col-lg-6 mx-auto">
+            <div class="input-group col-10 col-md-8 col-lg-6 mx-auto">
                 <form action="index.php?mod=timeline&option=search" method="post" id="search"></form>
                 <input class="form-control form-control-lg" type="text" form="search" name="searchInput" id="searchInput" placeholder="Rechercher un festival..." aria-label="Search">
                 

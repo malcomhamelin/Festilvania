@@ -15,7 +15,7 @@ class ModelPost extends Connection {
     }
 
     public function event() {
-        $tupleEvent = self::$bdd->prepare("SELECT * FROM evenement WHERE idEvenement = ?");
+        $tupleEvent = self::$bdd->prepare("SELECT * FROM evenement INNER JOIN image using (idEvenement) WHERE idEvenement = ?");
         $tupleEvent->execute(array($_SESSION['idEvenement']));
         $result = $tupleEvent->fetch();
 

@@ -4,6 +4,9 @@ require_once "connection.php";
 
 Class ModelManagementpost extends Connection {
 
+    private $MAX_FILE_SIZE = 1048576;
+    private $VALID_EXTENSIONS = array('jpg', 'jpeg', 'gif', 'png');
+
     public function __contruct() {
 
     }
@@ -26,6 +29,9 @@ Class ModelManagementpost extends Connection {
 
                 $req = self::$bdd->prepare("INSERT INTO evenement(idEvenement, titreEvenement, description, date_creation, date_debut, date_fin, idMembre, idCategorie, lieu) VALUES (default, ?, ?, NOW(), ?, ?, ?, ?, ?)");
                 $req->execute(array($nomEvent, $description, $dateDebutEvent, $dateFinEvent, $_SESSION['idMembre'], $categorie, $lieu));
+                
+                $this->uploadPicture();
+
                 echo '<script type="text/javascript">
                     location.href = \'index.php\';
                     window.alert("Vous avez bien publié votre post, il sera envoyé à la vérification !");
@@ -124,6 +130,31 @@ Class ModelManagementpost extends Connection {
             }
             </script>';
     }
+
+    public function uploadPicture() {
+        if ($_FILES['eventPicture']['error'] == 0) {
+            if ($_FILES['eventPicture']['size'] <= $this->MAX_FILE_SIZE) {
+                $upload_extension = strtolower(substr(strrchr($_FILES['eventPicture']['name'], '.'), 1) );
+                
+                if (in_array($upload_extension, $this->VALID_EXTENSIONS)) {
+                    $_POST['nomEvent'] = htmlspecialchars($_POST['nomEvent']);
+
+                    $chemin = 'img/eventPictures/' . $_POST['nomEvent'] . '.' . $upload_extension;
+                    $resultat = move_uploaded_file($_FILES['eventPicture']['tmp_name'], $chemin);
+
+                    if ($resultat) {
+                        $reqIdEvent = self::$bdd->prepare("SELECT * FROM evenement WHERE titreEvenement = ? ORDER BY idEvenement DESC");
+                        $reqIdEvent->execute(array($_POST['nomEvent']));
+                        $reqIdEvent = $reqIdEvent->fetch();
+
+                        $insertEventPicture = self::$bdd->prepare("INSERT INTO image (lienImage, idEvenement) VALUES (?, ?)");
+                        $insertEventPicture->execute(array($chemin, $reqIdEvent['idEvenement']));
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 ?>

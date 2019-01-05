@@ -1,6 +1,8 @@
 <?php
 
-Class ModelProfile {
+require_once "connection.php";
+
+Class ModelProfile extends Connection {
 
     private $MAX_FILE_SIZE = 1048576;
     private $VALID_EXTENSIONS = array('jpg', 'jpeg', 'gif', 'png');

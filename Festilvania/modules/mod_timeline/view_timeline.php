@@ -26,7 +26,7 @@ Class ViewTimeline extends ViewGeneric {
                                 </div>
                     
                                 <div class="col-7 col-md-4 col-lg-3 annonce-col">
-                                    <img src="img/background.jpg" alt="Photo évenement" class="annonce-col-img rounded">
+                                    <img src="' . $key['lienImage'] . '" alt="Photo évenement" class="annonce-col-img rounded">
                                 </div>
                     
                                 <div class="col-12 col-md-6 annonce-corps">
@@ -81,7 +81,7 @@ Class ViewTimeline extends ViewGeneric {
 		    $dateEnd = new DateTime($key['date_fin']);
 
             echo    '<div class="col-10 col-md-3 mx-auto mb-4 blocs-annexes-annonces">
-                        <img src="img/background3.jpg" alt="event1" class="blocs-annexes-photos">
+                        <img src="' . $key['lienImage'] . '" alt="event1" class="blocs-annexes-photos">
                         <div class="blocs-annexes-annonces-texte ml-2 text-left">
                             <a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '">
                                 <span class="font-weight-bold blocs-annexes-annonces-texte-titre">' . $key['titreEvenement'] . '</span><br>

@@ -1,7 +1,7 @@
 <div class="container annonce container-post">
     <div class="row">
         <div class="col-lg-3 mx-auto float-left">
-            <img src="img/background.jpg" alt="Photo evenement" class="photo-post"/>
+            <img src="<?php echo $event['lienImage']; ?>" alt="Photo evenement" class="photo-post"/>
         </div>
         <div class="col-lg-9 mx-auto float-right">
             <?php echo $this->getEditButton($rights); ?>

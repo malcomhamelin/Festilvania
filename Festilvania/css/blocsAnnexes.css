@@ -20,11 +20,14 @@
 
 .blocs-annexes-photos {
     width : 100%;
+    height : 100%;
 
     border-radius : 5px;
 }
 
 .blocs-annexes-annonces {
+    max-width: 400px;
+
     position: relative;
     text-align: center;
     color: white;
