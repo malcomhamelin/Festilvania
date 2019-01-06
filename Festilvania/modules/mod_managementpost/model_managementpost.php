@@ -34,9 +34,8 @@ Class ModelManagementpost extends Connection {
 
                 echo '<script type="text/javascript">
                     location.href = \'index.php\';
-                    window.alert("Vous avez bien publié votre post, il sera envoyé à la vérification !");
+                    window.alert("Vous avez effectué votre post, il ira aux vérifications !");
                 </script>';
-                
             }
             else {
                 $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la publication ?';
@@ -72,9 +71,9 @@ Class ModelManagementpost extends Connection {
                 $description = htmlspecialchars($_POST['description']);
                 $categorie = htmlspecialchars($_POST['categorie']);
                 $lieu = htmlspecialchars($_POST['lieu']);
-
-                $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu);
-
+                $publish = isset($_POST['publish']) ? htmlspecialchars($_POST['publish']) : 0;
+                
+                $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu, $publish);
                 $sql = 'UPDATE evenement
                 SET titreEvenement  = \'' . $newValues[0] . '\',
                     date_debut      = \'' . $newValues[1] . '\',
@@ -82,25 +81,31 @@ Class ModelManagementpost extends Connection {
                     description     = \'' . $newValues[3] . '\',
                     idCategorie     = \'' . $newValues[4] . '\',
                     lieu            = \'' . $newValues[5] . '\',
-                    estPublie       = 1 
-                    WHERE idEvenement=\'' . $_SESSION['idEvenement'] . '\'';
+                    estPublie       = \'' . $newValues[6] . '\'
+                    WHERE idEvenement=\'' . $_POST['id'] . '\'';
                 $req = self::$bdd->prepare($sql);
                 $req->execute();
-
+                echo '<script type="text/javascript">
+                    location.href = \'index.php\';
+                    window.alert("Vous avez bien édité le post !");
+                </script>';
             }
             else {
                 $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la manipulation ?';
-                $this->popUpRedirectID($message, "editlistbyid", $_SESSION['idEvenement']);
+                $this->popUpRedirectID($message, "editlistbyid", $_POST['id']);
             }
         }
         else {
             $message = 'Les champs ne sont pas tous remplis, voulez-vous recommencez la manipulation ?';
-            $this->popUpRedirectID($message, "editlistbyid", $_SESSION['idEvenement']);
+            $this->popUpRedirectID($message, "editlistbyid", $_POST['id']);
         }
     }
 
     public function delete() {
-        $sql = 'DELETE FROM evenement WHERE idEvenement = \'' . $_SESSION['idEvenement'] . '\'';
+        $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_POST['idDel'] . '\'';
+        $reqimg = self::$bdd->prepare($sqlimg);
+        $reqimg->execute();
+        $sql = 'DELETE FROM evenement WHERE idEvenement = \'' . $_POST['idDel'] . '\'';
         $req = self::$bdd->prepare($sql);
         $req->execute();
         echo '<script type="text/javascript">

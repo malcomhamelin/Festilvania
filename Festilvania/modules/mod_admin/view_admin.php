@@ -31,7 +31,7 @@ Class ViewAdmin extends ViewGeneric {
     
     public function popUpCheck() {
         $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : "";
-
+        
         if (!empty($action)) {
             $errorCode = isset($_SESSION[$action]) && !empty($_SESSION[$action]) ? $_SESSION[$action] : 1;
 

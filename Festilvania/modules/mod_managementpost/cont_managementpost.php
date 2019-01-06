@@ -12,14 +12,11 @@ Class ContManagementpost {
         $this->model = new ModelManagementpost;
         $this->view = new ViewManagementpost;
     }
-     public function act($action) {
+
+    public function act($action) {
         switch ($action) {
             case 'publication' :
-                $this->model->$action();
-                break;
             case 'edition' :
-                $this->model->$action();
-                break;
             case 'delete' :
                 $this->model->$action();
                 break;
@@ -37,9 +34,7 @@ Class ContManagementpost {
                 $this->view->getEditlist($this->model->$option());
                 break;
             case 'editlistbyid' :
-                $this->view->getEditlistbyid($this->model->$option(), $this->model->getRights());
-                break;
-            default :
+                $this->view->getEditlistbyid($this->model->$option(), $this->model->getCategories(), $this->model->getRights());
                 break;
         }
     }
