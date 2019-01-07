@@ -19,11 +19,8 @@
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                         Autres
                     </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>    
-                        <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-menu bg-dark">
+                        <?php $this->getCategories($categories); ?>
                     </div>
                 </li>
             </ul>

@@ -6,18 +6,13 @@ class ViewMenu {
         
     }
 
-    public function getNavbar($rights) {
+    public function getNavbar($rights, $categories) {
         require_once "template_menu.php";
     }
 
     public function getUserMenu($rights) {
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo'])) {
-            if ($_SESSION['isConnected']) {
-                $this->getConnectedUserMenu($rights);
-            }
-            else {
-                $this->getUnconnectedUserMenu();
-            }
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && $_SESSION['isConnected']) {
+            $this->getConnectedUserMenu($rights);
         }
         else {
             $this->getUnconnectedUserMenu();
@@ -53,11 +48,11 @@ class ViewMenu {
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                             Connexion
                         </a>
-                        <div class="dropdown-menu dropdown-custom">
+                        <div class="dropdown-menu dropdown-custom bg-dark">
                             <form method="post" action="index.php?action=connection">
                                 <input type="text" class="form-control mb-2" placeholder="Pseudonyme" name="pseudo"></input>
                                 <input type="password" class="form-control mb-2" placeholder="Mot de passe" name="password"></input>
-                                <button class="btn btn-custom float-right" id="btn-connect" type="submit">Se connecter</button>
+                                <button class="btn btn-custom btn-warning float-right" id="btn-connect" type="submit">Se connecter</button>
                             </form>
                         </div>
                     </li>
@@ -74,6 +69,12 @@ class ViewMenu {
         if ($rights != null && $rights['droit_admin']) {
             echo '<a href="index.php?mod=admin" class="dropdown-item">Administration</a>';
         }
+    }
+
+    public function getCategories($categories) {
+		foreach ($categories as $key) {
+			echo '<a class="nav-link lien-navbar" href="index.php?mod=timeline&option=' . $key['titreCategorie'] . '">' . $key['titreCategorie'] . '</a>';
+		}
     }
 
 }
