@@ -34,3 +34,8 @@
 .dropdown-custom {
     padding : 10px;
 }
+
+.btn-custom {
+    color : white;
+    font-weight: bold;
+}
