@@ -29,22 +29,28 @@
             </div>
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" placeholder="Pseudonyme">  
+            <input type="text" class="form-control" name="pseudo" placeholder="Pseudonyme">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" placeholder="Mot de passe">  
+            <input type="password" class="form-control" name="password" placeholder="Mot de passe">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" placeholder="Confirmer mot de passe">  
+            <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe">  
         </div>  
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" placeholder="Adresse e-mail">  
+            <input type="email" class="form-control" name="email" placeholder="Adresse e-mail">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" placeholder="Confirmer adresse e-mail">  
+            <input type="radio"  id="homme" name="sexe" value="homme" >  Homme 
+            <input type="radio"  id="femme" name="sexe" value="femme" >  Femme 
+            <input type="radio"  id="autre" name="sexe" value="autre" >  Autres 
+        </div>
+        <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
+            <input type="date" max="2006-11-16" min="1900-01-01" class="form-control" name="date_anniv" placeholder="Date de naissances">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-5 profile-centered">
             <button class="btn btn-success float-right" type="button">Valider</button>  
         </div>                     
     </div>
 </div>
+
