@@ -8,7 +8,10 @@ Class ViewProfile extends ViewGeneric {
         parent::__construct();
     }
 
-     public function displayprofil($content){
+    public function getProfile() {
+       // require_once "template_profile.php";
+    }
+    public function displayprofil($content){
       
         $homme="";
         $femme="";
@@ -23,7 +26,7 @@ Class ViewProfile extends ViewGeneric {
         if($content['sexe']=="autre"){
             $autre='checked="checked"';
         }
-        require_once "template_Modif.php";
+        require_once "template_profile.php";
 			
     }
 
