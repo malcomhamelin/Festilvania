@@ -8,7 +8,7 @@ class ViewPost extends ViewGeneric {
 		parent::__construct();
 	}
 
-	public function getPost($comments, $event, $rights) {
+	public function getPost($comments, $event, $rights, $userInfos) {
 		$dateBegin = new DateTime($event['date_debut']);
 		$dateEnd = new DateTime($event['date_fin']);
 
@@ -56,6 +56,25 @@ class ViewPost extends ViewGeneric {
 			return '<p class="col-lg-12 text-center">Vous devez être connecté pour commenter</p>';
 		}
 	}
+
+	public function getScheduleButton($userInfos, $idEvenement) {
+        $isPresentSchedule = false;
+
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+            foreach ($userInfos as $key) {
+                if ($key['idMembre'] == $_SESSION['idMembre'] && $key['idEvenement'] == $idEvenement) {
+                    $isPresentSchedule = true;
+                }
+            }
+        }
+
+        if ($isPresentSchedule)  {
+            echo '<a href="index.php?mod=post&action=delschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
+        }
+        else {
+            echo '<a href="index.php?mod=post&action=addschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
+        }
+    }
     
 }
 

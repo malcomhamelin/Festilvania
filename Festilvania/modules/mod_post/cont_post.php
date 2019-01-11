@@ -16,9 +16,13 @@ class ContPost{
     public function act($action) {
         switch ($action) {
             case 'comment' :
-                $this->model->addComment();
+            case 'upvote' :
+            case 'downvote' :
+            case 'addschedule' :
+            case 'delschedule' :
+                $this->model->$action();
             default :
-                $this->view->getPost($this->model->comment(), $this->model->event(), $this->model->getRights());
+                $this->view->getPost($this->model->getComments(), $this->model->event(), $this->model->getRights(), $this->model->getUserInfos());
                 break;
         }
     }
