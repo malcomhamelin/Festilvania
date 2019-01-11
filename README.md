@@ -31,3 +31,9 @@ Site de recensement de concerts et de festivals
   - Ajouter/Supprimer des groupes d'utilisateurs et leurs droits
   - Affecter un membre à un groupe
   - Accéder a la liste des évènements non publiés afin de les publier
+
+11/01/2019 - 0.6 :
+- Intégration graphique de la page de visualisation de posts
+- Intégration graphique de la gestion du profil
+- Intégration graphique de l'inscription
+- Ajout d'un système de token pour les formulaires
