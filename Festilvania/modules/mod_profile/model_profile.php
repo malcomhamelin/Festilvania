@@ -33,7 +33,7 @@ Class ModelProfile extends Connection {
         $pastdata =self::$bdd->prepare("SELECT * from membre where membre.idMembre=:id");
         $pastdata->bindParam(':id', $_SESSION['idMembre']);
         $pastdata->execute();
-        $tab=$pastdata->fetchAll();
+        $tab=$pastdata->fetch();
         return $tab;
     }
     public function is_clean($string) {
