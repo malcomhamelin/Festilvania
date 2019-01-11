@@ -5,7 +5,7 @@ include_once "view_timeline.php";
 require_once "tampon/cont_generic.php";
 
 
-Class ContTimeline {
+Class ContTimeline extends ContGeneric{
 
     private $model;
     private $view;
