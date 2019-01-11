@@ -34,7 +34,7 @@ Class ModelRegister extends Connection {
                     $verifEmailunique->bindParam(':mail', $email);
                     $verifEmailunique->execute();
                     $tab=$verifEmailunique->fetch();
-                    var_dump($tab);
+                    
                     
                     if(0==$tab[0]){
                         $verifPseudolunique =self::$bdd->prepare("SELECT count(*) from membre where membre.pseudo=:pseudo");
@@ -51,6 +51,10 @@ Class ModelRegister extends Connection {
                             $req->bindParam(':Sexe', $sexe);
                             $req->bindParam(':Anniv', $anniversaire);
                             $req -> execute();
+                             echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("profil crée");
+                                </script>';
                         }
                         else {
                             echo'pseudo pris';
