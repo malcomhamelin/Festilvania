@@ -51,6 +51,11 @@ Class ModelRegister extends Connection {
                             $req->bindParam(':Sexe', $sexe);
                             $req->bindParam(':Anniv', $anniversaire);
                             $req -> execute();
+                            
+                            $chemin = 'img/avatars/user.png';
+                            $insertAvatar = Connection::$bdd->prepare("UPDATE membre SET avatar = ? WHERE pseudo = ?");
+                            $insertAvatar->execute(array($chemin, $pseudo));
+                            
                              echo '<script type="text/javascript">
                                     location.href = \'index.php\';
                                     window.alert("profil crée");
