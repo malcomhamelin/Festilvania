@@ -12,6 +12,7 @@ Class ModAdmin {
         $this->controller->act($action);
     }
     public function getDisplay($option){
+        $this->controller->display($option);
         return $this->controller->getDisplay();
     }
 

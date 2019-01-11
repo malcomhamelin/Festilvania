@@ -21,7 +21,15 @@ Class ContAdmin {
             case 'affectUser' :
             case 'delGroup' :
                 $this->model->$action($this->model->getRights());
+                break;
             default:
+                break;
+        }
+    }
+
+    public function display($option) {
+        switch ($option) {
+            default :
                 $this->view->displayAdmin($this->model->getCategories(), $this->model->getGroups(), $this->model->getRights());
                 break;
         }
