@@ -25,11 +25,10 @@ Class ContTimeline extends ContGeneric{
             case 'delschedule' :
             case 'upvote' :
             case 'downvote' :
-            if ($this->checkToken()) {
-                $this->model->$action();
-                
-            }
-            break;
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
+                break;
             default :
                 break;
         }
@@ -40,12 +39,9 @@ Class ContTimeline extends ContGeneric{
             case 'homepage' :
             case 'myschedule' :
             case 'search' :
-                $this->createToken();
-                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
-                break;
             case 'editlist' :
                 $this->createToken();
-                $this->view->getEditlist($this->model->$option());
+                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
             default :
                 $this->createToken();

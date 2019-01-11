@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 require_once "connection.php";
 
@@ -10,7 +10,7 @@ Class ModelTimeline extends Connection {
 
     public function homepage() {
         $tuplesHomePage = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
-                                             FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement ORDER BY date_creation DESC");
+            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement ORDER BY date_creation DESC");
         $result = $tuplesHomePage->fetchAll();
 
         return $result;
@@ -126,7 +126,8 @@ Class ModelTimeline extends Connection {
     }
 
     public function editlist() {
-        $tuplesEventNonPublie = self::$bdd->query("SELECT * FROM evenement WHERE estPublie = 'false' ORDER BY date_creation");
+        $tuplesEventNonPublie = self::$bdd->query("SELECT evenement.estPublie, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
+            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement HAVING estPublie = 0 ORDER BY date_creation DESC");
         $result = $tuplesEventNonPublie->fetchAll();
 
         return $result;
