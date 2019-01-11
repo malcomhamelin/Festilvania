@@ -30,16 +30,16 @@
             </div>
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="text" class="form-control" name="pseudo" value=<?php echo $content[0]['pseudo']?> form="updateProfil">  
+            <input type="text" class="form-control" name="pseudo" value=<?php echo $content['pseudo']?> form="updateProfil">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="password" class="form-control" name="password" value=<?php echo $content[0]['password']?> form="updateProfil">  
+            <input type="password" class="form-control" name="password" value=<?php echo $content['password']?> form="updateProfil">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="password" class="form-control" name="password2" value=<?php echo $content[0]['password']?> form="updateProfil">
+            <input type="password" class="form-control" name="password2" value=<?php echo $content['password']?> form="updateProfil">
         </div>  
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="email" class="form-control" name="email" value=<?php echo $content[0]['mail']?> form="updateProfil">  
+            <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> form="updateProfil">  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
             <input type="radio"  id="homme" name="sexe" value="homme" <?php echo $homme?> form="updateProfil">  Homme 
@@ -47,7 +47,7 @@
             <input type="radio"  id="autre" name="sexe" value="autre" <?php echo $autre?> form="updateProfil">  Autres 
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-2 profile-centered">
-            <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content[0]['date_anniv']?> >  
+            <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']?> >  
         </div>
         <div class="col-xs-1 col-sm-6 col-md-5 col-lg-4 mb-5 profile-centered">
             <button type="submit" class="btn btn-outline-success float-right mt-3"  form="updateProfil" >Valider</button>  
