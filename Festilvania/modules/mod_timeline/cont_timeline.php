@@ -2,6 +2,8 @@
 
 include_once "model_timeline.php";
 include_once "view_timeline.php";
+require_once "tampon/cont_generic.php";
+
 
 Class ContTimeline {
 
@@ -21,8 +23,11 @@ Class ContTimeline {
             case 'delschedule' :
             case 'upvote' :
             case 'downvote' :
+            if ($this->checkToken()) {
                 $this->model->$action();
-                break;
+                
+            }
+            break;
             default :
                 break;
         }
@@ -33,12 +38,15 @@ Class ContTimeline {
             case 'homepage' :
             case 'myschedule' :
             case 'search' :
+                $this->createToken();
                 $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
             case 'editlist' :
+                $this->createToken();
                 $this->view->getEditlist($this->model->$option());
                 break;
             default :
+                $this->createToken();
                 $this->view->getTimeline($this->model->categories($option), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;
         }
