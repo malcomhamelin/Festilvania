@@ -5,7 +5,7 @@ include_once "view_profile.php";
 require_once "tampon/cont_generic.php";
 
 
-Class ContProfile {
+Class ContProfile extends ContGeneric{
 
     private $model;
     private $view;
