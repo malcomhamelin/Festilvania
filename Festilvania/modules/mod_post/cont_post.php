@@ -2,8 +2,9 @@
 
 require_once "model_post.php";
 require_once "view_post.php";
+require_once "tampon/cont_generic.php";
 
-class ContPost{
+class ContPost extends ContGeneric {
 
     private $model;
     private $view;
@@ -20,9 +21,13 @@ class ContPost{
             case 'downvote' :
             case 'addschedule' :
             case 'delschedule' :
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
             default :
-                $this->view->getPost($this->model->getComments(), $this->model->event(), $this->model->getRights(), $this->model->getUserInfos());
+                if ($this->checkToken()) {
+                    $this->view->getPost($this->model->getComments(), $this->model->event(), $this->model->getRights(), $this->model->getUserInfos());
+                }
                 break;
         }
     }
