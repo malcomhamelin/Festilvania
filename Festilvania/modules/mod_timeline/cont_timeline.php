@@ -19,6 +19,8 @@ Class ContTimeline extends ContGeneric{
         switch ($action) {
             case 'connection' :
             case 'disconnection' :
+                $this->model->$action();
+                break;
             case 'addschedule' :
             case 'delschedule' :
             case 'upvote' :
