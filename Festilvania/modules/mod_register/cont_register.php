@@ -3,7 +3,7 @@
 include_once "model_register.php";
 include_once "view_register.php";
 
-Class ContRegister{
+Class ContRegister {
 
     private $model;
     private $view;
@@ -16,13 +16,10 @@ Class ContRegister{
     public function act($action) {
         switch ($action) {
             case 'register':
-                    $this->model->$action();
-            break;
+                $this->model->$action();
             default:
-                if ($this->checkToken()) {
-                    $this->view->displayregister();
-                }
-            break;
+                $this->view->displayregister();
+                break;
         }
     }
 

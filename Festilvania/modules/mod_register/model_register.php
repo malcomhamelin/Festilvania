@@ -25,8 +25,7 @@ Class ModelRegister extends Connection {
             $sexe = $_POST['sexe']; } 
         if (isset($_POST['anniversaire'])) { 
             $anniversaire = $_POST['anniversaire']; } 
-        if (isset($_POST['avatar'])) { 
-            $avat = $_POST['avatar']; } 
+
         if(isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['sexe'])&&isset($_POST['anniversaire'])&&isset($_POST['avatar'])){
             if(self::is_clean($pseudo)&&self::is_email($email)&&self::is_clean($password)&&self::is_clean($password2)){
                 if($password==$password2){
@@ -74,7 +73,7 @@ Class ModelRegister extends Connection {
                 }
             }
             else{
-                echo"inscription impossible,caractères spéciaux interdit"; 
+                echo"inscription impossible,caractères spéciaux interdit";
             }
         }
     }
