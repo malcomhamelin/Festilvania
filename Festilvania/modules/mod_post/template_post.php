@@ -1,4 +1,10 @@
-<?php $event['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $event['nbVotes']; ?>
+<?php 
+
+$event['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $event['nbVotes']; 
+$dateBegin = new DateTime($event['date_debut']);
+$dateEnd = new DateTime($event['date_fin']);
+
+?>
 
 <div class="container annonce shadow-sm mt-5">
     <div class="row">
@@ -16,15 +22,15 @@
             <div class="row mx-auto">
                 <div class="col-12 col-sm-12 col-md-12">
                     <span class="my-auto annonce-corps-titre"><a href="index.php?mod=post&idEvenement=<?php echo $event['idEvenement']?>"><?php echo $event['titreEvenement']; ?>   </a></span>
-                    <span class="my-auto font-weight-bold" id="annonce-corps-infos">01/01/2018 - 02/03/2018 à Paris</span>
+                    <span class="my-auto font-weight-bold" id="annonce-corps-infos"><?php echo $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' à ' . $event['lieu']; ?></span>
                 </div>
             </div>
             <div class="row mt-3 mx-auto">
                 <div class="col-10 col-sm-8 col-md-10">
                     
                     <?php $this->getScheduleButton($userInfos, $event['idEvenement']); ?>
+                    <?php $this->getEditButton($rights); ?>
 
-                    <a href="index.php?mod=post&idEvenement=<?php echo $event['idEvenement']?>"><div class="btn btn-warning annonce-corps-btn ml-3">Voir l'évènement</div></a>
                 </div>
             </div>
         </div>
