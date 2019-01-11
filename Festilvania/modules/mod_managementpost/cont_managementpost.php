@@ -2,8 +2,9 @@
 
 include_once "model_managementpost.php";
 include_once "view_managementpost.php";
+require_once "tampon/cont_generic.php";
 
-Class ContManagementpost {
+Class ContManagementpost extends ContGeneric {
 
     private $model;
     private $view;
@@ -19,7 +20,9 @@ Class ContManagementpost {
             case 'edition' :
             case 'popUpDelete' :
             case 'delete' :
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
                 break;
             default :
                 break;
@@ -30,9 +33,11 @@ Class ContManagementpost {
         switch ($option) {
             case 'publish' :
             case 'editlistbyid' :
+                $this->createToken();
                 $this->view->getPage($this->model->editlistbyid(), $this->model->getCategories(), $this->model->getRights());
                 break;
             case 'editlist' :
+                $this->createToken();
                 $this->view->getEditlist($this->model->$option());
                 break;
         }
