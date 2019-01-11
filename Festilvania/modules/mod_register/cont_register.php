@@ -2,6 +2,7 @@
 
 include_once "model_register.php";
 include_once "view_register.php";
+require_once "tampon/cont_generic.php";
 
 Class ContRegister {
 
@@ -16,10 +17,15 @@ Class ContRegister {
     public function act($action) {
         switch ($action) {
             case 'register':
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
+            break;
             default:
-                $this->view->displayregister();
-                break;
+                if ($this->checkToken()) {
+                    $this->view->displayregister();
+                }
+            break;
         }
     }
 
