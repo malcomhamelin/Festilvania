@@ -8,9 +8,6 @@ Class ViewProfile extends ViewGeneric {
         parent::__construct();
     }
 
-    public function getProfile() {
-       // require_once "template_profile.php";
-    }
      public function displayprofil($content){
       
         $homme="";
