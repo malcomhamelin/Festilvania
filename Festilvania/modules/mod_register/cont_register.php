@@ -2,9 +2,8 @@
 
 include_once "model_register.php";
 include_once "view_register.php";
-require_once "tampon/cont_generic.php";
 
-Class ContRegister extends ContGeneric{
+Class ContRegister{
 
     private $model;
     private $view;
@@ -17,9 +16,7 @@ Class ContRegister extends ContGeneric{
     public function act($action) {
         switch ($action) {
             case 'register':
-                if ($this->checkToken()) {
                     $this->model->$action();
-                }
             break;
             default:
                 if ($this->checkToken()) {
