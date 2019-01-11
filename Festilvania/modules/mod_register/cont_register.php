@@ -4,7 +4,7 @@ include_once "model_register.php";
 include_once "view_register.php";
 require_once "tampon/cont_generic.php";
 
-Class ContRegister {
+Class ContRegister extends ContGeneric{
 
     private $model;
     private $view;
