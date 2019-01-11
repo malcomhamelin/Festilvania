@@ -2,6 +2,8 @@
 
 include_once "model_profile.php";
 include_once "view_profile.php";
+require_once "tampon/cont_generic.php";
+
 
 Class ContProfile {
 
@@ -17,22 +19,30 @@ Class ContProfile {
       //  $this->view->displayprofil();
         switch ($action) {
             case 'uploadAvatar' :
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
             break;
 
             case 'update':
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
             break;
 
             default :
-                $this->view->getProfile();
+                if ($this->checkToken()) {
+                    $this->view->getProfile();
+                }
             break;
         }
     }
     public function display($option) {
         switch ($option) {
             default :
+                $this->createToken();
                 $this->view->displayprofil($this->model->basedate());
+            
                 break;
         }
     }
