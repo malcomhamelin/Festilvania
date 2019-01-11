@@ -1,8 +1,8 @@
 <?php
 
-require_once "connection.php";
+require_once "tampon/model_generic.php";
 
-Class ModelManagementpost extends Connection {
+Class ModelManagementpost extends ModelGeneric {
 
     private $MAX_FILE_SIZE = 1048576;
     private $VALID_EXTENSIONS = array('jpg', 'jpeg', 'gif', 'png');
