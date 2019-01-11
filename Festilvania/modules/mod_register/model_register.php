@@ -43,7 +43,7 @@ Class ModelRegister extends Connection {
                         $tab=$verifPseudolunique->fetch();
                     
                         if(0==$tab[0]){ 
-                            $req=self::$bdd->prepare("INSERT INTO membre VALUES(default,:Pseudo,:Password,:Mail,NOW(),:Avatar,1,:Sexe,:Anniv)");
+                            $req=self::$bdd->prepare("INSERT INTO membre VALUES(default,:Pseudo,:Password,:Mail,NOW(),:Avatar,4,:Sexe,:Anniv)");
                             $req->bindParam(':Pseudo', $pseudo);
                             $req->bindParam(':Password', $password);
                             $req->bindParam(':Mail', $email);
