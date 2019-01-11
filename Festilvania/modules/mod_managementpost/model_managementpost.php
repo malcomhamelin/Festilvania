@@ -51,7 +51,7 @@ Class ModelManagementpost extends Connection {
     public function editlistbyid() {
         $eventSelectionne = self::$bdd->prepare("SELECT * FROM evenement WHERE idEvenement = ?");
         $eventSelectionne->execute(array($_SESSION['idEvenement']));
-        $result = $eventSelectionne->fetchAll();
+        $result = $eventSelectionne->fetch();
 
         return $result;
     }
@@ -102,16 +102,27 @@ Class ModelManagementpost extends Connection {
     }
 
     public function delete() {
-        $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_POST['idDel'] . '\'';
+        $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
         $reqimg = self::$bdd->prepare($sqlimg);
         $reqimg->execute();
-        $sql = 'DELETE FROM evenement WHERE idEvenement = \'' . $_POST['idDel'] . '\'';
+        $sql = 'DELETE FROM evenement WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
         $req = self::$bdd->prepare($sql);
         $req->execute();
         echo '<script type="text/javascript">
-            location.href = \'index.php\';
             window.alert("Vous avez bien supprimé le post !");
+            location.href = \'index.php\';
         </script>';
+    }
+
+    public function popUpDelete() {
+        echo '<script type="text/javascript">
+            if (window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\')) {
+                location.href = \'index.php?mod=managementpost&action=delete&idEvenement=' . $_POST['idDel'] . '\';
+            }
+            else {
+                location.href = \'index.php?mod=managementpost&option=editlistbyid&idEvenement=' . $_POST['idDel'] . '\';
+            }
+            </script>';
     }
 
     public function popUpRedirect($message, $option) {

@@ -17,6 +17,7 @@ Class ContManagementpost {
         switch ($action) {
             case 'publication' :
             case 'edition' :
+            case 'popUpDelete' :
             case 'delete' :
                 $this->model->$action();
                 break;
@@ -28,13 +29,11 @@ Class ContManagementpost {
     public function display($option) {
         switch ($option) {
             case 'publish' :
-                $this->view->getPublipage($this->model->getCategories(), $this->model->getRights());
+            case 'editlistbyid' :
+                $this->view->getPage($this->model->editlistbyid(), $this->model->getCategories(), $this->model->getRights());
                 break;
             case 'editlist' :
                 $this->view->getEditlist($this->model->$option());
-                break;
-            case 'editlistbyid' :
-                $this->view->getEditlistbyid($this->model->$option(), $this->model->getCategories(), $this->model->getRights());
                 break;
         }
     }
