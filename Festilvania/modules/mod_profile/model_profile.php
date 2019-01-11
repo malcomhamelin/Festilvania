@@ -74,7 +74,7 @@ Class ModelProfile extends Connection {
                     $tab=$verifEmailunique->fetch();
                   
                     //verifier les conditions de upload image
-                    if(0==$tab[0]||$_SESSION['email']==$email){
+                     if(0==$tab[0]||$_SESSION['membre']['mail']==$email){
                         $verifPseudolunique =self::$bdd->prepare("SELECT count(*) from membre where membre.pseudo=:pseudo");
                         $verifPseudolunique->bindParam(':pseudo', $pseudo);
                         $verifPseudolunique->execute();
@@ -94,25 +94,9 @@ Class ModelProfile extends Connection {
                             $req = self::$bdd->prepare($sql);
                             $req->execute();
 
-                            if ($_FILES['avatar']['error'] == 0) {
-                                if ($_FILES['avatar']['size'] <= $this->MAX_FILE_SIZE) {
-                                    $upload_extension = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1) );
-                                    
-                                    if (in_array($upload_extension, $this->VALID_EXTENSIONS)) {
-                                        $chemin = 'img/avatars/' . $_SESSION['pseudo'] . '.' . $upload_extension;
-                                        $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
-
-                                        if ($resultat) {
-                                            $insertAvatar = Connection::$bdd->prepare("UPDATE membre SET avatar = ? WHERE pseudo = ?");
-                                            $insertAvatar->execute(array($chemin, $_SESSION['pseudo']));
-                                            $_SESSION['avatar'] = $chemin;
-                                        }
-                                    }
-                                }
-                            }
                             self::uploadAvatar();
 
-
+                            $_SESSION['membre']['mail']=$email;
                             $_SESSION['email']=$email;
                             $_SESSION['pseudo']=$pseudo;
                             echo '<script type="text/javascript">
