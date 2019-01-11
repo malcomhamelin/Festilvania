@@ -11,6 +11,7 @@
                 <div class="input-group my-4">
                     <form action="index.php?mod=admin&action=addCategory" method="post" id="addCat" onsubmit=""></form>
                     <input type="text" class="form-control" id="inlineFormInputGroup" form="addCat" name="newCategory" required minlength="3" placeholder="Titre de la catégorie">
+                    <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="addCat" name="token">
                     <div class="input-group-append">
                         <button class="btn btn-success ml-0" form="addCat">
                             Ajouter
@@ -29,6 +30,7 @@
                     <select class="col-10" name="idCatToDelete" form="delCat" id="delCategory">
                         <?php $this->getOptionsCat($categories); ?>
                     </select>
+                    <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="delCat" name="token">
                     <div class="input-group-append">
                         <button class="btn btn-danger ml-0" form="delCat">
                             Supprimer
@@ -44,6 +46,7 @@
             <div class="col-8 mx-auto">
 
                 <form action="index.php?mod=admin&action=addGroup" method="post" id="addGroup"></form>
+                <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="addGroup" name="token">
 
                 <div class="row">
                     <input type="text" class="form-control col-3 mx-auto mt-3" form="addGroup" name="groupName" id="inlineFormInputGroup" required minlength="3" placeholder="Nom du groupe">
@@ -100,6 +103,7 @@
             <div class="col-7 mx-auto">
                 <div class="input-group my-4">
                     <form action="index.php?mod=admin&action=delGroup" method="post" id="delGrp"></form>
+                    <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="delGrp" name="token">
                     <select class="col-10" name="idGroupToDelete" form="delGrp" id="idGroupToDelete">
                         <?php $this->getOptionsGroups($groups); ?>
                     </select>
@@ -119,6 +123,7 @@
                 <div class="form-row">
                     
                     <form action="index.php?mod=admin&action=affectUser" method="post" id="affectUser"></form>
+                    <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="affectUser" name="token">
 
                     <div class="form-group col-6">
                         <input type="text" class="form-control" form="affectUser" name="userToAffect" id="inputCity" required minlength="3" placeholder="Pseudonyme">

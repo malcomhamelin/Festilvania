@@ -33,7 +33,7 @@ Class ViewAdmin extends ViewGeneric {
         $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : "";
         
         if (!empty($action)) {
-            $errorCode = isset($_SESSION[$action]) && !empty($_SESSION[$action]) ? $_SESSION[$action] : 1;
+            $errorCode = isset($_SESSION[$action]) && !empty($_SESSION[$action]) ? $_SESSION[$action] : 0;
 
             echo '<script type="text/javascript"> check' . $action . '(' . $errorCode . '); </script>';
         }

@@ -2,8 +2,9 @@
 
 include_once "model_admin.php";
 include_once "view_admin.php";
+require_once "tampon/cont_generic.php";
 
-Class ContAdmin {
+Class ContAdmin extends ContGeneric {
 
     private $model;
     private $view;
@@ -20,7 +21,9 @@ Class ContAdmin {
             case 'addGroup' :
             case 'affectUser' :
             case 'delGroup' :
-                $this->model->$action($this->model->getRights());
+                if ($this->checkToken()) {
+                    $this->model->$action($this->model->getRights());
+                }
                 break;
             default:
                 break;
@@ -30,6 +33,7 @@ Class ContAdmin {
     public function display($option) {
         switch ($option) {
             default :
+                $this->createToken();
                 $this->view->displayAdmin($this->model->getCategories(), $this->model->getGroups(), $this->model->getRights());
                 break;
         }
