@@ -19,17 +19,11 @@ Class ContProfile extends ContGeneric{
       //  $this->view->displayprofil();
         switch ($action) {
             case 'uploadAvatar' :
-                if ($this->checkToken()) {
-                    $this->model->$action();
-                }
-            break;
-
             case 'update':
                 if ($this->checkToken()) {
                     $this->model->$action();
                 }
-            break;
-
+                break;
             default :
                 if ($this->checkToken()) {
                     $this->view->getProfile();
