@@ -1,6 +1,8 @@
 <?php
 
-class ModelPost extends Connection {
+require_once "tampon/model_generic.php";
+
+class ModelPost extends ModelGeneric {
 
 	public function __construct(){
 
