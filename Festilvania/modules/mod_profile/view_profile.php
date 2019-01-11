@@ -17,13 +17,13 @@ Class ViewProfile extends ViewGeneric {
         $femme="";
         $autre="";
 
-        if($content[0]['sexe']=="homme"){
+        if($content['sexe']=="homme"){
             $homme='checked="checked"';
         }
-        if($content[0]['sexe']=="femme"){
+        if($content['sexe']=="femme"){
             $femme='checked="checked"';
         }
-        if($content[0]['sexe']=="autre"){
+        if($content['sexe']=="autre"){
             $autre='checked="checked"';
         }
         require_once "template_Modif.php";
