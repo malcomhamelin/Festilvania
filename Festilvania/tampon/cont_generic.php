@@ -17,7 +17,7 @@ class ContGeneric {
 	}
 
 	public function createToken() {
-		$token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+		$token = bin2hex(random_bytes(32));
 
 		$_SESSION['token'] = $token;
 		$_SESSION['tokenCreatedTime'] = new DateTime();
