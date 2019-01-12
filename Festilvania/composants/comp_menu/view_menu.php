@@ -1,6 +1,8 @@
 <?php
 
-class ViewMenu {
+require_once "generic/view_generic.php";
+
+class ViewMenu extends ViewGeneric {
 
     public function __construct() {
         
