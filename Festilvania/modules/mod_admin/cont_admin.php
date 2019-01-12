@@ -2,7 +2,7 @@
 
 include_once "model_admin.php";
 include_once "view_admin.php";
-require_once "tampon/cont_generic.php";
+require_once "generic/cont_generic.php";
 
 Class ContAdmin extends ContGeneric {
 

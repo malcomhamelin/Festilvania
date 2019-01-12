@@ -1,6 +1,6 @@
 <?php
 
-require_once "tampon/view_generic.php";
+require_once "generic/view_generic.php";
 
 class ViewPost extends ViewGeneric {
 

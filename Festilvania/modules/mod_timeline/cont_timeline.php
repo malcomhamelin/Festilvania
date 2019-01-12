@@ -2,7 +2,7 @@
 
 include_once "model_timeline.php";
 include_once "view_timeline.php";
-require_once "tampon/cont_generic.php";
+require_once "generic/cont_generic.php";
 
 
 Class ContTimeline extends ContGeneric{
