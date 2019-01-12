@@ -1,6 +1,6 @@
 <?php
 
-require_once "tampon/model_generic.php";
+require_once "generic/model_generic.php";
 
 Class ModelManagementpost extends ModelGeneric {
 

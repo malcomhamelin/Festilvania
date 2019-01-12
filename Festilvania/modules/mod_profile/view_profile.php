@@ -8,26 +8,13 @@ Class ViewProfile extends ViewGeneric {
         parent::__construct();
     }
 
-    public function getProfile() {
-       // require_once "template_profile.php";
-    }
     public function displayprofil($content){
-      
-        $homme="";
-        $femme="";
-        $autre="";
-
-        if($content['sexe']=="homme"){
-            $homme='checked="checked"';
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
+            require_once "template_profile.php";
         }
-        if($content['sexe']=="femme"){
-            $femme='checked="checked"';
-        }
-        if($content['sexe']=="autre"){
-            $autre='checked="checked"';
-        }
-        require_once "template_profile.php";
-			
+        else {
+            header('Location: index.php');
+        }	
     }
 
 }

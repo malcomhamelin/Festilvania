@@ -9,7 +9,7 @@ Class ViewAdmin extends ViewGeneric {
     }
 
     public function displayAdmin($categories, $groups, $rights) {
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $rights != null && $rights['droit_admin']) {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected'] && $rights != null && $rights['droit_admin']) {
             require_once "template_admin.php";
         }
         else {

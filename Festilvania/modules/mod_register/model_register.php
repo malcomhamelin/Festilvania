@@ -1,16 +1,20 @@
-
 <?php
-require_once "connection.php";
-Class ModelRegister extends Connection {
+
+require_once "generic/model_generic.php";
+
+Class ModelRegister extends ModelGeneric {
     public function __construct() {
     }
+
     public function is_clean($string) {
        return ! (preg_match("/[^a-z\d_-] /i", $string));
        
     }
+
     public function is_email($string){
         return preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/", $string);
     }
+    
     public function register(){
         //variable
         if (isset($_POST['pseudo'])) {

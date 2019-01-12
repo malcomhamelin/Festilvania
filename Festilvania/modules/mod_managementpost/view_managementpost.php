@@ -9,10 +9,9 @@ Class ViewManagementpost extends ViewGeneric {
     }
 
     public function getPage($content, $categories, $rights) {
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
-            if ($rights != null && $rights['droit_poster']) {
-                require_once "template_managementpost.php";
-            }
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']
+            && $rights != null && $rights['droit_poster']) {
+            require_once "template_managementpost.php";
         }
         else {
             header('Location: index.php');

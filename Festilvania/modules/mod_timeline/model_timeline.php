@@ -1,8 +1,8 @@
-    <?php
+<?php
 
-require_once "connection.php";
+require_once "generic/model_generic.php";
 
-Class ModelTimeline extends Connection {
+Class ModelTimeline extends ModelGeneric {
 
     public function __contruct() {
 

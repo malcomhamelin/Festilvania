@@ -21,12 +21,12 @@
                     <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> form="updateProfil">  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']?> >  
+                    <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']; ?> >  
                 </div>
                 <div class="col-7 mb-2 profile-centered text-center">
-                    <input type="radio" class="mx-auto" id="homme" name="sexe" value="homme" <?php echo $homme?> form="updateProfil">  Homme  
-                    <input type="radio" class="mx-auto" id="femme" name="sexe" value="femme" <?php echo $femme?> form="updateProfil">  Femme  
-                    <input type="radio" class="mx-auto" id="autre" name="sexe" value="autre" <?php echo $autre?> form="updateProfil">  Autres  
+                    <input type="radio" class="mx-auto" id="homme" name="sexe" value="homme" <?php echo $content['sexe']=="homme" ? 'checked="checked"' : ""; ?> form="updateProfil">  Homme  
+                    <input type="radio" class="mx-auto" id="femme" name="sexe" value="femme" <?php echo $content['sexe']=="femme" ? 'checked="checked"' : ""; ?> form="updateProfil">  Femme  
+                    <input type="radio" class="mx-auto" id="autre" name="sexe" value="autre" <?php echo $content['sexe']=="autre" ? 'checked="checked"' : ""; ?> form="updateProfil">  Autres  
                 </div>
             </div> 
 

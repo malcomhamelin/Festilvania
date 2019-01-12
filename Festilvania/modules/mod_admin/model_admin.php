@@ -1,8 +1,8 @@
 <?php
 
-require_once "connection.php";
+require_once "generic/model_generic.php";
 
-Class ModelAdmin extends Connection {
+Class ModelAdmin extends ModelGeneric {
 
     public function __construct() {
 

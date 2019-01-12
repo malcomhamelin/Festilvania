@@ -16,17 +16,11 @@ Class ContProfile {
     public function act($action) {
       //  $this->view->displayprofil();
         switch ($action) {
-            case 'uploadAvatar' :
-                $this->model->$action();
-            break;
-
             case 'update':
                 $this->model->$action();
-            break;
-
+                break;
             default :
-                $this->view->getProfile();
-            break;
+                break;
         }
     }
     public function display($option) {

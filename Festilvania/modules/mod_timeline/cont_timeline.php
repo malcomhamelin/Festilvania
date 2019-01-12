@@ -39,9 +39,18 @@ Class ContTimeline extends ContGeneric{
             case 'homepage' :
             case 'myschedule' :
             case 'search' :
-            case 'editlist' :
                 $this->createToken();
                 $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
+                break;
+            case 'editlist' :
+                $rights = $this->model->getRights();
+                if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected'] && !empty($rights) && $rights['droit_editer']) {
+                    $this->createToken();
+                    $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
+                }
+                else {
+                    header('Location: index.php');
+                }
                 break;
             default :
                 $this->createToken();

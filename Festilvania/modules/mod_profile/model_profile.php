@@ -1,8 +1,8 @@
 <?php
 
-require_once "connection.php";
+require_once "generic/model_generic.php";
 
-Class ModelProfile extends Connection {
+Class ModelProfile extends ModelGeneric {
 
     private $MAX_FILE_SIZE = 1048576;
     private $VALID_EXTENSIONS = array('jpg', 'jpeg', 'gif', 'png');
