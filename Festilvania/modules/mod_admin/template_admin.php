@@ -36,7 +36,7 @@
                     <div class="col-6 mx-auto">
                         <div class="input-group my-4">
                             <form action="index.php?mod=admin&action=delCategory" method="post" id="delCat"></form>
-                            <select class="col-7" name="idCatToDelete" form="delCat" id="delCategory">
+                            <select class="col-4 col-lg-7" name="idCatToDelete" form="delCat" id="delCategory">
                                 <?php $this->getOptionsCat($categories); ?>
                             </select>
                             <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="delCat" name="token">
@@ -166,7 +166,7 @@
 
                 <div class="row mt-3">
                     <span class="post-titre ml-5">Affecter un membre</span>
-                    <hr style="height:2px;border:none;color:grey;background-color:grey;" class="mx-auto col-3 col-md-5 col-lg-6">
+                    <hr style="height:2px;border:none;color:grey;background-color:grey;" class="mx-auto col-2 col-lg-5">
                 </div>
 
                 <div class="col-10 mx-auto mt-3">
@@ -176,7 +176,7 @@
                         <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="affectUser" name="token">
 
                         <div class="form-group col-6">
-                            <input type="text" class="form-control" form="affectUser" name="userToAffect" id="inputCity" required minlength="3" placeholder="Pseudonyme">
+                            <input type="text" class="form-control" form="affectUser" name="userToAffect" id="userToAffect" required minlength="3" placeholder="Pseudonyme">
                         </div>
                         <div class="form-group col-6">
                             <select id="inputState" name="groupSelected" form="affectUser" class="form-control">
@@ -189,6 +189,8 @@
                     <button class="btn btn-success float-right" form="affectUser">
                             Affecter
                     </button>
+
+                    <script>autocomplete_admin();</script>
                 </div>
 
             </div>
