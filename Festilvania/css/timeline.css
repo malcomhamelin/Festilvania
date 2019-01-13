@@ -121,3 +121,5 @@ ul {
         margin-top: 4%;
     }
 }
+
+.ui-helper-hidden-accessible { position: absolute; left: -9999px; }

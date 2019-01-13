@@ -8,6 +8,10 @@
     .navbar {
         max-height: none;
     }
+
+    body {
+        padding-top: 55px;
+    }
 }
 
 .logo {
