@@ -27,15 +27,15 @@ class ViewMenu extends ViewGeneric {
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                             <img src="' . $_SESSION['avatar'] . '" alt="avatar" class="" id="navbarAvatar"/><span class="pl-3">' . $_SESSION['pseudo'] . '</span>
                         </a>
-                        <div class="dropdown-menu">
-                            <a href="index.php?mod=profile" class="dropdown-item">Mon profil</a>
-                            <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item">Mon agenda</a>';
+                        <div class="dropdown-menu bg-dark">
+                            <a href="index.php?mod=profile" class="dropdown-item lien-navbar">Mon profil</a>
+                            <a href="index.php?mod=timeline&option=myschedule" class="dropdown-item lien-navbar">Mon agenda</a>';
 
                             $this->getListUnpublished($rights);
                             $this->getAdminButton($rights);
                             
-        echo                '<div class="dropdown-divider"></div>
-                            <a href="index.php?action=disconnection" class="dropdown-item">Se deconnecter</a>
+        echo                '<div class="dropdown-divider lien-navbar"></div>
+                            <a href="index.php?action=disconnection" class="dropdown-item lien-navbar">Se deconnecter</a>
                         </div>
                     </li>
                 </ul>';
@@ -63,13 +63,13 @@ class ViewMenu extends ViewGeneric {
 
     public function getListUnpublished($rights) {
         if ($rights != null && $rights['droit_supprimer']) {
-            echo '<a href="index.php?mod=timeline&option=editlist" class="dropdown-item">Liste des évènements non publiés</a>';
+            echo '<a href="index.php?mod=timeline&option=editlist" class="dropdown-item lien-navbar">Liste des évènements non publiés</a>';
         }
     }
 
     public function getAdminButton($rights) {
         if ($rights != null && $rights['droit_admin']) {
-            echo '<a href="index.php?mod=admin" class="dropdown-item">Administration</a>';
+            echo '<a href="index.php?mod=admin" class="dropdown-item lien-navbar">Administration</a>';
         }
     }
 

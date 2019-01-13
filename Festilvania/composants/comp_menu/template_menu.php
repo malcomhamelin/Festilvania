@@ -31,7 +31,7 @@
                 <?php $this->getUserMenu($rights); ?>
             </div>
 
-            <a href="index.php?mod=managementpost&option=publish"><div class="btn btn-warning btn-publier"><i class="fas fa-plus-circle"></i> Publier</div></a>
+            <a href="index.php?mod=managementpost&option=publish"><div class="btn btn-warning btn-publier btn-color"><i class="fas fa-plus-circle"></i> Publier</div></a>
 
         </div>
     </div>        
