@@ -58,10 +58,11 @@ Class ModelAdmin extends ModelGeneric {
                 $comment = isset($_POST['comment']) ? htmlspecialchars($_POST['comment']) : 0;
                 $edit = isset($_POST['edit']) ? htmlspecialchars($_POST['edit']) : 0;
                 $delete = isset($_POST['delete']) ? htmlspecialchars($_POST['delete']) : 0;
+                $admin = isset($_POST['admin']) ? htmlspecialchars($_POST['admin']) : 0;
 
-                $createRights = self::$bdd->prepare("INSERT INTO droits (intituleDroits, droit_visualiser, droit_poster, droit_voter, droit_commenter, droit_editer, droit_supprimer) 
-                                            VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $createRights->execute(array($groupName, $visu, $post, $vote, $comment, $edit, $delete));
+                $createRights = self::$bdd->prepare("INSERT INTO droits (intituleDroits, droit_visualiser, droit_poster, droit_voter, droit_commenter, droit_editer, droit_supprimer, droit_admin) 
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $createRights->execute(array($groupName, $visu, $post, $vote, $comment, $edit, $delete, $admin));
 
                 $rightsIDRow = self::$bdd->prepare("SELECT * FROM droits WHERE intituleDroits = ?");
                 $rightsIDRow->execute(array($groupName));
