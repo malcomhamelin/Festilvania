@@ -9,6 +9,10 @@ ul {
     padding : 0;
 }
 
+.btn-warning {
+    background-color: #f6b93b;
+}
+
 .line-autocomplete {
     width : 46.3%;
 }
@@ -120,6 +124,10 @@ ul {
     .annonce-corps {
         margin-top: 4%;
     }
+}
+
+#searchInput {
+    border-radius : 5px 0px 0px 5px;
 }
 
 .ui-helper-hidden-accessible { position: absolute; left: -9999px; }
