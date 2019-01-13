@@ -5,12 +5,12 @@ Connection::initConnection();
 
 $term = $_GET['term'];
 
-$requete = Connection::$bdd->prepare("SELECT * FROM evenement WHERE titreEvenement LIKE :term");
+$requete = Connection::$bdd->prepare("SELECT titreEvenement, lienImage, DATE_FORMAT(date_debut, '%d/%m/%Y') as dateDebut FROM evenement INNER JOIN image using(idEvenement) WHERE titreEvenement LIKE :term");
 $requete->execute(array(':term' => '%'.$term.'%'));
 $array = array();
 
 while ($donnee = $requete->fetch()) {
-    array_push($array, array('id' => $donnee["idEvenement"], 'value' => $donnee["titreEvenement"])); // label utilisable
+    array_push($array, array('id' => $donnee["dateDebut"], 'value' => $donnee["titreEvenement"], 'label' => $donnee["lienImage"])); // label utilisable
 }
 
 echo json_encode($array);
