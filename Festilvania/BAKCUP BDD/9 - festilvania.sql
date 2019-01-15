@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 15 jan. 2019 à 14:20
+-- Généré le :  mar. 15 jan. 2019 à 14:36
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.1.16
 
@@ -141,7 +141,8 @@ CREATE TABLE IF NOT EXISTS `droits` (
 --
 
 INSERT INTO `droits` (`idDroits`, `intituleDroits`, `droit_visualiser`, `droit_poster`, `droit_voter`, `droit_commenter`, `droit_editer`, `droit_supprimer`, `droit_admin`) VALUES
-(1, 'root', 1, 1, 1, 1, 1, 1, 1),
+(1, 'membre', 1, 1, 1, 1, 0, 0, 0),
+(2, 'root', 1, 1, 1, 1, 1, 1, 1),
 (4, 'Essai', 1, 1, 1, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
@@ -198,7 +199,8 @@ CREATE TABLE IF NOT EXISTS `groupe` (
 --
 
 INSERT INTO `groupe` (`idGroupe`, `nomGroupe`, `idDroits`) VALUES
-(1, 'admin', 1),
+(1, 'membre', 1),
+(2, 'admin', 2),
 (3, 'Essai', 4);
 
 -- --------------------------------------------------------
@@ -253,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
 --
 
 INSERT INTO `membre` (`idMembre`, `pseudo`, `password`, `mail`, `date_inscription`, `avatar`, `idGroupe`, `sexe`, `date_anniv`) VALUES
-(1, 'admin', 'admin', 'admin@admin.com', '2018-10-26 00:00:00', 'img/avatars/user.png', 1, 'femme', '2006-11-04'),
+(1, 'admin', 'admin', 'admin@admin.com', '2018-10-26 00:00:00', 'img/avatars/user.png', 2, 'femme', '2006-11-04'),
 (2, 'SGBD', 'root', 'sgbd@sgbd.root.fr', '2018-12-18 13:41:41', 'unknown.png', 3, 'autre', '1995-01-14');
 
 -- --------------------------------------------------------
