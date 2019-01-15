@@ -30,7 +30,9 @@ Class ModelManagementpost extends ModelGeneric {
                 $req = self::$bdd->prepare("INSERT INTO evenement(idEvenement, titreEvenement, description, date_creation, date_debut, date_fin, idMembre, idCategorie, lieu) VALUES (default, ?, ?, NOW(), ?, ?, ?, ?, ?)");
                 $req->execute(array($nomEvent, $description, $dateDebutEvent, $dateFinEvent, $_SESSION['idMembre'], $categorie, $lieu));
                 
-                $this->uploadPicture();
+                $tupleIdEvent = self::$bdd->query("SELECT idEvenement FROM evenement ORDER BY idEvenement DESC");
+                $tupleIdEvent = $tupleIdEvent->fetch();
+                $this->uploadPicture($tupleIdEvent['idEvenement']);
 
                 echo '<script type="text/javascript">
                     location.href = \'index.php\';
@@ -115,17 +117,6 @@ Class ModelManagementpost extends ModelGeneric {
         </script>';
     }
 
-    public function popUpDelete() {
-        echo '<script type="text/javascript">
-            if (window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\')) {
-                location.href = \'index.php?mod=managementpost&action=delete&idEvenement=' . $_POST['idDel'] . '\';
-            }
-            else {
-                location.href = \'index.php?mod=managementpost&option=editlistbyid&idEvenement=' . $_POST['idDel'] . '\';
-            }
-            </script>';
-    }
-
     public function popUpRedirect($message, $option) {
         echo '<script type="text/javascript">
             if (window.confirm(\'' . $message . '\')) {
@@ -148,7 +139,7 @@ Class ModelManagementpost extends ModelGeneric {
             </script>';
     }
 
-    public function uploadPicture() {
+    public function uploadPicture($idEvenement) {
         if ($_FILES['eventPicture']['error'] == 0) {
             if ($_FILES['eventPicture']['size'] <= $this->MAX_FILE_SIZE) {
                 $upload_extension = strtolower(substr(strrchr($_FILES['eventPicture']['name'], '.'), 1) );
@@ -156,7 +147,7 @@ Class ModelManagementpost extends ModelGeneric {
                 if (in_array($upload_extension, $this->VALID_EXTENSIONS)) {
                     $_POST['nomEvent'] = htmlspecialchars($_POST['nomEvent']);
 
-                    $chemin = 'img/eventPictures/' . $_POST['nomEvent'] . '.' . $upload_extension;
+                    $chemin = 'img/eventPictures/' . $idEvenement . '.' . $upload_extension;
                     $resultat = move_uploaded_file($_FILES['eventPicture']['tmp_name'], $chemin);
 
                     if ($resultat) {

@@ -73,7 +73,7 @@
                 
                 <?php $this->getButtonAdmin($rights) ?>
 
-                <button type="submit" class="btn btn-outline-success float-right mt-3" form="editEvent">Valider</button>
+                <button type="submit" class="btn btn-warning btn-custom float-right mt-3" form="editEvent">Valider</button>
         </div>
     </div>
 </div>

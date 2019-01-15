@@ -58,10 +58,13 @@ Class ViewManagementpost extends ViewGeneric {
     }
 
     public function getButtonDelete() {
+        $_GET['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
+
         echo '
-            <form method="post" action="index.php?mod=managementpost&action=popUpDelete" enctype="multipart/form-data" id="delEvent">
+            <form method="post" action="index.php?mod=managementpost&action=delete&idEvenement=' . $_GET['idEvenement'] . '" onsubmit="return window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\');" enctype="multipart/form-data" id="delEvent">
+                <input type="hidden" value="' . $_SESSION['token'] . '" form="delEvent" name="token">
                 <input type="hidden" name="idDel" form="delEvent" value="' . $_GET['idEvenement'] . '">
-                <button type="submit" class="btn btn-outline-danger float-left mt-3">Supprimer</button>
+                <button type="submit" class="btn btn-danger btn-custom float-left mt-3" id="delButton">Supprimer</button>
             </form>';
     }
 }

@@ -18,7 +18,6 @@ Class ContManagementpost extends ContGeneric {
         switch ($action) {
             case 'publication' :
             case 'edition' :
-            case 'popUpDelete' :
             case 'delete' :
                 if ($this->checkToken()) {
                     $this->model->$action();
