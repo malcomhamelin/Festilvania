@@ -1,7 +1,7 @@
 <?php
 
-include_once "model_timeline.php";
-include_once "view_timeline.php";
+require_once "model_timeline.php";
+require_once "view_timeline.php";
 require_once "generic/cont_generic.php";
 
 
@@ -25,9 +25,7 @@ Class ContTimeline extends ContGeneric{
             case 'delschedule' :
             case 'upvote' :
             case 'downvote' :
-                if ($this->checkToken()) {
-                    $this->model->$action();
-                }
+                $this->model->$action();
                 break;
             default :
                 break;

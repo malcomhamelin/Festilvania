@@ -1,6 +1,7 @@
 <div class="container annonce shadow-sm container-profile">
     <div class="container">
     <form method="post" action="index.php?mod=profile&action=update" enctype="multipart/form-data" id="updateProfil"></form>
+        <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="updateProfil" name="token">
         <div class="row">
             <div class="col-12 col-md-8 profile-inputs">
                 <div class="row mt-3">

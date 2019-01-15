@@ -1,7 +1,7 @@
 <?php
 
-include_once "model_managementpost.php";
-include_once "view_managementpost.php";
+require_once "model_managementpost.php";
+require_once "view_managementpost.php";
 require_once "generic/cont_generic.php";
 
 Class ContManagementpost extends ContGeneric {
@@ -35,10 +35,6 @@ Class ContManagementpost extends ContGeneric {
             case 'editlistbyid' :
                 $this->createToken();
                 $this->view->getPage($this->model->editlistbyid(), $this->model->getCategories(), $this->model->getRights());
-                break;
-            case 'editlist' :
-                $this->createToken();
-                $this->view->getEditlist($this->model->$option());
                 break;
         }
     }

@@ -18,8 +18,8 @@ Class ModelTimeline extends ModelGeneric {
 
     public function myschedule() {
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
-            $tuplesHomePage = self::$bdd->prepare("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, membre.idMembre, sum(voteevenement.vote) as nbVotes 
-            FROM evenement LEFT JOIN voteevenement using (idEvenement) INNER JOIN aller ON evenement.idEvenement = aller.idEvenement INNER JOIN membre ON aller.idMembre = membre.idMembre 
+            $tuplesHomePage = self::$bdd->prepare("SELECT lienImage, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, membre.idMembre, sum(voteevenement.vote) as nbVotes 
+            FROM image INNER JOIN evenement using(idEvenement) LEFT JOIN voteevenement using (idEvenement) INNER JOIN aller ON evenement.idEvenement = aller.idEvenement INNER JOIN membre ON aller.idMembre = membre.idMembre 
             GROUP BY evenement.idEvenement HAVING membre.idMembre = ? ORDER BY date_creation DESC");
             $tuplesHomePage->execute(array($_SESSION['idMembre']));
             $result = $tuplesHomePage->fetchAll();
@@ -79,8 +79,8 @@ Class ModelTimeline extends ModelGeneric {
                 $requestWords = $requestWords . 'OR upper(evenement.titreEvenement) LIKE "%' . $arrayWantedWords[$indice] . '%" ';
             }
 
-            $request = 'SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes 
-                        FROM evenement LEFT JOIN voteevenement using (idEvenement) 
+            $request = 'SELECT lienImage, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes 
+                        FROM image INNER JOIN evenement using(idEvenement) LEFT JOIN voteevenement using (idEvenement) 
                         GROUP BY evenement.idEvenement 
                         HAVING ' . $requestWords . 'ORDER BY date_creation DESC';
 

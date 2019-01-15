@@ -1,9 +1,10 @@
 <?php
 
-include_once "model_profile.php";
-include_once "view_profile.php";
+require_once "model_profile.php";
+require_once "view_profile.php";
+require_once "generic/cont_generic.php";
 
-Class ContProfile {
+Class ContProfile extends ContGeneric {
 
     private $model;
     private $view;
@@ -17,7 +18,9 @@ Class ContProfile {
       //  $this->view->displayprofil();
         switch ($action) {
             case 'update':
-                $this->model->$action();
+                if ($this->checkToken()) {
+                    $this->model->$action();
+                }
                 break;
             default :
                 break;
@@ -26,6 +29,7 @@ Class ContProfile {
     public function display($option) {
         switch ($option) {
             default :
+                $this->createToken();
                 $this->view->displayprofil($this->model->basedate());
                 break;
         }

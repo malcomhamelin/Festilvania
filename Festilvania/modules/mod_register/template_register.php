@@ -1,7 +1,8 @@
 <div class="container">
 <div class="row">
     <div class="col-12 container-publipost annonce">
-        <form method="post" action="index.php?mod=register&action=register">
+        <form method="post" action="index.php?mod=register&action=register" id="registerForm">
+            <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="registerForm" name="token">
             <div class="row">
                 <div class="col-12 profile-inputs">
                     <div class="row mt-3 ml-5">

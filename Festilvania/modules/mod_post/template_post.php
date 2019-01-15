@@ -38,16 +38,16 @@ $dateEnd = new DateTime($event['date_fin']);
 
     <div class="row mt-3">
         <span class="post-titre ml-5">Programme</span>
-        <hr style="height:2px;border:none;color:white;background-color:black;" class="mx-auto col-5 col-md-8 col-lg-9">
+        <hr style="height:2px;border:none;color:white;background-color:grey;" class="mx-auto col-5 col-md-8 col-lg-9">
     </div>
 
-    <div class="description ml-5">
+    <div class="description ml-4 mr-4 text-justify">
         <p><?php echo $event['description']; ?></p>
     </div>
 
     <div class="row mt-3">
         <span class="post-titre ml-5">Commentaires</span>
-        <hr style="height:2px;border:none;color:white;background-color:black;" class="mx-auto col-5 col-md-8 col-lg-9">
+        <hr style="height:2px;border:none;color:white;background-color:grey;" class="mx-auto col-5 col-md-8 col-lg-9">
     </div>
 
     <div class="description ml-5">
@@ -56,7 +56,7 @@ $dateEnd = new DateTime($event['date_fin']);
     
     <div class="row mt-3">
         <span class="post-titre ml-5">Commenter</span>
-        <hr style="height:2px;border:none;color:white;background-color:black;" class="mx-auto col-5 col-md-8 col-lg-9">
+        <hr style="height:2px;border:none;color:white;background-color:grey;" class="mx-auto col-5 col-md-8 col-lg-9">
     </div>
 
     <?php $this->getCommentForm($rights); ?>

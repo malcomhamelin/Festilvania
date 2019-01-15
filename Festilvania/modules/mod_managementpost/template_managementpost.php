@@ -1,6 +1,8 @@
 <div class="container">
 <div class="row">
     <form method="post" action="index.php?mod=managementpost&action=<?php $this->getAction();?>" enctype="multipart/form-data" id="editEvent"></form>
+    <input type="hidden" value="<?php echo $_SESSION['token'] ?>" form="editEvent" name="token">
+    
     <div class="col-12 container-publipost annonce">
         <div class="col-9 col-sm-7 col-md-5 col-lg-3 mb-4 mx-auto">
             <img id="uploadPreview" class="img-preview shadow-sm"/>

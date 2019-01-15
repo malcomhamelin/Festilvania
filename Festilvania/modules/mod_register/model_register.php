@@ -61,23 +61,35 @@ Class ModelRegister extends ModelGeneric {
                             
                              echo '<script type="text/javascript">
                                     location.href = \'index.php\';
-                                    window.alert("profil crée");
+                                    window.alert("Vous pouvez maintenant vous connecter !");
                                 </script>';
                         }
                         else {
-                            echo'pseudo pris';
+                            echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("Ce pseudonyme est déjà utilisé");
+                                </script>';
                         }
                     }
                     else {
-                        echo'email pris';
+                        echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("Cet email est déjà utilisé");
+                                </script>';
                     }
                 }
                 else{
-                    echo'mot de passe différent';
+                    echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("Les mots de passe ne correspondent pas");
+                                </script>';
                 }
             }
             else{
-                echo"inscription impossible,caractères spéciaux interdit";
+                echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("Vous ne pouvez pas utiliser de caractères spéciaux pour votre pseudo");
+                                </script>';
             }
         }
     }
