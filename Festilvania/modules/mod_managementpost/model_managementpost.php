@@ -75,14 +75,15 @@ Class ModelManagementpost extends ModelGeneric {
                 
                 $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu, $publish);
                 $sql = 'UPDATE evenement
-                SET titreEvenement  = \'' . $newValues[0] . '\',
-                    date_debut      = \'' . $newValues[1] . '\',
-                    date_fin        = \'' . $newValues[2] . '\',
-                    description     = \'' . $newValues[3] . '\',
-                    idCategorie     = \'' . $newValues[4] . '\',
-                    lieu            = \'' . $newValues[5] . '\',
-                    estPublie       = \'' . $newValues[6] . '\'
-                    WHERE idEvenement=\'' . $_POST['id'] . '\'';
+                SET titreEvenement  = "' . $newValues[0] . '",
+                    date_debut      = "' . $newValues[1] . '",
+                    date_fin        = "' . $newValues[2] . '",
+                    description     = "' . $newValues[3] . '",
+                    idCategorie     = "' . $newValues[4] . '",
+                    lieu            = "' . $newValues[5] . '",
+                    estPublie       = "' . $newValues[6] . '"
+                    WHERE idEvenement="' . $_POST['id'] . '"';
+
                 $req = self::$bdd->prepare($sql);
                 $req->execute();
                 echo '<script type="text/javascript">
@@ -109,8 +110,8 @@ Class ModelManagementpost extends ModelGeneric {
         $req = self::$bdd->prepare($sql);
         $req->execute();
         echo '<script type="text/javascript">
-            window.alert("Vous avez bien supprimé le post !");
             location.href = \'index.php\';
+            window.alert("Vous avez bien supprimé le post !");
         </script>';
     }
 
