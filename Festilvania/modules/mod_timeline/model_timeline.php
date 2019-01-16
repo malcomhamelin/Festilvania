@@ -31,14 +31,14 @@ Class ModelTimeline extends ModelGeneric {
     public function hottestContent() {
         $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes, image.lienImage 
         FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement)
-        GROUP BY evenement.idEvenement ORDER BY nbVotes DESC");
+        GROUP BY evenement.idEvenement ORDER BY nbVotes DESC LIMIT 3");
         $result = $tuplesHottest->fetchAll();
 
         return $result;
     }
 
     public function latestContent() {
-        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement INNER JOIN image using (idEvenement) ORDER BY date_creation DESC");
+        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement INNER JOIN image using (idEvenement) ORDER BY date_creation DESC LIMIT 3");
         $result = $tuplesHottest->fetchAll();
 
         return $result;
