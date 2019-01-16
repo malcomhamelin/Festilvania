@@ -74,7 +74,7 @@ Class ModelManagementpost extends ModelGeneric {
                 $categorie = htmlspecialchars($_POST['categorie']);
                 $lieu = htmlspecialchars($_POST['lieu']);
                 $publish = isset($_POST['publish']) ? htmlspecialchars($_POST['publish']) : 0;
-                
+
                 $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu, $publish);
                 $sql = 'UPDATE evenement
                 SET titreEvenement  = "' . $newValues[0] . '",
@@ -85,12 +85,22 @@ Class ModelManagementpost extends ModelGeneric {
                     lieu            = "' . $newValues[5] . '",
                     estPublie       = "' . $newValues[6] . '"
                     WHERE idEvenement="' . $_POST['id'] . '"';
+                
+                if ($_FILES['eventPicture']['error'] == 0) {
+                    $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_POST['id'] . '\'';
+                    $reqimg = self::$bdd->prepare($sqlimg);
+                    $reqimg->execute();
+                    $tupleIdEvent = self::$bdd->query("SELECT idEvenement FROM evenement ORDER BY idEvenement DESC");
+                    $tupleIdEvent = $tupleIdEvent->fetch();
+                    $this->uploadPicture($tupleIdEvent['idEvenement']);
+                }
 
                 $req = self::$bdd->prepare($sql);
                 $req->execute();
+
                 echo '<script type="text/javascript">
-                    location.href = \'index.php\';
                     window.alert("Vous avez bien édité le post !");
+                    location.href = \'index.php\';
                 </script>';
             }
             else {

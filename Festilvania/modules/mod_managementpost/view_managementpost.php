@@ -45,7 +45,7 @@ Class ViewManagementpost extends ViewGeneric {
                     <div class="form-group row">
                         <label for="locationInput" class="col-4 col-form-label">Visible</label>
                         <div class="col-8">
-                            <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1">
+                            <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1" checked     >
                         </div>
                     </div>';
             }
@@ -53,9 +53,10 @@ Class ViewManagementpost extends ViewGeneric {
     }
 
     public function getButtonDelete($rights) {
-        $_GET['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
-
         if ($_GET['option'] == 'editlistbyid') {
+
+            $_GET['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
+
             if ($rights != null && $rights['droit_supprimer']) {
                 echo '
                     <form method="post" action="index.php?mod=managementpost&action=delete&idEvenement=' . $_GET['idEvenement'] . '" onsubmit="return window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\');" enctype="multipart/form-data" id="delEvent"></form>
