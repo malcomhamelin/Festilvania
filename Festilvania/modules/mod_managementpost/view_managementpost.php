@@ -38,34 +38,32 @@ Class ViewManagementpost extends ViewGeneric {
         }
     }
 
-    public function getButtonAdmin($rights) {
+    public function getButtonPublish($rights) {
         if ($_GET['option'] == 'editlistbyid') {
             if ($rights != null && $rights['droit_supprimer']) {
-                $this->getButtonPublish();
-                $this->getButtonDelete();
+                echo '
+                    <div class="form-group row">
+                        <label for="locationInput" class="col-4 col-form-label">Visible</label>
+                        <div class="col-8">
+                            <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1">
+                        </div>
+                    </div>';
             }
         }
     }
 
-    public function getButtonPublish() {
-        echo '
-            <div class="form-group row">
-                <label for="locationInput" class="col-4 col-form-label">Le publier ?</label>
-                <div class="col-8">
-                    <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1">
-                </div>
-            </div>';
-    }
-
-    public function getButtonDelete() {
+    public function getButtonDelete($rights) {
         $_GET['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
 
-        echo '
-            <form method="post" action="index.php?mod=managementpost&action=delete&idEvenement=' . $_GET['idEvenement'] . '" onsubmit="return window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\');" enctype="multipart/form-data" id="delEvent">
-                <input type="hidden" value="' . $_SESSION['token'] . '" form="delEvent" name="token">
-                <input type="hidden" name="idDel" form="delEvent" value="' . $_GET['idEvenement'] . '">
-                <button type="submit" class="btn btn-danger btn-custom float-left mt-3" id="delButton">Supprimer</button>
-            </form>';
+        if ($_GET['option'] == 'editlistbyid') {
+            if ($rights != null && $rights['droit_supprimer']) {
+                echo '
+                    <form method="post" action="index.php?mod=managementpost&action=delete&idEvenement=' . $_GET['idEvenement'] . '" onsubmit="return window.confirm(\'Etes vous sur de vouloir supprimer ce post ?\');" enctype="multipart/form-data" id="delEvent"></form>
+                    <input type="hidden" value="' . $_SESSION['token'] . '" form="delEvent" name="token">
+                    <input type="hidden" name="idDel" form="delEvent" value="' . $_GET['idEvenement'] . '">
+                    <button type="submit" form="delEvent" class="btn btn-danger btn-custom btn-profile col-6 mt-3 mx-auto" id="delButton">Supprimer</button>';
+            }
+        }
     }
 }
 
