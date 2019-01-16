@@ -11,33 +11,49 @@ Class ModelManagementpost extends ModelGeneric {
 
     }
 
+    public function is_clean($string) {
+       return ! (preg_match("/[.#!$%&'*+=?^_`{|}~-]/", $string));
+    }
+
+    public function is_cleanDescription($string) {
+       return ! (preg_match("/[#$%*+=^_`{|}~-]/", $string));
+    }
+
     public function publication() {
 
         if (!empty($_POST['nomEvent'])       && !empty($_POST['description']) &&
             !empty($_POST['dateDebutEvent']) && !empty($_POST['dateFinEvent']) &&
-            !empty($_POST['categorie'])      && !empty($_POST['lieu'])) {
+            !empty($_POST['categorie'])      && !empty($_POST['lieu'] && !empty($_FILES['eventPicture']))) {
             
             if ($_POST['dateDebutEvent'] < $_POST['dateFinEvent']) {
+                if ($this->is_clean(htmlspecialchars($_POST['nomEvent'])) && $this->is_cleanDescription(htmlspecialchars($_POST['description'])) && $this->is_clean(htmlspecialchars($_POST['lieu']))) {
 
-                // Variables
-                $nomEvent = htmlspecialchars($_POST['nomEvent']);
-                $dateDebutEvent = htmlspecialchars($_POST['dateDebutEvent']);
-                $dateFinEvent = htmlspecialchars($_POST['dateFinEvent']);
-                $description = htmlspecialchars($_POST['description']);
-                $categorie = htmlspecialchars($_POST['categorie']);
-                $lieu = htmlspecialchars($_POST['lieu']);
+                    // Variables
+                    $nomEvent = htmlspecialchars($_POST['nomEvent']);
+                    $dateDebutEvent = htmlspecialchars($_POST['dateDebutEvent']);
+                    $dateFinEvent = htmlspecialchars($_POST['dateFinEvent']);
+                    $description = htmlspecialchars($_POST['description']);
+                    $categorie = htmlspecialchars($_POST['categorie']);
+                    $lieu = htmlspecialchars($_POST['lieu']);
 
-                $req = self::$bdd->prepare("INSERT INTO evenement(idEvenement, titreEvenement, description, date_creation, date_debut, date_fin, idMembre, idCategorie, lieu) VALUES (default, ?, ?, NOW(), ?, ?, ?, ?, ?)");
-                $req->execute(array($nomEvent, $description, $dateDebutEvent, $dateFinEvent, $_SESSION['idMembre'], $categorie, $lieu));
-                
-                $tupleIdEvent = self::$bdd->query("SELECT idEvenement FROM evenement ORDER BY idEvenement DESC");
-                $tupleIdEvent = $tupleIdEvent->fetch();
-                $this->uploadPicture($tupleIdEvent['idEvenement']);
+                    $req = self::$bdd->prepare("INSERT INTO evenement(idEvenement, titreEvenement, description, date_creation, date_debut, date_fin, idMembre, idCategorie, lieu) VALUES (default, ?, ?, NOW(), ?, ?, ?, ?, ?)");
+                    $req->execute(array($nomEvent, $description, $dateDebutEvent, $dateFinEvent, $_SESSION['idMembre'], $categorie, $lieu));
+                    
+                    $tupleIdEvent = self::$bdd->query("SELECT idEvenement FROM evenement ORDER BY idEvenement DESC");
+                    $tupleIdEvent = $tupleIdEvent->fetch();
+                    $this->uploadPicture($tupleIdEvent['idEvenement']);
 
-                echo '<script type="text/javascript">
-                    location.href = \'index.php\';
-                    window.alert("Vous avez effectué votre post, il ira aux vérifications !");
-                </script>';
+                    echo '<script type="text/javascript">
+                        location.href = \'index.php\';
+                        window.alert("Vous avez effectué votre post, il ira aux vérifications !");
+                    </script>';
+                }
+                else {
+                    echo '<script type="text/javascript">
+                        location.href = \'index.php\';
+                        alert("Publication impossible, caractères spéciaux interdit");
+                    </script>';
+                }
             }
             else {
                 $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la publication ?';
@@ -66,42 +82,51 @@ Class ModelManagementpost extends ModelGeneric {
             
             if ($_POST['dateDebutEvent'] < $_POST['dateFinEvent']) {
 
-                // Variables
-                $nomEvent = htmlspecialchars($_POST['nomEvent']);
-                $dateDebutEvent = htmlspecialchars($_POST['dateDebutEvent']);
-                $dateFinEvent = htmlspecialchars($_POST['dateFinEvent']);
-                $description = htmlspecialchars($_POST['description']);
-                $categorie = htmlspecialchars($_POST['categorie']);
-                $lieu = htmlspecialchars($_POST['lieu']);
-                $publish = isset($_POST['publish']) ? htmlspecialchars($_POST['publish']) : 0;
+                if ($this->is_clean(htmlspecialchars($_POST['nomEvent'])) && $this->is_cleanDescription(htmlspecialchars($_POST['description'])) && $this->is_clean(htmlspecialchars($_POST['lieu']))) {
 
-                $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu, $publish);
-                $sql = 'UPDATE evenement
-                SET titreEvenement  = "' . $newValues[0] . '",
-                    date_debut      = "' . $newValues[1] . '",
-                    date_fin        = "' . $newValues[2] . '",
-                    description     = "' . $newValues[3] . '",
-                    idCategorie     = "' . $newValues[4] . '",
-                    lieu            = "' . $newValues[5] . '",
-                    estPublie       = "' . $newValues[6] . '"
-                    WHERE idEvenement="' . $_POST['id'] . '"';
-                
-                if ($_FILES['eventPicture']['error'] == 0) {
-                    $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_POST['id'] . '\'';
-                    $reqimg = self::$bdd->prepare($sqlimg);
-                    $reqimg->execute();
-                    $tupleIdEvent = self::$bdd->query("SELECT idEvenement FROM evenement ORDER BY idEvenement DESC");
-                    $tupleIdEvent = $tupleIdEvent->fetch();
-                    $this->uploadPicture($tupleIdEvent['idEvenement']);
+                    // Variables
+                    $nomEvent = htmlspecialchars($_POST['nomEvent']);
+                    $dateDebutEvent = htmlspecialchars($_POST['dateDebutEvent']);
+                    $dateFinEvent = htmlspecialchars($_POST['dateFinEvent']);
+                    $description = htmlspecialchars($_POST['description']);
+                    $categorie = htmlspecialchars($_POST['categorie']);
+                    $lieu = htmlspecialchars($_POST['lieu']);
+                    $publish = isset($_POST['publish']) ? htmlspecialchars($_POST['publish']) : 0;
+                    $id = $_POST['id'];
+
+                    $newValues = array($nomEvent, $dateDebutEvent, $dateFinEvent, $description, $categorie, $lieu, $publish);
+                    $sql = 'UPDATE evenement
+                    SET titreEvenement  = "' . $newValues[0] . '",
+                        date_debut      = "' . $newValues[1] . '",
+                        date_fin        = "' . $newValues[2] . '",
+                        description     = "' . $newValues[3] . '",
+                        idCategorie     = "' . $newValues[4] . '",
+                        lieu            = "' . $newValues[5] . '",
+                        estPublie       = "' . $newValues[6] . '"
+                        WHERE idEvenement="' . $id . '"';
+                    
+                    if ($_FILES['eventPicture']['error'] == 0) {
+                        $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $id . '\'';
+                        $reqimg = self::$bdd->prepare($sqlimg);
+                        $reqimg->execute();
+                        $tupleIdEvent = self::$bdd->prepare("SELECT idEvenement FROM evenement WHERE idEvenement = ?");
+                        $tupleIdEvent->execute(array($id));
+                        $tupleIdEvent = $tupleIdEvent->fetch();
+                        $this->uploadPicture($tupleIdEvent['idEvenement']);
+                    }
+
+                    $req = self::$bdd->prepare($sql);
+                    $req->execute();
+
+                    echo '<script type="text/javascript">
+                        window.alert("Vous avez bien édité le post !");
+                        location.href = \'index.php\';
+                    </script>';
                 }
-
-                $req = self::$bdd->prepare($sql);
-                $req->execute();
-
-                echo '<script type="text/javascript">
-                    window.alert("Vous avez bien édité le post !");
-                    location.href = \'index.php\';
-                </script>';
+                else {
+                    $message = 'Il y a des caractères spéciaux interdits dans le nom, le lieu ou la description, voulez-vous recommencez la manipulation ?';
+                    $this->popUpRedirectID($message, "editlistbyid", $_POST['id']);
+                }
             }
             else {
                 $message = 'Date incorrect, la date de fin se passe avant la date de début, voulez-vous recommencez la manipulation ?';
