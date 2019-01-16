@@ -1,8 +1,9 @@
 <?php
 
-require_once "model_register.php";
-require_once "view_register.php";
+include_once "model_register.php";
+include_once "view_register.php";
 require_once "generic/cont_generic.php";
+
 
 Class ContRegister extends ContGeneric {
 
@@ -17,13 +18,15 @@ Class ContRegister extends ContGeneric {
     public function act($action) {
         switch ($action) {
             case 'register':
-                if ($this->checkToken()) {
+
                     $this->model->$action();
-                }
+                
+            break;
             default:
-                $this->createToken();
-                $this->view->displayregister();
-                break;
+                
+                    $this->view->displayregister();
+            
+            break;
         }
     }
 
