@@ -11,16 +11,16 @@
                     </div>
 
                     <div class="col-7 mb-2 mt-4 profile-centered">
-                        <input type="text" class="form-control" name="pseudo" placeholder="Pseudonyme" required>  
+                        <input type="text" class="form-control" name="pseudo" placeholder="Pseudonyme" maxlength="32" required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="password" class="form-control" name="password" placeholder="Mot de passe"required>  
+                        <input type="password" class="form-control" name="password" placeholder="Mot de passe" maxlength="256" required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe"required>
+                        <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe" maxlength="256" required>
                     </div>  
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="email" class="form-control" name="email" placeholder="Adresse email"required>  
+                        <input type="email" class="form-control" name="email" placeholder="Adresse email" maxlength="128" required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
                         <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"required>  
