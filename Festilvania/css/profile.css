@@ -41,3 +41,8 @@
 .btn-profile {
     font-size: 24px;
 }
+
+#uploadPreview {
+    width : 64px;
+    height : 64px;
+}
