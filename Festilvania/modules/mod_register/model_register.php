@@ -56,48 +56,48 @@ Class ModelRegister extends Connection {
                             $req->bindParam(':Anniv', $anniversaire);
                             $req -> execute();
 
-                             // echo '<script type="text/javascript">
-                             //        location.href = \'index.php\';
-                             //        window.alert("profil crée");
-                             //    </script>';
+                             echo '<script type="text/javascript">
+                                    location.href = \'index.php\';
+                                    window.alert("profil crée");
+                                </script>';
                         }
                         else {
                             
-                            // echo '<script type="text/javascript">
-                            //         location.href = \'index.php?mod=register\';
-                            //         window.alert("pseudo pris");
-                            //     </script>';
+                            echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=register\';
+                                    window.alert("pseudo pris");
+                                </script>';
                         }
                     }
                     else {
                         
-                         // echo '<script type="text/javascript">
-                         //            location.href = \'index.php?mod=register\';
-                         //            window.alert("email pris");
-                         //        </script>';
+                         echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=register\';
+                                    window.alert("email pris");
+                                </script>';
                     }
                 }
                 else{
                     
-                     // echo '<script type="text/javascript">
-                     //                location.href = \'index.php?mod=register\';
-                     //                window.alert("mot de passe différent");
-                     //            </script>';
+                     echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=register\';
+                                    window.alert("mot de passe différent");
+                                </script>';
                 }
             }
             else{
                 
-                 // echo '<script type="text/javascript">
-                 //                    location.href = \'index.php?mod=register\';
-                 //                    window.alert("inscription impossible,caractères spéciaux interdit");
-                 //                </script>';
+                 echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=register\';
+                                    window.alert("inscription impossible,caractères spéciaux interdit");
+                                </script>';
             }
         }
         else{
-            // echo '<script type="text/javascript">
-            //                         location.href = \'index.php?mod=register\';
-            //                         window.alert("donnée manquante");
-            //                     </script>';
+            echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=register\';
+                                    window.alert("donnée manquante");
+                                </script>';
         }
     }
     
