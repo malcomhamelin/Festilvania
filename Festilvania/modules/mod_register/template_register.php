@@ -11,19 +11,19 @@
                     </div>
 
                     <div class="col-7 mb-2 mt-4 profile-centered">
-                        <input type="text" class="form-control" name="pseudo" placeholder="Pseudonyme">  
+                        <input type="text" class="form-control" name="pseudo" placeholder="Pseudonyme" required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="password" class="form-control" name="password" placeholder="Mot de passe">  
+                        <input type="password" class="form-control" name="password" placeholder="Mot de passe"required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe">
+                        <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe"required>
                     </div>  
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="email" class="form-control" name="email" placeholder="Adresse email">  
+                        <input type="email" class="form-control" name="email" placeholder="Adresse email"required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered">
-                        <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control">  
+                        <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"required>  
                     </div>
                     <div class="col-7 mb-2 profile-centered text-center">
                         <input type="radio" class="mx-auto" id="homme" name="sexe" value="homme">  Homme  
