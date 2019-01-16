@@ -105,25 +105,44 @@ Class ModelProfile extends Connection {
                                 </script>';
                         }
                         else {
-                            echo '<script>alert("Ce pseudo est deja associe a un compte veuillez en choisir un autre");</script>';
+                           echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=profile\';
+                                    window.alert("profil mis à jour");
+                                </script>';
                         }
 
                     }
                     else {
-                       echo '<script>alert("Cet email est deja associe a un compte veuillez en choisir un autre");</script>';
+                       
+                       echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=profile\';
+                                    window.alert("Cet email est deja associe a un compte veuillez en choisir un autre");
+                                </script>';
                     }
 
                 }
                 else{
-                   echo '<script>alert("Attention le mot de passe est différent");</script>';
+                   
+                   echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=profile\';
+                                    window.alert("Attention le mot de passe est différent");
+                                </script>';
                 }
             }
             else{
-                echo '<script>alert("inscription impossible,caractères spéciaux interdit");</script>';
+                
+                echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=profile\';
+                                    window.alert("inscription impossible,caractères spéciaux interdit");
+                                </script>';
             }
         }
         else{
-            echo '<script>alert("Il manques des informations, veuillez recommencer");</script>';
+            
+            echo '<script type="text/javascript">
+                                    location.href = \'index.php?mod=profile\';
+                                    window.alert("Il manques des informations, veuillez recommencer");
+                                </script>';
         }
         
     }
