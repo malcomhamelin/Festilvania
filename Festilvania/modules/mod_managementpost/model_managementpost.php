@@ -115,6 +115,12 @@ Class ModelManagementpost extends ModelGeneric {
     }
 
     public function delete() {
+        $sqlcom = 'DELETE FROM commentaire WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
+        $reqcom = self::$bdd->prepare($sqlcom);
+        $reqcom->execute();
+        $sqlvote = 'DELETE FROM voteevenement WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
+        $reqvote = self::$bdd->prepare($sqlvote);
+        $reqvote->execute();
         $sqlimg = 'DELETE FROM image WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
         $reqimg = self::$bdd->prepare($sqlimg);
         $reqimg->execute();
