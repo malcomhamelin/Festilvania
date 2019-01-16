@@ -46,25 +46,26 @@
                     <div class="form-group row">
                         <label for="nameInput" class="col-4 col-form-label">Nom</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" name="nomEvent" id="nameInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'titreEvenement');?>">
+                            <input class="form-control" type="text" name="nomEvent" id="nameInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'titreEvenement');?>" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="dateDebut" class="col-4 col-form-label">Date de début</label>
                         <div class="col-8">
-                            <input class="form-control" type="date" name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>">
+                            <input class="form-control" type="date" name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>"required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="dateFin" class="col-4 col-form-label">Date de fin</label>
                         <div class="col-8">
-                            <input class="form-control" type="date" name="dateFinEvent" id="dateFin" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_fin');?>">
+                            <input class="form-control" type="date" name="dateFinEvent" id="dateFin" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_fin');?>"
+                            required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="locationInput" class="col-4 col-form-label">Lieu</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" name="lieu" id="locationInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'lieu');?>">
+                            <input class="form-control" type="text" name="lieu" id="locationInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'lieu');?>" required>
                         </div>
                     </div>
                     <div class="form-group row">
