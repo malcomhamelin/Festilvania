@@ -32,6 +32,7 @@ Class ViewManagementpost extends ViewGeneric {
             echo 'edition';
         }
     }
+
     public function getDefaultValue($content, $name) {
         if ($_GET['option'] == 'editlistbyid') {
                 echo $content['' . $name . ''];
@@ -64,6 +65,12 @@ Class ViewManagementpost extends ViewGeneric {
                     <input type="hidden" name="idDel" form="delEvent" value="' . $_GET['idEvenement'] . '">
                     <button type="submit" form="delEvent" class="btn btn-danger btn-custom btn-profile col-6 mt-3 mx-auto" id="delButton">Supprimer</button>';
             }
+        }
+    }
+
+    public function addRequired() {
+        if ($_GET['option'] == 'publish') {
+        	echo 'required';
         }
     }
 }

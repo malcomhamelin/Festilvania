@@ -13,7 +13,7 @@
                 <div class="col-12 col-sm-6 col-lg-9 mb-4 mx-auto">
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="eventPicture" form="editEvent" id="inputGroupFile04" enctype="multipart/form-data" onchange="PreviewImage();">
+                            <input type="file" class="custom-file-input" name="eventPicture" form="editEvent" id="inputGroupFile04" enctype="multipart/form-data" onchange="PreviewImage();" <?php $this->addRequired();?>>
                             <label class="custom-file-label" for="inputGroupFile04">Choisir photo...</label>
                             <script type="text/javascript">
                                 function PreviewImage() {
@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="descriptionInput" class="col-4 col-form-label">Description</label>
                         <div class="col-8">
-                            <textarea class="form-control" name="description" id="descriptionInput" form="editEvent"><?php $this->getDefaultValue($content, 'description');?></textarea>
+                            <textarea class="form-control" name="description" id="descriptionInput" form="editEvent" required><?php $this->getDefaultValue($content, 'description');?></textarea>
                         </div>
                     </div>
 
