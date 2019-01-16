@@ -96,6 +96,11 @@ ul {
     width: 32px;
 }
 
+.annonce-col {
+    max-width: 384px;
+    max-height: 240px;
+}
+
 .annonce-col-img {
     width : 100%;
 }
