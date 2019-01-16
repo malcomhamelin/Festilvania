@@ -97,15 +97,15 @@ ul {
 }
 
 .annonce-col {
-    max-width: 384px;
-    max-height: 240px;
+    max-width : 256px;
+    max-height : 140px;
 }
 
 .annonce-col-img {
     width : 100%;
     
-    max-width: 384px;
-    max-height: 240px;
+    max-width : 256px;
+    max-height : 140px;
 }
 
 .annonce-corps-btn {
