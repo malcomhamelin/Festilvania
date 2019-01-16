@@ -57,7 +57,7 @@ Class ModelRegister extends Connection {
                             $req -> execute();
 
                              echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=register\';
+                                    location.href = \'index.php\';
                                     window.alert("profil crée");
                                 </script>';
                         }
