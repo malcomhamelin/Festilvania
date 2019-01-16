@@ -103,6 +103,9 @@ ul {
 
 .annonce-col-img {
     width : 100%;
+    
+    max-width: 384px;
+    max-height: 240px;
 }
 
 .annonce-corps-btn {
