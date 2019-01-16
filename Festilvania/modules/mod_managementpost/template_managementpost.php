@@ -8,7 +8,7 @@
 
             <div class="col-10 col-md-4 ml-5 managementpost-bloc-photo">
                 <div class="col-10 mb-4 mx-auto">
-                    <img id="uploadPreview" class="img-preview shadow-sm"/>
+                    <img id="uploadPreviewManagement" class="img-preview shadow-sm"/>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-9 mb-4 mx-auto">
                     <div class="input-group">
@@ -21,7 +21,7 @@
                                     oFReader.readAsDataURL(document.getElementById("inputGroupFile04").files[0]);
 
                                     oFReader.onload = function (oFREvent) {
-                                        document.getElementById("uploadPreview").src = oFREvent.target.result;
+                                        document.getElementById("uploadPreviewManagement").src = oFREvent.target.result;
                                     };
                                 };
 
