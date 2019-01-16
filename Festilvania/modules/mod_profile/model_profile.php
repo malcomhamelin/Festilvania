@@ -37,7 +37,7 @@ Class ModelProfile extends Connection {
         return $tab;
     }
     public function is_clean($string) {
-       return ! (preg_match("/[^a-z\d_-] /i", $string));
+       return  (preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/", $string));
        
     }
     public function is_email($string){
