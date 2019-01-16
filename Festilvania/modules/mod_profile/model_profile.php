@@ -1,8 +1,8 @@
 <?php
 
-require_once "generic/model_generic.php";
+require_once "connection.php";
 
-Class ModelProfile extends ModelGeneric {
+Class ModelProfile extends Connection {
 
     private $MAX_FILE_SIZE = 1048576;
     private $VALID_EXTENSIONS = array('jpg', 'jpeg', 'gif', 'png');
@@ -44,7 +44,7 @@ Class ModelProfile extends ModelGeneric {
         return preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/", $string);
     }
     public function update(){
-        
+       
         //variable
         if (isset($_POST['pseudo'])) {
             $pseudo = $_POST['pseudo']; }
