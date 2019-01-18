@@ -16,6 +16,8 @@ Class ViewTimeline extends ViewGeneric {
         if (!empty($content)) {
             foreach ($content as $key) {
                 $key['nbVotes'] == null ? $nbVotes = 0 : $nbVotes = $key['nbVotes'];
+                $dateBegin = new DateTime($key['date_debut']);
+		        $dateEnd = new DateTime($key['date_fin']);
 
                 echo    '<div class="container annonce shadow-sm mb-5">
                             <div class="row">
@@ -33,7 +35,7 @@ Class ViewTimeline extends ViewGeneric {
                                     <div class="row mx-auto">
                                         <div class="col-12 col-sm-12 col-md-12">
                                             <span class="my-auto annonce-corps-titre"><a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '">' . $key['titreEvenement'] . '</a></span>
-                                            <span class="my-auto font-weight-bold" id="annonce-corps-infos">01/01/2018 - 02/03/2018 à Paris</span>
+                                            <span class="my-auto font-weight-bold" id="annonce-corps-infos">' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' à ' . $key['lieu'] . '</span>
                                         </div>
                                     </div>
                                     <div class="row mt-3 mx-auto">

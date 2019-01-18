@@ -10,10 +10,10 @@
                     <a class="nav-link lien-navbar" href="index.php">Accueil</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link lien-navbar" href="index.php?mod=timeline&option=Concert">Concerts</a>
+                    <a class="nav-link lien-navbar" href="index.php?mod=timeline&option=Concert">Concert</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link lien-navbar" href="index.php?mod=timeline&option=Festival">Festivals</a>
+                    <a class="nav-link lien-navbar" href="index.php?mod=timeline&option=Festival">Festival</a>
                 </li>
                 <li class="nav-item dropdown dropdown-autre mb-1 active">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown">

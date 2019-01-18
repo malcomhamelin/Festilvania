@@ -5,8 +5,9 @@ Class ModelRegister extends Connection {
     public function __construct() {
     }
     public function is_clean($string) {
-       return  (preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/", $string));
-       
+       return  (preg_match("/^[\w\-]+$/", $string));
+
+       //"/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/"
     }
     public function is_email($string){
         return preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/", $string);
@@ -48,9 +49,11 @@ Class ModelRegister extends Connection {
                     
                             
                         if(0==$tab[0]){ 
+                            $passHash = password_hash($password, PASSWORD_DEFAULT);
+
                             $req=self::$bdd->prepare("INSERT INTO membre VALUES(default,:Pseudo,:Password,:Mail,NOW(),default,1,:Sexe,:Anniv)");
                             $req->bindParam(':Pseudo', $pseudo);
-                            $req->bindParam(':Password', $password);
+                            $req->bindParam(':Password', $passHash);
                             $req->bindParam(':Mail', $email);
                             $req->bindParam(':Sexe', $sexe);
                             $req->bindParam(':Anniv', $anniversaire);

@@ -140,6 +140,13 @@ Class ModelManagementpost extends ModelGeneric {
     }
 
     public function delete() {
+        $_GET['idEvenement'] = htmlspecialchars($_GET['idEvenement']);
+
+        $reqImageLink = self::$bdd->prepare("SELECT * FROM image WHERE idEvenement = ?");
+        $reqImageLink->execute(array($_GET['idEvenement']));
+        $reqImageLink = $reqImageLink->fetch();
+        unlink($reqImageLink['lienImage']);
+
         $sqlcom = 'DELETE FROM commentaire WHERE idEvenement = \'' . $_GET['idEvenement'] . '\'';
         $reqcom = self::$bdd->prepare($sqlcom);
         $reqcom->execute();

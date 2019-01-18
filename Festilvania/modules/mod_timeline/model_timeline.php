@@ -66,7 +66,14 @@ Class ModelTimeline extends ModelGeneric {
     }
 
     public function search() {
-        $wantedWords = htmlspecialchars($_POST['searchInput']);
+        if (isset($_POST['searchInput'])) {
+            $_SESSION['search'] = htmlspecialchars($_POST['searchInput']);
+        }
+        else {
+            $_SESSION['search'] = isset($_SESSION['search']) && !empty($_SESSION['search']) ? $_SESSION['search'] : "";
+        }
+
+        $wantedWords = $_SESSION['search'];
         $wordCount = str_word_count($wantedWords);
         $arrayWantedWords = explode(" ", $wantedWords);
 
@@ -100,7 +107,9 @@ Class ModelTimeline extends ModelGeneric {
             $existingPseudoQuery->execute(array($pseudo));
 
             if ($tuple = $existingPseudoQuery->fetch()) {
-                if ($tuple['password'] == $password) {
+                $isPasswordCorrect = password_verify($password, $tuple['password']);
+
+                if ($isPasswordCorrect) {
                     $_SESSION['isConnected'] = true;
                     $_SESSION['pseudo'] = $pseudo;
                     $_SESSION['avatar'] = $tuple['avatar'];

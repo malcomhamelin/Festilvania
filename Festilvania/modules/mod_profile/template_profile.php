@@ -13,16 +13,16 @@
                     <input type="text" class="form-control" name="pseudo" value=<?php echo $content['pseudo']?> form="updateProfil" maxlength="32" required>  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="password" class="form-control" name="password" value=<?php echo $content['password']?> form="updateProfil" maxlength="256" required>  
+                    <input type="password" class="form-control" name="password" placeholder="Mot de passe" form="updateProfil" maxlength="256" required>  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="password" class="form-control" name="password2" value=<?php echo $content['password']?> form="updateProfil" maxlength="256" required>
+                    <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe" form="updateProfil" maxlength="256" required>
                 </div>  
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> maxlength="128" form="updateProfil"required>  
+                    <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> maxlength="128" form="updateProfil" required>  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="date" max="2006-11-16" min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']; ?>required >  
+                    <input type="date" max=<?php echo $currDate->format("Y-m-d"); ?> min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']; ?> required >  
                 </div>
                 <div class="col-7 mb-2 profile-centered text-center">
                     <input type="radio" class="mx-auto" id="homme" name="sexe" value="homme" <?php echo $content['sexe']=="homme" ? 'checked="checked"' : ""; ?> form="updateProfil">  Homme  

@@ -10,6 +10,9 @@ Class ViewProfile extends ViewGeneric {
 
     public function displayprofil($content){
         if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
+            $currDate = new DateTime();
+            $currDate->modify("-13 years");
+
             require_once "template_profile.php";
         }
         else {

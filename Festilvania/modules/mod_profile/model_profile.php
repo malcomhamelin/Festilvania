@@ -37,8 +37,9 @@ Class ModelProfile extends Connection {
         return $tab;
     }
     public function is_clean($string) {
-       return  (preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/", $string));
-       
+       return preg_match("/^[\w\-]+$/", $string);
+
+       //"/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/"
     }
     public function is_email($string){
         return preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/", $string);
@@ -80,9 +81,10 @@ Class ModelProfile extends Connection {
                         $verifPseudolunique->execute();
                         $tab=$verifPseudolunique->fetch();
                     
-                        if(0==$tab[0]||$_SESSION['pseudo']==$pseudo){ 
+                        if(0==$tab[0]||$_SESSION['pseudo']==$pseudo){
+                            $passHash = password_hash($password, PASSWORD_DEFAULT);
                             
-                            $newValues = array($pseudo, $password, $email, $sexe, $anniversaire);
+                            $newValues = array($pseudo, $passHash, $email, $sexe, $anniversaire);
                             $sql = 'UPDATE membre
                             SET pseudo   = \'' . $newValues[0] . '\',
                                 password = \'' . $newValues[1] . '\',

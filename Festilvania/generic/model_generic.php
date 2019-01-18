@@ -26,6 +26,13 @@ class ModelGeneric extends Connection {
         return $tuples;
     }
 
+    public function getCategoriesMenu() {
+        $reqCat = self::$bdd->query("SELECT * FROM categorie WHERE titreCategorie != 'Concert' AND titreCategorie != 'Festival'");
+        $tuples = $reqCat->fetchAll();
+        
+        return $tuples;
+    }
+
     public function getGroups() {
         $reqGrp = self::$bdd->query("SELECT * FROM groupe");
         $tuples = $reqGrp->fetchAll();
