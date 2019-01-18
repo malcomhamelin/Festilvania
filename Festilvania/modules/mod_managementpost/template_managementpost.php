@@ -37,7 +37,7 @@
 
             <div class="col-12 col-md-7 managementpost-inputs">
                 <div class="row mt-3">
-                    <span class="post-titre ml-5">Publication</span>
+                    <?php $this->getTitlePage(); ?>
                     <hr style="height:2px;border:none;color:white;background-color:grey;" class="mx-auto col-4 col-md-6 col-lg-7">
                 </div>
 
@@ -52,7 +52,7 @@
                     <div class="form-group row">
                         <label for="dateDebut" class="col-4 col-form-label">Date de début</label>
                         <div class="col-8">
-                            <input class="form-control" type="date" min=<?php echo date("Y-m-d"); ?> name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>"required>
+                            <input class="form-control" type="date" min=<?php echo date("Y-m-d"); ?> name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>" required>
                         </div>
                     </div>
                     <div class="form-group row">

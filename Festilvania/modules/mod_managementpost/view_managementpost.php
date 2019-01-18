@@ -33,6 +33,15 @@ Class ViewManagementpost extends ViewGeneric {
         }
     }
 
+    public function getTitlePage() {
+        if ($_GET['option'] == 'publish') {
+            echo '<span class="post-titre ml-5">Publication</span>';
+        }
+        else {
+            echo '<span class="post-titre ml-5">Edition</span>';
+        }
+    }
+
     public function getDefaultValue($content, $name) {
         if ($_GET['option'] == 'editlistbyid') {
                 echo $content['' . $name . ''];
