@@ -5,7 +5,7 @@ Connection::initConnection();
 
 $term = $_GET['term'];
 
-$requete = Connection::$bdd->prepare("SELECT titreEvenement, lienImage, DATE_FORMAT(date_debut, '%d/%m/%Y') as dateDebut FROM evenement INNER JOIN image using(idEvenement) WHERE titreEvenement LIKE :term");
+$requete = Connection::$bdd->prepare("SELECT estPublie, titreEvenement, lienImage, DATE_FORMAT(date_debut, '%d/%m/%Y') as dateDebut FROM evenement INNER JOIN image using(idEvenement) WHERE titreEvenement LIKE :term AND estPublie = 1");
 $requete->execute(array(':term' => '%'.$term.'%'));
 $array = array();
 

@@ -39,14 +39,16 @@ Class ViewManagementpost extends ViewGeneric {
         }
     }
 
-    public function getButtonPublish($rights) {
+    public function getButtonPublish($rights, $content) {
         if ($_GET['option'] == 'editlistbyid') {
             if ($rights != null && $rights['droit_supprimer']) {
+                $checked = $content['estPublie'] == 1 ? "checked" : "";
+
                 echo '
                     <div class="form-group row">
                         <label for="locationInput" class="col-4 col-form-label">Visible</label>
                         <div class="col-8">
-                            <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1" checked     >
+                            <input class="form-control" type="checkbox" name="publish" id="publishInput" form="editEvent" value="1" ' . $checked . '>
                         </div>
                     </div>';
             }

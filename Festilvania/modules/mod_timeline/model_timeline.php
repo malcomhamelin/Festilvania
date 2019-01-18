@@ -100,10 +100,10 @@ Class ModelTimeline extends ModelGeneric {
                 $requestWords = $requestWords . 'OR upper(evenement.titreEvenement) LIKE "%' . $arrayWantedWords[$indice] . '%" ';
             }
 
-            $request = 'SELECT lienImage, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes 
+            $request = 'SELECT lienImage, evenement.estPublie, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes 
                         FROM image INNER JOIN evenement using(idEvenement) LEFT JOIN voteevenement using (idEvenement) 
                         GROUP BY evenement.idEvenement 
-                        HAVING ' . $requestWords . 'ORDER BY date_creation DESC';
+                        HAVING (' . $requestWords . ') AND evenement.estPublie = 1 ORDER BY date_creation DESC';
 
             $tuplesSearch = self::$bdd->query($request);
             $result = $tuplesSearch->fetchAll();

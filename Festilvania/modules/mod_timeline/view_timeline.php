@@ -142,7 +142,7 @@ Class ViewTimeline extends ViewGeneric {
             case 'search' :
                 echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Recherche : " . $_SESSION['search'] . "</h1>";
                 break;
-            case 'editList' :
+            case 'editlist' :
                 echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Evenements en attente</h1>";
                 break;
             case 'myposts' :

@@ -84,7 +84,7 @@
                         </div>
                     </div>
 
-                    <?php $this->getButtonPublish($rights) ?>
+                    <?php $this->getButtonPublish($rights, $content) ?>
 
                 </div>
                 
