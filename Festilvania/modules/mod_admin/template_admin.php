@@ -180,7 +180,6 @@
                         </div>
                         <div class="form-group col-6">
                             <select id="inputState" name="groupSelected" form="affectUser" class="form-control">
-                                <option selected>Groupe</option>
                                 <?php $this->getOptionsGroups($groups); ?>
                             </select>
                         </div>
