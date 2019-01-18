@@ -22,7 +22,7 @@ class ContPost{
             case 'delschedule' :
                 $this->model->$action();
             default :
-                $this->view->getPost($this->model->getComments(), $this->model->event(), $this->model->getRights(), $this->model->getUserInfos());
+                $this->view->getPost($this->model->getComments(), $this->model->event(), $this->model->getRights(), $this->model->getUserSchedule());
                 break;
         }
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>FESTILVANIA</title>
+    <title>Festilvania</title>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -23,6 +23,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="JS/modules/mod_timeline/autocomplete_timeline.js"></script>
     <script src="JS/modules/mod_admin/script_admin.js"></script>
+    <script src="JS/modules/mod_admin/autocomplete_admin.js"></script>
+    <script src="JS/modules/mod_managementpost/script_managementpost.js"></script>
+    <script src="JS/modules/mod_register/script_register.js"></script>
     <!--
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     -->

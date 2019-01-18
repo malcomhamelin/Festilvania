@@ -8,7 +8,7 @@
 
             <div class="col-10 col-md-4 ml-5 managementpost-bloc-photo">
                 <div class="col-10 mb-4 mx-auto">
-                    <img id="uploadPreviewManagement" class="img-preview shadow-sm"/>
+                    <img id="uploadPreviewManagement" src="<?php echo $content['lienImage']; ?>" class="img-preview shadow-sm"/>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-9 mb-4 mx-auto">
                     <div class="input-group">
@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label for="nameInput" class="col-4 col-form-label">Nom</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" name="nomEvent" id="nameInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'titreEvenement');?>" required>
+                            <input class="form-control" minlength=3 type="text" name="nomEvent" id="nameInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'titreEvenement');?>" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -65,7 +65,7 @@
                     <div class="form-group row">
                         <label for="locationInput" class="col-4 col-form-label">Lieu</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" name="lieu" id="locationInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'lieu');?>" required>
+                            <input class="form-control" minlength=3 type="text" name="lieu" id="locationInput" form="editEvent" value="<?php $this->getDefaultValue($content, 'lieu');?>" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="descriptionInput" class="col-4 col-form-label">Description</label>
                         <div class="col-8">
-                            <textarea class="form-control" name="description" id="descriptionInput" form="editEvent" required><?php $this->getDefaultValue($content, 'description');?></textarea>
+                            <textarea class="form-control" minlength=50 name="description" id="descriptionInput" form="editEvent" required><?php $this->getDefaultValue($content, 'description');?></textarea>
                         </div>
                     </div>
 

@@ -9,15 +9,16 @@ Class ModelTimeline extends ModelGeneric {
     }
 
     public function homepage() {
-        $tuplesHomePage = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
-            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement ORDER BY date_creation DESC");
+        $tuplesHomePage = self::$bdd->query("SELECT evenement.idEvenement, evenement.estPublie, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
+            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) 
+            GROUP BY evenement.idEvenement HAVING evenement.estPublie = 1 ORDER BY date_creation DESC");
         $result = $tuplesHomePage->fetchAll();
 
         return $result;
     }
 
     public function myschedule() {
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
             $tuplesHomePage = self::$bdd->prepare("SELECT lienImage, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, membre.idMembre, sum(voteevenement.vote) as nbVotes 
             FROM image INNER JOIN evenement using(idEvenement) LEFT JOIN voteevenement using (idEvenement) INNER JOIN aller ON evenement.idEvenement = aller.idEvenement INNER JOIN membre ON aller.idMembre = membre.idMembre 
             GROUP BY evenement.idEvenement HAVING membre.idMembre = ? ORDER BY date_creation DESC");
@@ -28,17 +29,30 @@ Class ModelTimeline extends ModelGeneric {
         }
     }
 
+    public function myposts() {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
+            $tuplesMyPosts = self::$bdd->prepare("SELECT evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
+                FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) 
+                GROUP BY evenement.idEvenement HAVING evenement.idMembre = ? ORDER BY date_creation DESC");
+            $tuplesMyPosts->execute(array($_SESSION['idMembre']));
+            $result = $tuplesMyPosts->fetchAll();
+
+            return $result;
+        }
+    }
+
     public function hottestContent() {
-        $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes, image.lienImage 
+        $tuplesHottest = self::$bdd->query("SELECT evenement.idEvenement, evenement.estPublie, titreEvenement, evenement.date_creation, date_debut, date_fin, lieu, COALESCE(sum(voteevenement.vote), 0) as nbVotes, image.lienImage 
         FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement)
-        GROUP BY evenement.idEvenement ORDER BY nbVotes DESC LIMIT 3");
+        GROUP BY evenement.idEvenement HAVING evenement.estPublie = 1 ORDER BY nbVotes DESC LIMIT 3");
         $result = $tuplesHottest->fetchAll();
 
         return $result;
     }
 
     public function latestContent() {
-        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement INNER JOIN image using (idEvenement) ORDER BY date_creation DESC LIMIT 3");
+        $tuplesHottest = self::$bdd->query("SELECT * FROM evenement INNER JOIN image using (idEvenement) 
+                                            WHERE estPublie = 1 ORDER BY date_creation DESC LIMIT 3");
         $result = $tuplesHottest->fetchAll();
 
         return $result;
@@ -66,13 +80,13 @@ Class ModelTimeline extends ModelGeneric {
     }
 
     public function search() {
-        if (isset($_POST['searchInput'])) {
+    	if (isset($_POST['searchInput'])) {
             $_SESSION['search'] = htmlspecialchars($_POST['searchInput']);
         }
         else {
             $_SESSION['search'] = isset($_SESSION['search']) && !empty($_SESSION['search']) ? $_SESSION['search'] : "";
         }
-
+    	
         $wantedWords = $_SESSION['search'];
         $wordCount = str_word_count($wantedWords);
         $arrayWantedWords = explode(" ", $wantedWords);
@@ -136,7 +150,8 @@ Class ModelTimeline extends ModelGeneric {
 
     public function editlist() {
         $tuplesEventNonPublie = self::$bdd->query("SELECT evenement.estPublie, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, image.lienImage 
-            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) GROUP BY evenement.idEvenement HAVING estPublie = 0 ORDER BY date_creation DESC");
+            FROM image INNER JOIN evenement using (idEvenement) LEFT JOIN voteevenement using (idEvenement) 
+            GROUP BY evenement.idEvenement HAVING estPublie = 0 ORDER BY date_creation DESC");
         $result = $tuplesEventNonPublie->fetchAll();
 
         return $result;

@@ -37,6 +37,7 @@ Class ContTimeline extends ContGeneric{
             case 'homepage' :
             case 'myschedule' :
             case 'search' :
+            case 'myposts' :
                 $this->createToken();
                 $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
                 break;

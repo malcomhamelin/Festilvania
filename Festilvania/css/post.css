@@ -27,8 +27,9 @@
 }
 
 .avatar-comment {
-    width : 100px;
-    height : auto;
+    width : 96px;
+    height : 96px;
+    border-radius : 100%;
 }
 
 #date-comment {

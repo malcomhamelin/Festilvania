@@ -25,8 +25,8 @@ class ModelPost extends ModelGeneric {
         return $result;
     }
 
-    public function getUserInfos() {
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+    public function getUserSchedule() {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
             $schedule = self::$bdd->prepare("SELECT * FROM aller WHERE idMembre = ?");
             $schedule->execute(array($_SESSION['idMembre']));
             $userInfos = $schedule->fetchAll();

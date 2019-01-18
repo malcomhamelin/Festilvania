@@ -8,7 +8,7 @@ class ViewPost extends ViewGeneric {
 		parent::__construct();
 	}
 
-	public function getPost($comments, $event, $rights, $userInfos) {
+	public function getPost($comments, $event, $rights, $userSchedule) {
 		$dateBegin = new DateTime($event['date_debut']);
 		$dateEnd = new DateTime($event['date_fin']);
 
@@ -36,8 +36,10 @@ class ViewPost extends ViewGeneric {
 		}
 	}
 
-	public function getEditButton($rights) {
-		if ($rights != null && $rights['droit_editer']) {
+	public function getEditButton($rights, $event) {
+		$idMembreConnecte = isset($_SESSION['idMembre']) && !empty($_SESSION['idMembre']) ? $_SESSION['idMembre'] : -1;
+
+		if (($rights != null && $rights['droit_editer']) || ($event['idMembre'] == $idMembreConnecte)) {
 			echo '<a href="index.php?mod=managementpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="btn btn-warning annonce-corps-btn ml-2">Editer</a>';
 		}
 	}
@@ -46,7 +48,7 @@ class ViewPost extends ViewGeneric {
 		if ($rights != null && $rights['droit_commenter']) {
 			echo '<form class="col-lg-10 mx-auto pt-4 pb-5" action="index.php?mod=post&idEvenement='. $_SESSION['idEvenement'] .'&action=comment" method="post">
 						<div class="form-group">
-							<textarea class="form-control" placeholder="Commenter..." rows="3" name="comment"></textarea>
+							<textarea class="form-control" placeholder="Commenter..." rows="3" name="comment" minlength=32 required></textarea>
 							<button type="submit" class="btn btn-warning annonce-corps-btn float-right mt-3">Commenter</button>
 						</div>
 				  </form>';

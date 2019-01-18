@@ -53,7 +53,7 @@ Class ViewTimeline extends ViewGeneric {
         }
         else {
             echo '  <div class="container annonce shadow-sm text-center">
-                        <span class="col-12 col-lg-12 font-weight-bold">Aucun post présent ici...</span>
+                        <span class="col-12 col-lg-12 font-weight-bold">Aucun évenement présent ici...</span>
                     </div>';
         }
     }
@@ -129,6 +129,28 @@ Class ViewTimeline extends ViewGeneric {
                     <p> Lieu : ' . $key['lieu'] . '</p>
                   </div>
                   ';
+        }
+    }
+
+    public function getTitle() {
+        $option = isset($_GET['option']) ? htmlspecialchars($_GET['option']) : "";
+
+        switch ($option) {
+            case 'myschedule' :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Mon agenda</h1>";
+                break;
+            case 'search' :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Recherche : " . $_SESSION['search'] . "</h1>";
+                break;
+            case 'editList' :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Evenements en attente</h1>";
+                break;
+            case 'myposts' :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Mes posts</h1>";
+                break;
+            default :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Accueil</h1>";
+                break;
         }
     }
 

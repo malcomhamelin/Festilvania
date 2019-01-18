@@ -33,7 +33,7 @@ Class ContManagementpost extends ContGeneric {
             case 'publish' :
             case 'editlistbyid' :
                 $this->createToken();
-                $this->view->getPage($this->model->editlistbyid(), $this->model->getCategories(), $this->model->getRights());
+                $this->view->getPage($this->model->eventInfo(), $this->model->getCategories(), $this->model->getRights());
                 break;
         }
     }

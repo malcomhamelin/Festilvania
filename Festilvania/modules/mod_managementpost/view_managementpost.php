@@ -14,7 +14,7 @@ Class ViewManagementpost extends ViewGeneric {
             require_once "template_managementpost.php";
         }
         else {
-            header('Location: index.php');
+            echo '<script>needToBeConnectedToPost();</script>';
         }
     }
 

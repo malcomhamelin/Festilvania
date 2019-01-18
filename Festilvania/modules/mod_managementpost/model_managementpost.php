@@ -66,8 +66,8 @@ Class ModelManagementpost extends ModelGeneric {
         }
     }
 
-    public function editlistbyid() {
-        $eventSelectionne = self::$bdd->prepare("SELECT * FROM evenement WHERE idEvenement = ?");
+    public function eventInfo() {
+        $eventSelectionne = self::$bdd->prepare("SELECT * FROM evenement INNER JOIN image using(idEvenement) WHERE idEvenement = ?");
         $eventSelectionne->execute(array($_SESSION['idEvenement']));
         $result = $eventSelectionne->fetch();
 

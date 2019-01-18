@@ -28,8 +28,8 @@ $dateEnd = new DateTime($event['date_fin']);
             <div class="row mt-3 mx-auto">
                 <div class="col-10 col-sm-8 col-md-10">
                     
-                    <?php $this->getScheduleButton($userInfos, $event['idEvenement']); ?>
-                    <?php $this->getEditButton($rights); ?>
+                    <?php $this->getScheduleButton($userSchedule, $event['idEvenement']); ?>
+                    <?php $this->getEditButton($rights, $event); ?>
 
                 </div>
             </div>
