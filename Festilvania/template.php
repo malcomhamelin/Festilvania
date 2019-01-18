@@ -26,6 +26,7 @@
     <script src="JS/modules/mod_admin/autocomplete_admin.js"></script>
     <script src="JS/modules/mod_managementpost/script_managementpost.js"></script>
     <script src="JS/modules/mod_register/script_register.js"></script>
+    <script src="JS/modules/mod_profile/script_profile.js"></script>
     <!--
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     -->

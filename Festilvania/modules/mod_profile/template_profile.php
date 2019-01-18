@@ -10,19 +10,22 @@
                 </div>
 
                 <div class="col-7 mb-2 mt-4 profile-centered">
-                    <input type="text" class="form-control" name="pseudo" value=<?php echo $content['pseudo']?> form="updateProfil" maxlength="32" required>  
+                    <input type="text" class="form-control" name="pseudo" value=<?php echo $content['pseudo']?> form="updateProfil" minlength=3 maxlength="32">  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="password" class="form-control" name="password" placeholder="Mot de passe" form="updateProfil" maxlength="256" required>  
+                    <input type="password" class="form-control" name="oldPassword" placeholder="Ancien mot de passe" form="updateProfil" minlength=5 maxlength="32">  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe" form="updateProfil" maxlength="256" required>
+                    <input type="password" class="form-control" name="password" placeholder="Mot de passe" form="updateProfil" minlength=5 maxlength="32">  
+                </div>
+                <div class="col-7 mb-2 profile-centered">
+                    <input type="password" class="form-control" name="password2" placeholder="Confirmer mot de passe" form="updateProfil" minlength=5 maxlength="32">
                 </div>  
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> maxlength="128" form="updateProfil" required>  
+                    <input type="email" class="form-control" name="email" value=<?php echo $content['mail']?> maxlength="128" form="updateProfil">  
                 </div>
                 <div class="col-7 mb-2 profile-centered">
-                    <input type="date" max=<?php echo $currDate->format("Y-m-d"); ?> min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']; ?> required >  
+                    <input type="date" max=<?php echo $currDate->format("Y-m-d"); ?> min="1900-01-01" name="date_anniv" class="form-control"  form="updateProfil" value=<?php echo $content['date_anniv']; ?>>  
                 </div>
                 <div class="col-7 mb-2 profile-centered text-center">
                     <input type="radio" class="mx-auto" id="homme" name="sexe" value="homme" <?php echo $content['sexe']=="homme" ? 'checked="checked"' : ""; ?> form="updateProfil">  Homme  
@@ -32,7 +35,7 @@
             </div> 
 
             <div class="col-10 col-md-3 ml-5 profile-bloc-avatar">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="mb-4 mx-auto">
                         <img src="<?php echo $_SESSION['avatar']; ?>" alt="avatar profil" id="uploadPreview" class="img-profile">
                     </div>
@@ -40,9 +43,10 @@
                 <div class="mb-4 profile-centered col-12 col-sm-10">
                     <div class="input-group">
                         <div class="custom-file">
-                            
-                                <input type="file" class="custom-file-input" name="avatar" id="inputGroupFile04" form="updateProfil" enctype="multipart/form-data" onchange="PreviewImage();"  >
-                                <label class="custom-file-label" for="inputGroupFile04">Choisir avatar</label>
+                        
+                                <label class="btn btn-warning btn-custom col-12 py-2">
+                                    Parcourir <input type="file" style="display: none;" name="avatar" id="inputGroupFile04" form="updateProfil" enctype="multipart/form-data" onchange="PreviewImage();">
+                                </label>
                                 <script type="text/javascript">
                                     function PreviewImage() {
                                         var oFReader = new FileReader();
@@ -52,11 +56,6 @@
                                             document.getElementById("uploadPreview").src = oFREvent.target.result;
                                         };
                                     };
-
-                                    $("#inputGroupFile04").on("change",function(){
-                                        var fileName = $(this).val();
-                                        $(this).next(".custom-file-label").html(fileName);
-                                    })
                                 </script>
                         
                         </div>

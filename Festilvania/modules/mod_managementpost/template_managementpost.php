@@ -7,14 +7,15 @@
         <div class="row">
 
             <div class="col-10 col-md-4 ml-5 managementpost-bloc-photo">
-                <div class="col-10 mb-4 mx-auto">
-                    <img id="uploadPreviewManagement" src="<?php echo $content['lienImage']; ?>" class="img-preview shadow-sm"/>
+                <div class="col-12 mb-4">
+                    <img id="uploadPreviewManagement" <?php echo isset($content['lienImage']) ? 'src=' . $content['lienImage'] : ""; ?> class="img-preview shadow-sm"/>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-9 mb-4 mx-auto">
+                <div class="col-10 col-sm-7 col-lg-9 mb-4 mx-auto">
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="eventPicture" form="editEvent" id="inputGroupFile04" enctype="multipart/form-data" onchange="PreviewImage();" <?php $this->addRequired();?>>
-                            <label class="custom-file-label" for="inputGroupFile04">Choisir photo...</label>
+                            <label class="btn btn-warning btn-custom mx-auto col-12 py-2">
+                                Parcourir <input type="file" style="display: none;" name="eventPicture" id="inputGroupFile04" form="editEvent" enctype="multipart/form-data" onchange="PreviewImage();" <?php $this->addRequired();?>>
+                            </label>
                             <script type="text/javascript">
                                 function PreviewImage() {
                                     var oFReader = new FileReader();
@@ -37,7 +38,7 @@
 
             <div class="col-12 col-md-7 managementpost-inputs">
                 <div class="row mt-3">
-                    <?php $this->getTitlePage(); ?>
+                    <span class="post-titre ml-5">Publication</span>
                     <hr style="height:2px;border:none;color:white;background-color:grey;" class="mx-auto col-4 col-md-6 col-lg-7">
                 </div>
 
@@ -52,7 +53,7 @@
                     <div class="form-group row">
                         <label for="dateDebut" class="col-4 col-form-label">Date de début</label>
                         <div class="col-8">
-                            <input class="form-control" type="date" min=<?php echo date("Y-m-d"); ?> name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>" required>
+                            <input class="form-control" type="date" min=<?php echo date("Y-m-d"); ?> name="dateDebutEvent" id="dateDebut" form="editEvent" value="<?php $this->getDefaultValue($content, 'date_debut');?>"required>
                         </div>
                     </div>
                     <div class="form-group row">

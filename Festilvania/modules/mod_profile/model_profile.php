@@ -15,7 +15,7 @@ Class ModelProfile extends Connection {
         if ($_FILES['avatar']['error'] == 0) {
             if ($_FILES['avatar']['size'] <= $this->MAX_FILE_SIZE) {
                 $upload_extension = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1) );
-                
+    
                 if (in_array($upload_extension, $this->VALID_EXTENSIONS)) {
                     $chemin = 'img/avatars/' . $_SESSION['pseudo'] . '.' . $upload_extension;
                     $resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
@@ -27,124 +27,90 @@ Class ModelProfile extends Connection {
                     }
                 }
             }
+            else {
+                echo '<script> avatarTooBig(); </script>';
+            }
+        }
+        else {
+            echo '<script> avatarError(); </script>';
         }
     }   
-     public function basedate(){
+
+    public function basedate(){
         $pastdata =self::$bdd->prepare("SELECT * from membre where membre.idMembre=:id");
         $pastdata->bindParam(':id', $_SESSION['idMembre']);
         $pastdata->execute();
         $tab=$pastdata->fetch();
         return $tab;
     }
+    
     public function is_clean($string) {
        return preg_match("/^[\w\-]+$/", $string);
 
        //"/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]\\s/"
     }
-    public function is_email($string){
+
+    public function is_email($string) {
         return preg_match("/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/", $string);
     }
-    public function update(){
+
+    public function update() {
        
         //variable
-        if (isset($_POST['pseudo'])) {
-            $pseudo = $_POST['pseudo']; }
-        
-        if (isset($_POST['email'])) {
-            $email = $_POST['email']; } 
+        if (isset($_POST['pseudo']) && strlen($_POST['pseudo']) > 3) {
+            $pseudo = htmlspecialchars($_POST['pseudo']);
 
-        if (isset($_POST['password'])) {
-            $password = $_POST['password']; } 
-
-        if (isset($_POST['password2'])) {
-            $password2 = $_POST['password2']; } 
-
-        if (isset($_POST['sexe'])) { 
-            $sexe = $_POST['sexe']; } 
-
-        if (isset($_POST['date_anniv'])) {
-            $anniversaire = $_POST['date_anniv']; } 
-
-
-        if(isset($_POST['pseudo'])&&isset($_POST['email'])&&isset($_POST['password'])&&isset($_POST['sexe'])&&isset($_POST['date_anniv'])){
-            if(self::is_clean($pseudo)&&self::is_email($email)&&self::is_clean($password)&&self::is_clean($password2)){
-                if($password==$password2){
-                    $verifEmailunique =self::$bdd->prepare("SELECT count(*) from membre where membre.mail=:mail");
-                    $verifEmailunique->bindParam(':mail', $email);
-                    $verifEmailunique->execute();
-                    $tab=$verifEmailunique->fetch();
-                  
-                    //verifier les conditions de upload image
-                     if(0==$tab[0]||$_SESSION['membre']['mail']==$email){
-                        $verifPseudolunique =self::$bdd->prepare("SELECT count(*) from membre where membre.pseudo=:pseudo");
-                        $verifPseudolunique->bindParam(':pseudo', $pseudo);
-                        $verifPseudolunique->execute();
-                        $tab=$verifPseudolunique->fetch();
-                    
-                        if(0==$tab[0]||$_SESSION['pseudo']==$pseudo){
-                            $passHash = password_hash($password, PASSWORD_DEFAULT);
-                            
-                            $newValues = array($pseudo, $passHash, $email, $sexe, $anniversaire);
-                            $sql = 'UPDATE membre
-                            SET pseudo   = \'' . $newValues[0] . '\',
-                                password = \'' . $newValues[1] . '\',
-                                mail     = \'' . $newValues[2] . '\',
-                                sexe     = \'' . $newValues[3] . '\',
-                                date_anniv = \'' . $newValues[4] . '\'
-                                WHERE idMembre='.$_SESSION['idMembre'];
-                               
-                            $req = self::$bdd->prepare($sql);
-                            $req->execute();
-
-                            self::uploadAvatar();
-
-                            $_SESSION['membre']['mail']=$email;
-                            $_SESSION['email']=$email;
-                            $_SESSION['pseudo']=$pseudo;
-                            echo '<script type="text/javascript">
-                                    location.href = \'index.php\';
-                                    window.alert("profil mis à jour");
-                                </script>';
-                        }
-                        else {
-                           echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=profile\';
-                                    window.alert("profil mis à jour");
-                                </script>';
-                        }
-
-                    }
-                    else {
-                       
-                       echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=profile\';
-                                    window.alert("Cet email est deja associe a un compte veuillez en choisir un autre");
-                                </script>';
-                    }
-
-                }
-                else{
-                   
-                   echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=profile\';
-                                    window.alert("Attention le mot de passe est différent");
-                                </script>';
-                }
+            if ($this->is_clean($_POST['pseudo'])) {
+                $reqPseudoChange = self::$bdd->prepare("UPDATE membre SET pseudo = ? WHERE idMembre = ?");
+                $reqPseudoChange->execute(array($pseudo, $_SESSION['idMembre']));
             }
-            else{
-                
-                echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=profile\';
-                                    window.alert("inscription impossible,caractères spéciaux interdit");
-                                </script>';
+            else {
+                echo '<script> specialCharsPseudo(); </script>';
             }
         }
-        else{
+        
+        if (isset($_POST['email']) && $this->is_email($_POST['email'])) {
+            $email = htmlspecialchars($_POST['email']); 
             
-            echo '<script type="text/javascript">
-                                    location.href = \'index.php?mod=profile\';
-                                    window.alert("Il manques des informations, veuillez recommencer");
-                                </script>';
+            $reqMailChange = self::$bdd->prepare("UPDATE membre SET mail = ? WHERE idMembre = ?");
+            $reqMailChange->execute(array($email, $_SESSION['idMembre']));
+        } 
+
+        if (isset($_POST['oldPassword']) && isset($_POST['password']) && isset($_POST['password2'])
+            && strlen($_POST['oldPassword']) > 4 && strlen($_POST['password']) > 4 && strlen($_POST['password2']) > 4) {
+            $password = htmlspecialchars($_POST['password']); 
+            $passHash = password_hash($password, PASSWORD_DEFAULT);
+
+            if(password_verify($_POST['oldPassword'], $_SESSION['membre']['password'])) {
+                if ($_POST['password'] == $_POST['password2']) {
+                    $reqPasswordChange = self::$bdd->prepare("UPDATE membre SET password = ? WHERE idMembre = ?");
+                    $reqPasswordChange->execute(array($passHash, $_SESSION['idMembre']));
+                }
+                else {
+                    echo '<script> mismatchNewPassword(); </script>';
+                }
+            }
+            else {
+                echo '<script> mismatchOldPassword(); </script>';
+            }
+        } 
+
+        if (isset($_POST['sexe'])) { 
+            $sexe = $_POST['sexe']; 
+
+            $reqSexChange = self::$bdd->prepare("UPDATE membre SET sexe = ? WHERE idMembre = ?");
+            $reqSexChange->execute(array($sexe, $_SESSION['idMembre']));
+        } 
+
+        if (isset($_POST['date_anniv']) && !empty($_POST['date_anniv'])) {
+            $anniversaire = $_POST['date_anniv']; 
+            
+            $reqAnnivChange = self::$bdd->prepare("UPDATE membre SET date_anniv = ? WHERE idMembre = ?");
+            $reqAnnivChange->execute(array($anniversaire, $_SESSION['idMembre']));
+        }
+
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
+            $this->uploadAvatar();
         }
         
     }

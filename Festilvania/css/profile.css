@@ -29,9 +29,8 @@
     border-radius: 3px;
 
     padding-top: 20px;
-    margin-top : 9%;
-
-    height: 180px;
+    margin-top : 6%;
+    margin-bottom : 3%;
 }
 
 .profile-inputs input {
@@ -43,6 +42,6 @@
 }
 
 #uploadPreview {
-    width : 64px;
-    height : 64px;
+    width : 128px;
+    height : 128px;
 }
