@@ -43,7 +43,7 @@ Class ViewTimeline extends ViewGeneric {
                                             
                                             $this->getScheduleButton($userInfos, $key['idEvenement']);
 
-                echo                        '<a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '"><div class="btn btn-warning annonce-corps-btn ml-3">Voir l\'évènement</div></a>
+                echo                        '<a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '"><div class="py-1 px-2 btn btn-warning annonce-corps-btn ml-3">Voir l\'évènement</div></a>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@ Class ViewTimeline extends ViewGeneric {
         $idMembre = isset($_SESSION['idMembre']) && !empty($_SESSION['idMembre']) ? $_SESSION['idMembre'] : -1;
 
         if ($isPresentSchedule)  {
-            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Retirer de mon agenda" data-schedule="del" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-3 fas fa-minus"></i></div>';
+            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Retirer de mon agenda" data-schedule="del" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-2 fas fa-minus"></i></div>';
         }
         else {
             echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Ajouter à mon agenda" data-schedule="add" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-2 fas fa-plus"></i></div>';
