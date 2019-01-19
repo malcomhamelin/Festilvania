@@ -85,11 +85,16 @@
 
 @media (max-width:767px) {
     .blocs-annexes-annonces-texte-titre {
+        
         font-size: 24px;
     }
     
     .blocs-annexes-annonces-texte-description {
-        font-size: 22px;
+        font-size: 20px;
+    }
+
+    .blocs-annexes-annonces-texte {
+        padding-left : 8%;
     }
 
     .blocs-annexes-annonces {
@@ -101,6 +106,10 @@
 @media (max-width:511px) {
     .blocs-annexes-annonces-texte-titre {
         font-size: 18px;
+    }
+
+    .blocs-annexes-annonces-texte {
+        padding-left : 0%;
     }
     
     .blocs-annexes-annonces-texte-description {
