@@ -99,6 +99,16 @@ ul {
 
 .votes-img {
     width: 32px;
+
+    opacity: 0.7;
+}
+
+.votes-img:hover {
+    opacity: 1;
+}
+
+.like, .dislike {
+    cursor : pointer;
 }
 
 .annonce-col {

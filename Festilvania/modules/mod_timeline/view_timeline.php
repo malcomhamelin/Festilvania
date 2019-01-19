@@ -8,7 +8,7 @@ Class ViewTimeline extends ViewGeneric {
         parent::__construct();
     }
 
-    public function getTimeline($content, $userInfos, $hottestContent, $latestContent) {
+    public function getTimeline($content, $userInfos, $hottestContent, $latestContent, $option) {
         require_once "template_timeline.php";
     }
 
@@ -22,9 +22,9 @@ Class ViewTimeline extends ViewGeneric {
                 echo    '<div class="container annonce shadow-sm mb-5">
                             <div class="row">
                                 <div class="col-2 col-md-1 col-lg-1 votes ml-5 my-auto">
-                                    <a href="index.php?mod=timeline&action=upvote&idEvenement=' . $key['idEvenement'] . '"><img src="img/nexttg.png" alt="upvote" class="votes-img"></a>
-                                    <div class="btn font-weight-bold"><span>' . $nbVotes . '</span></div>
-                                    <a href="index.php?mod=timeline&action=downvote&idEvenement=' . $key['idEvenement'] . '"><img src="img/nextbg.png" alt="downvote" class="votes-img"></a>
+                                    <span data-vote="like" data-post="' . $key['idEvenement'] . '" class="like"><img src="img/nexttg.png" alt="upvote" class="votes-img"></span>
+                                    <div class="btn font-weight-bold"><span class="nbVotes" data-post="' . $key['idEvenement'] . '">' . $nbVotes . '</span></div>
+                                    <span data-vote="dislike" data-post="' . $key['idEvenement'] . '" class="dislike"><img src="img/nextbg.png" alt="downvote" class="votes-img"></span>
                                 </div>
                     
                                 <div class="col-7 col-md-4 col-lg-3 annonce-col">
@@ -61,7 +61,7 @@ Class ViewTimeline extends ViewGeneric {
     public function getScheduleButton($userInfos, $idEvenement) {
         $isPresentSchedule = false;
 
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
             foreach ($userInfos as $key) {
                 if ($key['idMembre'] == $_SESSION['idMembre'] && $key['idEvenement'] == $idEvenement) {
                     $isPresentSchedule = true;
@@ -69,11 +69,13 @@ Class ViewTimeline extends ViewGeneric {
             }
         }
 
+        $idMembre = isset($_SESSION['idMembre']) && !empty($_SESSION['idMembre']) ? $_SESSION['idMembre'] : -1;
+
         if ($isPresentSchedule)  {
-            echo '<a href="index.php?mod=timeline&action=delschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
+            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Retirer de mon agenda" data-schedule="del" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-3 fas fa-minus"></i></div>';
         }
         else {
-            echo '<a href="index.php?mod=timeline&action=addschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
+            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Ajouter à mon agenda" data-schedule="add" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-2 fas fa-plus"></i></div>';
         }
     }
 
@@ -132,9 +134,7 @@ Class ViewTimeline extends ViewGeneric {
         }
     }
 
-    public function getTitle() {
-        $option = isset($_GET['option']) ? htmlspecialchars($_GET['option']) : "";
-
+    public function getTitle($option) {
         switch ($option) {
             case 'myschedule' :
                 echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Mon agenda</h1>";
@@ -148,8 +148,11 @@ Class ViewTimeline extends ViewGeneric {
             case 'myposts' :
                 echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Mes posts</h1>";
                 break;
-            default :
+            case 'homepage' :
                 echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>Accueil</h1>";
+                break;
+            default :
+                echo "<h1 class='font-weight-bold text-center mb-5' id='timeline-title'>" . $option . "</h1>";
                 break;
         }
     }

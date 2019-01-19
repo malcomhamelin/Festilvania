@@ -55,7 +55,7 @@
 
 <div class="container-fluid bloc-principal py-5">
 
-    <?php $this->getTitle(); ?>
+    <?php $this->getTitle($option); ?>
 
     <?php $this->getMainTimeline($content, $userInfos); ?>
 

@@ -39,13 +39,13 @@ Class ContTimeline extends ContGeneric{
             case 'search' :
             case 'myposts' :
                 $this->createToken();
-                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
+                $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent(), $option);
                 break;
             case 'editlist' :
                 $rights = $this->model->getRights();
                 if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected'] && !empty($rights) && $rights['droit_editer']) {
                     $this->createToken();
-                    $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
+                    $this->view->getTimeline($this->model->$option(), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent(), $option);
                 }
                 else {
                     header('Location: index.php');
@@ -53,7 +53,7 @@ Class ContTimeline extends ContGeneric{
                 break;
             default :
                 $this->createToken();
-                $this->view->getTimeline($this->model->categories($option), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent());
+                $this->view->getTimeline($this->model->categories($option), $this->model->getUserInfos(), $this->model->hottestContent(), $this->model->latestContent(), $option);
                 break;
         }
     }

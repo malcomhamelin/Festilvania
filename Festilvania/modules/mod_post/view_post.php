@@ -61,7 +61,7 @@ class ViewPost extends ViewGeneric {
 	public function getScheduleButton($userInfos, $idEvenement) {
         $isPresentSchedule = false;
 
-        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre'])) {
+        if (isset($_SESSION['isConnected']) && isset($_SESSION['pseudo']) && isset($_SESSION['idMembre']) && $_SESSION['isConnected']) {
             foreach ($userInfos as $key) {
                 if ($key['idMembre'] == $_SESSION['idMembre'] && $key['idEvenement'] == $idEvenement) {
                     $isPresentSchedule = true;
@@ -69,11 +69,13 @@ class ViewPost extends ViewGeneric {
             }
         }
 
+        $idMembre = isset($_SESSION['idMembre']) && !empty($_SESSION['idMembre']) ? $_SESSION['idMembre'] : -1;
+
         if ($isPresentSchedule)  {
-            echo '<a href="index.php?mod=post&action=delschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Retirer de mon agenda"><i class="fas fa-minus"></i></div></a>';
+            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Retirer de mon agenda" data-schedule="del" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-3 fas fa-minus"></i></div>';
         }
         else {
-            echo '<a href="index.php?mod=post&action=addschedule&option=' . $_SESSION['option'] . '&idEvenement=' . $idEvenement . '"><div class="btn btn-warning annonce-corps-btn mx-auto" title="Ajouter à mon agenda"><i class="fas fa-plus"></i></div></a>';
+            echo '<div class="py-0 px-0 btn btn-warning annonce-corps-btn mx-auto"><i title="Ajouter à mon agenda" data-schedule="add" data-user="' . $idMembre . '" data-post="' . $idEvenement . '" class="schedule px-3 py-2 fas fa-plus"></i></div>';
         }
     }
     

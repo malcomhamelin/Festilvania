@@ -21,6 +21,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="JS/modules/mod_timeline/script_timeline.js"></script>
     <script src="JS/modules/mod_timeline/autocomplete_timeline.js"></script>
     <script src="JS/modules/mod_admin/script_admin.js"></script>
     <script src="JS/modules/mod_admin/autocomplete_admin.js"></script>

@@ -69,9 +69,9 @@ Class ModelTimeline extends ModelGeneric {
     }
 
     public function categories($option) {
-        $tuplesCategorie = self::$bdd->prepare("SELECT categorie.titreCategorie, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, lienImage 
+        $tuplesCategorie = self::$bdd->prepare("SELECT evenement.estPublie, categorie.titreCategorie, evenement.idEvenement, titreEvenement, evenement.description, evenement.date_creation, date_debut, date_fin, evenement.idMembre, idCategorie, lieu, sum(voteevenement.vote) as nbVotes, lienImage 
         FROM categorie INNER JOIN evenement using (idCategorie) INNER JOIN image using (idEvenement) LEFT JOIN voteevenement using (idEvenement) 
-        GROUP BY evenement.idEvenement HAVING categorie.titreCategorie = ? ORDER BY date_creation DESC");
+        GROUP BY evenement.idEvenement HAVING categorie.titreCategorie = ? AND evenement.estPublie = 1 ORDER BY date_creation DESC");
 
         $tuplesCategorie->execute(array($option));
         $result = $tuplesCategorie->fetchAll();

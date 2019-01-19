@@ -9,9 +9,9 @@ $dateEnd = new DateTime($event['date_fin']);
 <div class="container annonce shadow-sm mt-5">
     <div class="row">
         <div class="col-2 col-md-1 col-lg-1 votes ml-5 my-auto">
-            <a href="index.php?mod=post&action=upvote&idEvenement=<?php echo $event['idEvenement']?>"><img src="img/nexttg.png" alt="upvote" class="votes-img"></a>
-            <div class="btn font-weight-bold"><span><?php echo $nbVotes; ?></span></div>
-            <a href="index.php?mod=post&action=downvote&idEvenement=<?php echo $event['idEvenement']?>"><img src="img/nextbg.png" alt="downvote" class="votes-img"></a>
+            <span data-vote="like" data-post="<?php echo $event['idEvenement']; ?>" class="like"><img src="img/nexttg.png" alt="upvote" class="votes-img"></span>
+            <div class="btn font-weight-bold"><span class="nbVotes" data-post="<?php echo $event['idEvenement']; ?>"><?php echo $event['nbVotes']; ?></span></div>
+            <span data-vote="dislike" data-post="<?php echo $event['idEvenement']; ?>" class="dislike"><img src="img/nextbg.png" alt="downvote" class="votes-img"></span>
         </div>
 
         <div class="col-7 col-md-4 col-lg-3 annonce-col">
