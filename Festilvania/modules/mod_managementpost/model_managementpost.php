@@ -16,7 +16,7 @@ Class ModelManagementpost extends ModelGeneric {
     }
 
     public function is_cleanDescription($string) {
-       return ! (preg_match("/[#$%*+=^_`{|}~-]/", $string));
+       return ! (preg_match("/[#$%*+=^_`{|}~]/", $string));
     }
 
     public function publication() {
