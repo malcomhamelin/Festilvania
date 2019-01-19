@@ -49,10 +49,8 @@ Class ModelManagementpost extends ModelGeneric {
                     </script>';
                 }
                 else {
-                    echo '<script type="text/javascript">
-                        location.href = \'index.php\';
-                        alert("Publication impossible, caractères spéciaux interdit");
-                    </script>';
+	                $message = 'Il y a des caractères interdits dans les champs, voulez-vous recommencez la publication ?';
+	                $this->popUpRedirect($message, "publish");
                 }
             }
             else {
