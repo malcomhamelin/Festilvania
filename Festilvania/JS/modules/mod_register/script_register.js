@@ -4,7 +4,7 @@ function profileCreated() {
 }
 
 function pseudoAlreadyUsed() {
-    event.preventDefault();
+    location.href = 'index.php?mod=register';
     window.alert("Pseudonyme déjà utilisé");
 }
 
@@ -14,7 +14,7 @@ function emailAlreadyUsed() {
 }
 
 function mismatchPasswords() {
-    event.preventDefault();
+    location.href = 'index.php?mod=register';
     window.alert("Les mots de passe ne correspondent pas");
 }
 
@@ -26,8 +26,4 @@ function specialCharactersInPseudo() {
 function missingField() {
     location.href = 'index.php?mod=register';
     window.alert("Un ou plusieurs champs ne sont pas remplis");
-}
-
-function checkForm() {
-    
 }

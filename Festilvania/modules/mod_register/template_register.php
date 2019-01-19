@@ -1,3 +1,5 @@
+<script src="JS/modules/mod_register/script_register.js"></script>
+
 <div class="container">
 <div class="row">
     <div class="col-12 container-publipost annonce">

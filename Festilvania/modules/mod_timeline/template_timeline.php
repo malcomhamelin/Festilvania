@@ -1,3 +1,6 @@
+<script src="JS/modules/mod_timeline/script_timeline.js"></script>
+<script src="JS/modules/mod_timeline/autocomplete_timeline.js"></script>
+
 <div class="accueil">
     <div class="titreEtRecherche">
         <h1 class="mb-4 d-flex justify-content-center text-center">Envie de vous amuser ?</h1>

@@ -1,3 +1,5 @@
+<script src="JS/modules/mod_managementpost/script_managementpost.js"></script>
+
 <div class="container">
 <div class="row">
     <form method="post" action="index.php?mod=managementpost&action=<?php $this->getAction();?>" enctype="multipart/form-data" id="editEvent"></form>

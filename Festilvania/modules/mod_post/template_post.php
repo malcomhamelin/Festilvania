@@ -6,6 +6,8 @@ $dateEnd = new DateTime($event['date_fin']);
 
 ?>
 
+<script src="JS/modules/mod_timeline/script_timeline.js"></script>
+
 <div class="container annonce shadow-sm mt-5">
     <div class="row">
         <div class="col-2 col-md-1 col-lg-1 votes ml-5 my-auto">

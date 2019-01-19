@@ -9,7 +9,7 @@ class Connection {
     }
 
     public static function initConnection() {
-        self::$bdd = new PDO('mysql:host=localhost;dbname=festilvania', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        self::$bdd = new PDO('mysql:host=localhost;dbname=festilvania', 'festilvania', 'Maljonerw1&', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
     public static function upvote($postID) {

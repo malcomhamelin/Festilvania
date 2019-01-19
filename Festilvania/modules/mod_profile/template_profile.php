@@ -1,3 +1,5 @@
+<script src="JS/modules/mod_profile/script_profile.js"></script>
+
 <div class="container annonce shadow-sm container-profile">
     <div class="container">
     <form method="post" action="index.php?mod=profile&action=update" enctype="multipart/form-data" id="updateProfil"></form>
