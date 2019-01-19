@@ -40,7 +40,7 @@ class ViewPost extends ViewGeneric {
 		$idMembreConnecte = isset($_SESSION['idMembre']) && !empty($_SESSION['idMembre']) ? $_SESSION['idMembre'] : -1;
 
 		if (($rights != null && $rights['droit_editer']) || ($event['idMembre'] == $idMembreConnecte)) {
-			echo '<a href="index.php?mod=managementpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="btn btn-warning annonce-corps-btn ml-2">Editer</a>';
+			echo '<a href="index.php?mod=managementpost&option=editlistbyid&idEvenement='. $_SESSION['idEvenement'] .'" class="px-3 py-1 btn btn-warning annonce-corps-btn ml-2">Editer</a>';
 		}
 	}
 
