@@ -85,13 +85,13 @@ Class ViewTimeline extends ViewGeneric {
 		    $dateEnd = new DateTime($key['date_fin']);
 
             echo    '<div class="col-10 col-md-3 mx-auto mb-4 blocs-annexes-annonces">
-                        <img src="' . $key['lienImage'] . '" alt="event1" class="blocs-annexes-photos">
-                        <div class="blocs-annexes-annonces-texte ml-2 text-left">
-                            <a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '">
+                        <a href="index.php?mod=post&idEvenement=' . $key['idEvenement'] . '">
+                            <img src="' . $key['lienImage'] . '" alt="event1" class="blocs-annexes-photos">
+                            <div class="blocs-annexes-annonces-texte ml-2 text-left">
                                 <span class="font-weight-bold blocs-annexes-annonces-texte-titre">' . $key['titreEvenement'] . '</span><br>
                                 <span class="blocs-annexes-annonces-texte-description font-weight-bold">' . $dateBegin->format('d/m/y') . ' - ' . $dateEnd->format('d/m/y') . ' | ' . $key['lieu'] . '</span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>';
         
         }
