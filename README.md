@@ -37,3 +37,8 @@ Site de recensement de concerts et de festivals
 - Intégration graphique de la gestion du profil
 - Intégration graphique de l'inscription
 - Ajout d'un système de token pour les formulaires
+
+18/01/2019 - 0.7 :
+- Ajout des fonctions dynamique de vote des posts
+- Ajout d'une fonction dynamique d'ajout de post à l'agenda
+- Bug fix
